@@ -1,12 +1,12 @@
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "https://YOUR_DATABASE_NAME.firebaseio.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
+    authDomain: "gaming-rental-site.firebaseapp.com",
+    databaseURL: "https://gaming-rental-site-default-rtdb.firebaseio.com",
+    projectId: "gaming-rental-site",
+    storageBucket: "gaming-rental-site.firebasestorage.app",
+    messagingSenderId: "573901873327",
+    appId: "1:573901873327:web:949bea4a588b6f9a37745a"
 };
 
 const app = initializeApp(firebaseConfig);

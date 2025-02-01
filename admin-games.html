@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Manage Games</title>
+    <!-- Include Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Manage Games</h1>
+    <div id="loginDiv">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" required><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" required><br><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <div id="adminGamesDiv" style="display:none;">
+        <h2>Game Details</h2>
+        <ul id="gamesList"></ul>
+        <h3>Add or Update Game</h3>
+        <form id="addUpdateGameForm">
+            <input type="hidden" id="gameId">
+            <label for="gameName">Game Name:</label><br>
+            <input type="text" id="gameName" required><br><br>
+            <label for="gameDescription">Description:</label><br>
+            <textarea id="gameDescription" required></textarea><br><br>
+            <label for="gamePrice">Rental Price:</label><br>
+            <input type="number" id="gamePrice" required><br><br>
+            <label for="gameAvailability">Available:</label><br>
+            <select id="gameAvailability" required>
+                <option value="true">Yes</option>
+                <option value="false">No

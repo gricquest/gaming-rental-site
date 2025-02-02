@@ -41,23 +41,25 @@ const database = getDatabase(app);
 const loginForm = document.getElementById('login-form');
 const adminPanel = document.getElementById('admin-panel');
 
-// Login Function
-window.login = function () {
+
+document.getElementById('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value;
-
     signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            // User logged in
+        .then(userCredential => {
+            // Signed in
             loginForm.style.display = 'none';
             adminPanel.style.display = 'block';
             loadGames();
-           // loadRentals(); // If you have this function
         })
-        .catch((error) => {
-            alert('Login Failed: ' + error.message);
+        .catch(error => {
+            console.error('Error signing in:', error);
+            alert('Error signing in. Please try again.');
         });
-};
+});
+
+// Login Function
 
 // Monitor Authentication State
 onAuthStateChanged(auth, (user) => {

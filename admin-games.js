@@ -52,6 +52,7 @@ window.login = function () {
             loginForm.style.display = 'none';
             adminPanel.style.display = 'block';
             loadGames();
+           // loadRentals(); // If you have this function
         })
         .catch((error) => {
             alert('Login Failed: ' + error.message);

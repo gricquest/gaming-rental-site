@@ -3,31 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - Game Rental Site</title>
-    <!-- Include Firebase SDK -->
-    <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js';
-        import { getAuth } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js';
-        import { getDatabase } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js';
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            // Your Firebase configuration here
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            databaseURL: "YOUR_DATABASE_URL",
-            projectId: "YOUR_PROJECT_ID",
-            // ... other configuration ...
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const database = getDatabase(app);
-
-        // Export Firebase instances for use in admin.js
-        export { app, auth, database };
-    </script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>

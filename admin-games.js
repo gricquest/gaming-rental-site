@@ -42,22 +42,22 @@ const loginForm = document.getElementById('login-form');
 const adminPanel = document.getElementById('admin-panel');
 
 
-document.getElementById('login-form').addEventListener('submit', function (e) {
-    e.preventDefault();
+window.login = function () {
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value;
+
     signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            // Signed in
+        .then(() => {
+            // User logged in
             loginForm.style.display = 'none';
             adminPanel.style.display = 'block';
             loadGames();
+            loadRentals(); // If you have this function
         })
-        .catch(error => {
-            console.error('Error signing in:', error);
-            alert('Error signing in. Please try again.');
+        .catch((error) => {
+            alert('Login Failed: ' + error.message);
         });
-});
+};
 
 // Login Function
 

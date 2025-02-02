@@ -1,6 +1,11 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+import { getDatabase, ref, push, set, onChildAdded, onValue, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
+    apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
     authDomain: "gaming-rental-site.firebaseapp.com",
     databaseURL: "https://gaming-rental-site-default-rtdb.firebaseio.com",
     projectId: "gaming-rental-site",

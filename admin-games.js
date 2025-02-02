@@ -212,3 +212,66 @@ function validateGameForm() {
 
     return true;
 }
+
+
+// In admin.js
+window.markAsReturned = function (rentalId, gameId) {
+    const updates = {};
+    updates[`rentals/${rentalId}/status`] = 'returned';
+    updates[`games/${gameId}/rentals/${rentalId}/status`] = 'returned';
+
+    update(ref(database), updates)
+        .then(() => {
+            alert('Rental marked as returned.');
+            loadRentals();
+        })
+        .catch((error) => {
+            alert('Error updating rental status: ' + error.message);
+        });
+};
+
+
+// In admin.js
+function loadRentals() {
+    const rentalsRef = ref(database, 'rentals');
+
+    onValue(rentalsRef, (snapshot) => {
+        const rentalsTableBody = document.getElementById('rentals-table-body');
+        rentalsTableBody.innerHTML = '';
+
+        snapshot.forEach((childSnapshot) => {
+            const rental = childSnapshot.val();
+            const rentalId = childSnapshot.key;
+
+            if (rental.status === 'active') {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+          <td>${rentalId}</td>
+          <td>${rental.gameId}</td>
+          <td>${rental.userId}</td>
+          <td>${rental.startDate}</td>
+          <td>${rental.endDate}</td>
+          <td>${rental.status}</td>
+          <td><button onclick="markAsReturned('${rentalId}', '${rental.gameId}')">Return</button></td>
+        `;
+                rentalsTableBody.appendChild(row);
+            }
+        });
+    });
+}
+
+
+// In admin.js, after successful login
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is logged in
+        loginForm.style.display = 'none';
+        adminPanel.style.display = 'block';
+        loadGames();
+        loadRentals();
+    } else {
+        // User is logged out
+        loginForm.style.display = 'block';
+        adminPanel.style.display = 'none';
+    }
+});

@@ -7,25 +7,39 @@
 </head>
 <body>
     <h1>Game Rental Site</h1>
-    <div id="add-product">
-        <h2>Add Product</h2>
-        <input type="text" id="game-name" placeholder="Game Name">
-        <button onclick="addProduct()">Add Product</button>
+    <!-- Registration Form -->
+    <div id="register-form">
+        <h2>Register</h2>
+        <input type="email" id="register-email" placeholder="Email">
+        <input type="password" id="register-password" placeholder="Password">
+        <button onclick="register()">Register</button>
     </div>
-    <div id="rent-game">
-        <h2>Rent Game</h2>
-        <input type="text" id="rent-game-name" placeholder="Game Name">
-        <button onclick="rentGame()">Rent Game</button>
+
+    <!-- Login Form -->
+    <div id="login-form">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="login()">Login</button>
     </div>
-    <div id="return-game">
-        <h2>Return Game</h2>
-        <input type="text" id="return-game-name" placeholder="Game Name">
-        <button onclick="returnGame()">Return Game</button>
-    </div>
-    <div id="availability">
+    <!-- Games List -->
+    <div id="game-list">
         <h2>Available Games</h2>
         <ul id="available-games-list"></ul>
     </div>
+
+    <!-- Rental Form -->
+    <div id="rental-form" style="display:none;">
+        <h2>Rent Game</h2>
+        <p id="rental-game-name"></p>
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date"><br>
+        <label for="end-date">End Date:</label>
+        <input type="date" id="end-date"><br>
+        <button onclick="rentGame()">Rent</button>
+        <button onclick="closeRentalForm()">Cancel</button>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
     <script src="script.js"></script>

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Game Rental Site</title>
+    <!-- Include Firebase SDK -->
+    <!-- No need to import Firebase in HTML since we'll handle it in admin.js -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="login-form">
+        <h2>Admin Login</h2>
+        <input type="email" id="login-email" placeholder="Email"><br>
+        <input type="password" id="login-password" placeholder="Password"><br>
+        <button id="login-button">Login</button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" style="display:none;">
+        <h1>Admin Panel</h1>
+        <!-- Game Management Form -->
+        <div id="game-form">
+            <h2>Add / Edit Game</h2>
+            <!-- Game ID (for editing) -->
+            <input type="text" id="game-id" placeholder="Game ID (for editing)"><br>
+
+            <!-- Game Name -->
+            <input type="text" id="game-name" placeholder="Game Name"><br>
+
+            <!-- Game Description -->
+            <textarea id="game-description" placeholder="Game Description"></textarea><br>
+
+            <!-- Game Price -->
+            <input type="number" id="game-price" placeholder="Price" step="0.01" min="0"><br>
+
+            <!-- Game Platform -->
+            <input type="text" id="game-platform" placeholder="Platform"><br>
+
+            <!-- Game Genre -->
+            <input type="text" id="game-genre" placeholder="Genre"><br>
+
+            <!-- Game Release Date -->
+            <label for="game-release-date">Release Date:</label>
+            <input type="date" id="game-release-date"><br>
+
+            <!-- Game Image URL -->
+            <input type="url" id="game-image-url" placeholder="Image URL"><br>
+
+            <!-- Game Availability -->
+            <label>
+                Available:
+                <select id="game-availability">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </label><br>
+
+            <!-- Buttons -->
+            <button id="add-game-button">Add Game</button>
+            <button id="update-game-button">Update Game</button>
+            <button id="delete-game-button">Delete Game</button>
+        </div>
+
+        <!-- Game List -->
+        <div id="game-list">
+            <h2>Games List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Platform</th>
+                        <th>Genre</th>
+                        <th>Release Date</th>
+                        <th>Available</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="games-table-body">
+                    <!-- Games will be listed here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Logout Button -->
+        <button id="logout-button">Logout</button>
+    </div>
+    <!-- Include Your JavaScript File -->
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

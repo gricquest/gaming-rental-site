@@ -1,9 +1,9 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { getDatabase, ref, push, set, onChildAdded, onValue, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+// Import Firebase modules (using Firebase version 9 modules)
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
+import { getAuth, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
+import { getDatabase, ref, set, update, remove, onValue } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js';
 
-
-// Initialize Firebase
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
     authDomain: "gaming-rental-site.firebaseapp.com",
@@ -14,101 +14,131 @@ const firebaseConfig = {
     appId: "1:573901873327:web:949bea4a588b6f9a37745a"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const auth = getAuth();
 const database = getDatabase(app);
-const gamesRef = ref(database, 'games');
 
-// Handle login
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  
-  signInWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      // Signed in
-      document.getElementById('loginDiv').style.display = 'none';
-      document.getElementById('adminGamesDiv').style.display = 'block';
-      loadGames();
-    })
-    .catch(error => {
-      alert(error.message);
+// Elements
+const loginForm = document.getElementById('login-form');
+const adminPanel = document.getElementById('admin-panel');
+
+// Login Function
+window.login = function () {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            loginForm.style.display = 'none';
+            adminPanel.style.display = 'block';
+            loadGames();
+        })
+        .catch((error) => {
+            alert("Login Failed: " + error.message);
+        });
+};
+
+// Logout Function
+window.logout = function () {
+    signOut(auth).then(() => {
+        adminPanel.style.display = 'none';
+        loginForm.style.display = 'block';
     });
-});
+};
 
-// Load games from the database
+// Add Game
+window.addGame = function () {
+    const gameId = ref(database, 'games').push().key;
+    const gameData = getGameFormData();
+
+    set(ref(database, 'games/' + gameId), gameData)
+        .then(() => {
+            alert('Game added successfully!');
+            clearGameForm();
+            loadGames();
+        })
+        .catch(error => {
+            alert("Error: " + error.message);
+        });
+};
+
+// Update Game
+window.updateGame = function () {
+    const gameId = document.getElementById('game-id').value;
+    if (!gameId) {
+        alert('Please enter a Game ID to update.');
+        return;
+    }
+    const gameData = getGameFormData();
+
+    update(ref(database, 'games/' + gameId), gameData)
+        .then(() => {
+            alert('Game updated successfully!');
+            clearGameForm();
+            loadGames();
+        })
+        .catch(error => {
+            alert("Error: " + error.message);
+        });
+};
+
+// Delete Game
+window.deleteGame = function () {
+    const gameId = document.getElementById('game-id').value;
+    if (!gameId) {
+        alert('Please enter a Game ID to delete.');
+        return;
+    }
+
+    remove(ref(database, 'games/' + gameId))
+        .then(() => {
+            alert('Game deleted successfully!');
+            clearGameForm();
+            loadGames();
+        })
+        .catch(error => {
+            alert("Error: " + error.message);
+        });
+};
+
+// Load Games to Table
 function loadGames() {
-  const gamesList = document.getElementById('gamesList');
-  gamesList.innerHTML = ''; // Clear the list
-  onChildAdded(gamesRef, (snapshot) => {
-    const gameData = snapshot.val();
-    const listItem = document.createElement('li');
-    listItem.textContent = `ID: ${snapshot.key}, Name: ${gameData.name}, Description: ${gameData.description}, Price: ${gameData.price}, Available: ${gameData.available}`;
-    gamesList.appendChild(listItem);
-  });
+    const gamesRef = ref(database, 'games');
+    onValue(gamesRef, (snapshot) => {
+        const gamesTableBody = document.getElementById('games-table-body');
+        gamesTableBody.innerHTML = ''; // Clear Table
+        snapshot.forEach((childSnapshot) => {
+            const game = childSnapshot.val();
+            const gameId = childSnapshot.key;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+        <td>${gameId}</td>
+        <td>${game.name}</td>
+        <td>${game.description}</td>
+        <td>$${game.price}</td>
+        <td>${game.available ? 'Yes' : 'No'}</td>
+      `;
+            gamesTableBody.appendChild(row);
+        });
+    });
 }
 
-// Handle add or update game
-document.getElementById('addUpdateGameForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const gameId = document.getElementById('gameId').value.trim();
-  const gameName = document.getElementById('gameName').value.trim();
-  const gameDescription = document.getElementById('gameDescription').value.trim();
-  const gamePrice = parseFloat(document.getElementById('gamePrice').value.trim());
-  const gameAvailability = document.getElementById('gameAvailability').value === 'true';
-
-  if (gameName && gameDescription && gamePrice >= 0) {
-    const gameData = {
-      name: gameName,
-      description: gameDescription,
-      price: gamePrice,
-      available: gameAvailability
+// Helper Functions
+function getGameFormData() {
+    return {
+        name: document.getElementById('game-name').value,
+        description: document.getElementById('game-description').value,
+        price: parseFloat(document.getElementById('game-price').value),
+        available: document.getElementById('game-availability').value === 'true',
     };
+}
 
-    if (gameId) {
-      // Update game
-      set(child(gamesRef, gameId), gameData)
-        .then(() => {
-          alert('Game updated successfully!');
-          loadGames(); // Refresh the list
-        })
-        .catch(error => {
-          alert('Error updating game: ' + error.message);
-        });
-    } else {
-      // Add new game
-      const newGameRef = push(gamesRef);
-      set(newGameRef, gameData)
-        .then(() => {
-          alert('Game added successfully!');
-          loadGames(); // Refresh the list
-        })
-        .catch(error => {
-          alert('Error adding game: ' + error.message);
-        });
-    }
-  } else {
-    alert('Please enter valid game details.');
-  }
-});
-
-// Handle delete game
-document.getElementById('deleteGameForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const gameId = document.getElementById('deleteGameId').value.trim();
-
-  if (gameId) {
-    const gameRef = child(gamesRef, gameId);
-    remove(gameRef)
-      .then(() => {
-        alert('Game deleted successfully!');
-        loadGames(); // Refresh the list
-      })
-      .catch(error => {
-        alert('Error deleting game: ' + error.message);
-      });
-  } else {
-    alert('Please enter a valid Game ID.');
-  }
-});
+function clearGameForm() {
+    document.getElementById('game-id').value = '';
+    document.getElementById('game-name').value = '';
+    document.getElementById('game-description').value = '';
+    document.getElementById('game-price').value = '';
+    document.getElementById('game-availability').value = 'true';
+}

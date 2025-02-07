@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GRICQUEST</title>
+  <!-- Favicon -->
+  <link rel="icon" href="Gricquest-icon.PNG" type="image/x-icon">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Custom CSS -->
+  <style>
+    /* Custom CSS */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .hero-section {
+      background-image: url('Background_1.PNG');
+      background-size: cover;
+      background-position: center;
+      padding: 150px 0;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-section .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .date-picker .input-group {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .game-card {
+      margin-bottom: 30px;
+    }
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .navbar .btn {
+      margin-left: 10px;
+    }
+
+    .search-input {
+      width: 250px;
+      margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .search-input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .navbar .btn {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="Name.PNG" alt="Gricquest" style="height: 80px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Add any additional navbar items here -->
+      <form class="form-inline ml-auto" onsubmit="searchAllGames(); return false;">
+        <input class="form-control mr-sm-2 search-input" type="search" id="search-input" placeholder="Search games"
+          aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Search</button>
+      </form>
+      <button class="btn btn-outline-dark ml-2" id="auth-button" onclick="openAuthModal()">Sign In</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="display-4">A Game on Demand Service for Tabletop Games</h1>
+      <p class="lead">Are you eager to create and cherish special moments with friends and family? Perhaps you want to bond over quality, screen-free time, host a Game Night challenge, or throw a themed or casual party? Maybe you're eager to try that ONE game before committing to adding it to your collection? Look no further than GricQuest. Dive into our diverse selection of tabletop games, including board, card, dice, tiles, and more. Our collection is regularly updated with the latest, most popular, and even vintage and rare collector's editions. From keen tots to serious tabletop gamers, GricQuest caters to a range of interests. You can rent games for specific durations, subscribe to our monthly mystery box rentals, or collaborate with us to create a fantastic experience for your event. Unleash the fun with GricQuest - Where every roll, move, and strategy comes to life!</p>
+      <div class="date-picker">
+        <div class="input-group mb-3 flex-column flex-md-row">
+          <input type="text" id="rent-date" class="form-control mb-2 mb-md-0" placeholder="Rental Date">
+          <input type="text" id="return-date" class="form-control mb-2 mb-md-0 ml-md-2" placeholder="Return Date">
+          <div class="input-group-append mt-2 mt-md-0 ml-md-2">
+            <button class="btn btn-primary" type="button" onclick="loadAvailableGames()">Search Availability</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container mt-5">
+    <div id="game-list" class="row">
+      <!-- Game cards will be inserted here -->
+    </div>
+  </main>
+
+  <!-- Sign-In Modal -->
+  <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sign In</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Sign-In Form -->
+          <div class="form-group">
+            <label for="signin-email">Email address</label>
+            <input type="email" class="form-control" id="signin-email" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="signin-password">Password</label>
+            <input type="password" class="form-control" id="signin-password" placeholder="Password">
+          </div>
+          <button type="button" class="btn btn-primary" onclick="signIn()">Sign In</button>
+          <p class="mt-3">Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign-Up Modal -->
+  <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Sign-Up Form -->
+          <div class="form-group">
+            <label for="signup-email">Email address</label>
+            <input type="email" class="form-control" id="signup-email" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" class="form-control" id="signup-password" placeholder="Password">
+          </div>
+          <button type="button" class="btn btn-primary" onclick="signUp()">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white mt-5 p-4 text-center">
+    &copy; 2023 GameRental. All rights reserved.
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database-compat.js"></script>
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- Custom JS -->
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
+    authDomain: "gaming-rental-site.firebaseapp.com",
+    databaseURL: "https://gaming-rental-site-default-rtdb.firebaseio.com",
+    projectId: "gaming-rental-site",
+    storageBucket: "gaming-rental-site.firebasestorage.app",
+    messagingSenderId: "573901873327",
+    appId: "1:573901873327:web:949bea4a588b6f9a37745a"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // Initialize Flatpickr date pickers
+    flatpickr("#rent-date", { dateFormat: "Y-m-d" });
+    flatpickr("#return-date", { dateFormat: "Y-m-d" });
+
+    // Open the sign-in modal
+    function openAuthModal() {
+      $('#signInModal').modal('show');
+    }
+
+    // Show sign-up modal
+    function showSignUp() {
+      $('#signInModal').modal('hide');
+      $('#signUpModal').modal('show');
+    }
+
+    // Sign up function
+    function signUp() {
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          // Store user email in the database (optional)
+          const userId = userCredential.user.uid;
+          database.ref(`users/${userId}`).set({
+            email: email
+          });
+          $('#signUpModal').modal('hide');
+          updateAuthUI();
+          alert('Signed up successfully!');
+        })
+        .catch(error => {
+          console.error('Error signing up:', error);
+          alert(error.message);
+        });
+    }
+
+    // Sign in function
+    function signIn() {
+      const email = document.getElementById('signin-email').value;
+      const password = document.getElementById('signin-password').value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          $('#signInModal').modal('hide');
+          updateAuthUI();
+        })
+        .catch(error => {
+          console.error('Error signing in:', error);
+          alert('Invalid email or password.');
+        });
+    }
+
+    // Sign out function
+    function signOut() {
+      auth.signOut()
+        .then(() => {
+          updateAuthUI();
+        })
+        .catch(error => {
+          console.error('Error signing out:', error);
+        });
+    }
+
+    // Update the navigation bar based on authentication state
+    function updateAuthUI() {
+      const user = auth.currentUser;
+      const authButton = document.getElementById('auth-button');
+
+      if (user) {
+        authButton.textContent = 'Sign Out';
+        authButton.onclick = signOut;
+      } else {
+        authButton.textContent = 'Sign In';
+        authButton.onclick = openAuthModal;
+      }
+    }
+
+    // Monitor authentication state
+    auth.onAuthStateChanged(user => {
+      updateAuthUI();
+    });
+
+    // Load available games based on selected dates
+    function loadAvailableGames() {
+      const rentDate = document.getElementById('rent-date').value;
+      const returnDate = document.getElementById('return-date').value;
+
+      // Validate dates
+      if (!rentDate || !returnDate) {
+        alert('Please select both rental and return dates.');
+        return;
+      }
+      if (rentDate > returnDate) {
+        alert('Return date must be after rental date.');
+        return;
+      }
+
+      // Clear previous results
+      document.getElementById('game-list').innerHTML = '';
+
+      // Fetch games and rentals from Firebase
+      fetchAvailableGames(rentDate, returnDate);
+    }
+
+    function fetchAvailableGames(rentDate, returnDate) {
+      // Fetch all games
+      database.ref('games').once('value')
+        .then(gamesSnapshot => {
+          const games = gamesSnapshot.val() || {};
+          const gameList = [];
+
+          // Fetch all rentals
+          database.ref('rentals').once('value')
+            .then(rentalsSnapshot => {
+              const rentals = rentalsSnapshot.val() || {};
+
+              // Identify games that are rented out during the selected period
+              const unavailableGameIds = new Set();
+              for (const rentalId in rentals) {
+                const rental = rentals[rentalId];
+                if (
+                  rental.status === 'active' &&
+                  !(
+                    returnDate < rental.rentDate ||
+                    rentDate > rental.returnDate
+                  )
+                ) {
+                  unavailableGameIds.add(rental.gameId);
+                }
+              }
+
+              // Filter available games
+              for (const gameId in games) {
+                if (!unavailableGameIds.has(gameId) && games[gameId].available) {
+                  const game = games[gameId];
+                  game.id = gameId; // Store the game ID
+                  gameList.push(game);
+                }
+              }
+
+              // Display the games
+              displayAvailableGames(gameList);
+            });
+        })
+        .catch(error => {
+          console.error('Error fetching games:', error);
+        });
+    }
+
+    function displayAvailableGames(games) {
+      const gameListDiv = document.getElementById('game-list');
+
+      if (games.length === 0) {
+        gameListDiv.innerHTML = '<p class="col-12 text-center">No games available for the selected dates.</p>';
+        return;
+      }
+
+      games.forEach(game => {
+        const gameCard = document.createElement('div');
+        gameCard.className = 'col-md-3 game-card';
+
+        gameCard.innerHTML = `
+          <div class="card h-100">
+            <img src="${game.imageUrl}" class="card-img-top" alt="${game.name}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${game.name}</h5>
+              <p class="card-text">Genre: ${game.genre}</p>
+              <p class="card-text">Price: $${game.price}</p>
+              <button class="btn btn-success mt-auto" onclick="rentGame('${game.id}')">Rent Now</button>
+            </div>
+          </div>
+        `;
+
+        gameListDiv.appendChild(gameCard);
+      });
+    }
+
+    function rentGame(gameId) {
+      // Check if the user is logged in
+      const user = auth.currentUser;
+      if (!user) {
+        alert('Please sign in to rent a game.');
+        return;
+      }
+
+      const rentDate = document.getElementById('rent-date').value;
+      const returnDate = document.getElementById('return-date').value;
+
+      // Create the rental record
+      const rentalRef = database.ref('rentals').push();
+      rentalRef.set({
+        gameId: gameId,
+        userId: user.uid,
+        rentDate: rentDate,
+        returnDate: returnDate,
+        status: 'active'
+      })
+      .then(() => {
+        alert('Game rented successfully!');
+        loadAvailableGames(); // Refresh the available games
+      })
+      .catch(error => {
+        console.error('Error renting game:', error);
+        alert('An error occurred while renting the game.');
+      });
+    }
+
+    // Search all games
+    function searchAllGames() {
+      const searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
+
+      if (!searchTerm) {
+        alert('Please enter a search term.');
+        return;
+      }
+
+      // Clear previous results
+      document.getElementById('game-list').innerHTML = '';
+
+      // Fetch all games
+      database.ref('games').once('value')
+        .then(gamesSnapshot => {
+          const games = gamesSnapshot.val() || {};
+          const filteredGames = [];
+
+          for (const gameId in games) {
+            const game = games[gameId];
+            if (game.name.toLowerCase().includes(searchTerm) || (game.genre && game.genre.toLowerCase().includes(searchTerm))) {
+              game.id = gameId;
+              filteredGames.push(game);
+            }
+          }
+
+          if (filteredGames.length === 0) {
+            document.getElementById('game-list').innerHTML = '<p class="col-12 text-center">No games found matching your search.</p>';
+          } else {
+            displayAllGames(filteredGames);
+          }
+        })
+        .catch(error => {
+          console.error('Error searching games:', error);
+        });
+    }
+
+    function displayAllGames(games) {
+      const gameListDiv = document.getElementById('game-list');
+
+      games.forEach(game => {
+        const gameCard = document.createElement('div');
+        gameCard.className = 'col-md-3 game-card';
+
+        gameCard.innerHTML = `
+          <div class="card h-100">
+            <img src="${game.imageUrl}" class="card-img-top" alt="${game.name}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${game.name}</h5>
+              <p class="card-text">Genre: ${game.genre}</p>
+              <p class="card-text">Price: $${game.price}</p>
+            </div>
+          </div>
+        `;
+
+        gameListDiv.appendChild(gameCard);
+      });
+    }
+  </script>
+</body>
+</html>

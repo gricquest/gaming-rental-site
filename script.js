@@ -65,7 +65,7 @@ window.login = function () {
 };
 
 
-import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js';
+
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -83,9 +83,7 @@ onAuthStateChanged(auth, (user) => {
 
 
 
-import { getDatabase, ref, onValue, push, update } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js';
 
-const database = getDatabase();
 
 let selectedGameId = '';
 let selectedGameName = '';
@@ -174,9 +172,7 @@ function checkAvailabilityAndRent(gameId, startDate, endDate) {
 }
 
 
-import { getAuth } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js';
 
-const auth = getAuth();
 
 function confirmRental(gameId, startDate, endDate) {
     const user = auth.currentUser;
@@ -259,6 +255,9 @@ function isGameAvailable(gameId, startDate, endDate, callback) {
         callback(isAvailable);
     });
 }
+
+
+
 
 // Load available games on page load
 window.onload = function() {

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Game Rental Management</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+    .container { max-width: 1000px; margin: 50px auto; padding: 20px; background: #fff; border-radius: 8px; }
+    h1 { text-align: center; }
+    .auth, .admin-section { margin-top: 20px; }
+    .hidden { display: none; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    table, th, td { border: 1px solid #ddd; }
+    th, td { padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; }
+    button { padding: 6px 12px; cursor: pointer; background-color: #28a745; color: #fff; border: none; border-radius: 4px; }
+    button:hover { background-color: #218838; }
+    .logout-btn { background-color: #dc3545; }
+    .logout-btn:hover { background-color: #c82333; }
+    #status { margin-top: 20px; font-weight: bold; }
+    .auth input { padding: 8px; margin-right: 10px; margin-bottom: 10px; width: calc(50% - 22px); }
+    .auth button { padding: 10px 20px; margin-right: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Panel - Game Rental Management</h1>
+
+    <!-- Admin Authentication Section -->
+    <div class="auth">
+      <h3>Admin Login</h3>
+      <div id="admin-info" class="hidden">
+        <p>Welcome, <span id="admin-email"></span>!</p>
+        <button onclick="adminSignOut()" class="logout-btn">Log Out</button>
+      </div>
+      <div id="admin-auth-form">
+        <input type="email" id="admin-email-input" placeholder="Admin Email">
+        <input type="password" id="admin-password-input" placeholder="Password">
+        <button onclick="adminSignIn()">Log In</button>
+      </div>
+    </div>
+
+    <!-- Admin Section -->
+    <div class="admin-section hidden">
+      <h3>Currently Rented Games</h3>
+      <table id="rentals-table">
+        <thead>
+          <tr>
+            <th>Rental ID</th>
+            <th>User Email</th>
+            <th>Game Name</th>
+            <th>Rent Date</th>
+            <th>Return Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rentals will be loaded here dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <div id="status"></div>
+  </div>
+
+  <!-- Include Firebase SDKs -->
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js"></script>
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-auth-compat.js"></script>
+  <!-- Firebase Realtime Database -->
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database-compat.js"></script>
+
+  <!-- Initialize Firebase and Define Your Scripts -->
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
+    authDomain: "gaming-rental-site.firebaseapp.com",
+    databaseURL: "https://gaming-rental-site-default-rtdb.firebaseio.com",
+    projectId: "gaming-rental-site",
+    storageBucket: "gaming-rental-site.firebasestorage.app",
+    messagingSenderId: "573901873327",
+    appId: "1:573901873327:web:949bea4a588b6f9a37745a"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    const status = document.getElementById('status');
+
+    // Admin email list
+    const adminEmails = ["dinalans@gmail.com"]; // Replace with your admin emails
+
+    function adminSignIn() {
+      const email = document.getElementById('admin-email-input').value;
+      const password = document.getElementById('admin-password-input').value;
+      auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          const user = userCredential.user;
+          if (adminEmails.includes(user.email)) {
+            updateAdminUI(user);
+            status.textContent = 'Admin signed in successfully!';
+            status.style.color = 'green';
+            //loadActiveRentals();
+          } else {
+            auth.signOut();
+            status.textContent = 'Access denied. Not an admin.';
+            status.style.color = 'red';
+          }
+        })
+        .catch(error => {
+          status.textContent = 'Error: ' + error.message;
+          status.style.color = 'red';
+        });
+    }
+
+    function adminSignOut() {
+      auth.signOut()
+        .then(() => {
+          updateAdminUI(null);
+          status.textContent = 'Admin signed out successfully!';
+          status.style.color = 'green';
+        })
+        .catch(error => {
+          status.textContent = 'Error: ' + error.message;
+          status.style.color = 'red';
+        });
+    }
+
+    function updateAdminUI(user) {
+      if (user) {
+        document.getElementById('admin-email').textContent = user.email;
+        document.getElementById('admin-info').classList.remove('hidden');
+        document.getElementById('admin-auth-form').classList.add('hidden');
+        document.querySelector('.admin-section').classList.remove('hidden');
+      } else {
+        document.getElementById('admin-email').textContent = '';
+        document.getElementById('admin-info').classList.add('hidden');
+        document.getElementById('admin-auth-form').classList.remove('hidden');
+        document.querySelector('.admin-section').classList.add('hidden');
+      }
+    }
+
+    auth.onAuthStateChanged(user => {
+      if (user && adminEmails.includes(user.email)) {
+        updateAdminUI(user);
+        loadActiveRentals();
+      } else {
+        updateAdminUI(null);
+      }
+    });
+
+    function loadActiveRentals() {
+      const rentalsRef = database.ref('rentals');
+      rentalsRef.orderByChild('status').equalTo('active').once('value', snapshot => {
+        const rentals = snapshot.val() || {};
+        const rentalsTableBody = document.querySelector('#rentals-table tbody');
+        rentalsTableBody.innerHTML = '';
+
+        const userIds = new Set();
+        const gameIds = new Set();
+
+        // Collect user IDs and game IDs to fetch their details
+        for (const rentalId in rentals) {
+          userIds.add(rentals[rentalId].userId);
+          gameIds.add(rentals[rentalId].gameId);
+        }
+
+        // Fetch user emails and game names
+        const userPromises = [];
+        userIds.forEach(userId => {
+          userPromises.push(
+            database.ref(`users/${userId}/email`).once('value')
+          );
+        });
+
+        const gamePromises = [];
+        gameIds.forEach(gameId => {
+          gamePromises.push(
+            database.ref(`games/${gameId}`).once('value')
+          );
+        });
+
+        Promise.all([...userPromises, ...gamePromises])
+          .then(results => {
+            const userEmails = {};
+            const gameNames = {};
+
+            // Parse user emails
+            let index = 0;
+            userIds.forEach(userId => {
+              const emailSnapshot = results[index++];
+              userEmails[userId] = emailSnapshot.val() || 'Unknown Email';
+            });
+
+            // Parse game names
+            gameIds.forEach(gameId => {
+              const gameSnapshot = results[index++];
+              gameNames[gameId] = (gameSnapshot.val() && gameSnapshot.val().name) || 'Unknown Game';
+            });
+
+            // Populate the table
+            for (const rentalId in rentals) {
+              const rental = rentals[rentalId];
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${rentalId}</td>
+                <td>${userEmails[rental.userId]}</td>
+                <td>${gameNames[rental.gameId]}</td>
+                <td>${rental.rentDate}</td>
+                <td>${rental.returnDate}</td>
+                <td>${rental.status}</td>
+                <td><button onclick="markAsReturned('${rentalId}')">Mark as Returned</button></td>
+              `;
+              rentalsTableBody.appendChild(row);
+            }
+
+            status.textContent = 'Active rentals loaded.';
+            status.style.color = 'green';
+          })
+          .catch(error => {
+            status.textContent = 'Error: ' + error.message;
+            status.style.color = 'red';
+          });
+      });
+    }
+
+    function markAsReturned(rentalId) {
+      const rentalRef = database.ref(`rentals/${rentalId}`);
+      rentalRef.update({ status: 'returned' })
+        .then(() => {
+          status.textContent = `Rental ${rentalId} marked as returned.`;
+          status.style.color = 'green';
+          loadActiveRentals(); // Refresh the list
+        })
+        .catch(error => {
+          status.textContent = 'Error: ' + error.message;
+          status.style.color = 'red';
+        });
+    }
+  </script>
+</body>
+</html>

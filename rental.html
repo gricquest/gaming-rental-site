@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game Rental</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+    .container { max-width: 800px; margin: 50px auto; padding: 20px; background: #fff; border-radius: 8px; }
+    .game-list { display: flex; flex-wrap: wrap; margin-top: 20px; }
+    .game-item { width: 200px; margin: 10px; padding: 10px; background: #eaeaea; border-radius: 8px; text-align: center; }
+    .game-item img { width: 100%; height: auto; border-radius: 8px; }
+    .auth, .date-selection { margin-top: 20px; }
+    #status { margin-top: 20px; font-weight: bold; }
+    .auth input { padding: 8px; margin-right: 10px; margin-bottom: 10px; width: calc(50% - 22px); }
+    .auth button { padding: 10px 20px; margin-right: 10px; }
+    .hidden { display: none; }
+    button { padding: 10px 20px; cursor: pointer; background-color: #007BFF; color: #fff; border: none; border-radius: 4px; }
+    button:hover { background-color: #0056b3; }
+    label { display: block; margin-top: 10px; }
+    select, input[type="date"] { padding: 8px; width: calc(100% - 22px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Rent a Game</h1>
+
+    <!-- Authentication Section -->
+    <div class="auth">
+      <h3>User Authentication</h3>
+      <div id="user-info" class="hidden">
+        <p>Welcome, <span id="user-email"></span>!</p>
+        <button onclick="signOut()">Sign Out</button>
+      </div>
+      <div id="auth-form">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="signUp()">Sign Up</button>
+        <button onclick="signIn()">Sign In</button>
+      </div>
+    </div>
+
+    <!-- Date Selection Section -->
+    <div class="date-selection hidden">
+      <h3>Select Rental Dates</h3>
+      <label for="rent-date">Rental Date:</label>
+      <input type="date" id="rent-date" name="rent-date">
+      <label for="return-date">Return Date:</label>
+      <input type="date" id="return-date" name="return-date">
+      <button onclick="loadAvailableGames()">Load Available Games</button>
+    </div>
+
+    <!-- Available Games Section -->
+    <div class="game-list hidden" id="game-list">
+      <!-- Games will be loaded here dynamically -->
+    </div>
+
+    <div id="status"></div>
+  </div>
+
+  <!-- Include Firebase SDKs -->
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js"></script>
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-auth-compat.js"></script>
+  <!-- Firebase Realtime Database -->
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database-compat.js"></script>
+
+  <!-- Initialize Firebase and Define Your Scripts -->
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
+    authDomain: "gaming-rental-site.firebaseapp.com",
+    databaseURL: "https://gaming-rental-site-default-rtdb.firebaseio.com",
+    projectId: "gaming-rental-site",
+    storageBucket: "gaming-rental-site.firebasestorage.app",
+    messagingSenderId: "573901873327",
+    appId: "1:573901873327:web:949bea4a588b6f9a37745a"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // Now define your functions that use 'auth' and 'database'
+    const status = document.getElementById('status');
+
+    // Authentication functions
+    function signUp() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      const user = userCredential.user;
+      // Store user email in the database
+      database.ref(`users/${user.uid}`).set({
+        email: email
+      });
+      updateUI(user);
+      status.textContent = 'Signed up successfully!';
+      status.style.color = 'green';
+    })
+    .catch(error => {
+      status.textContent = 'Error: ' + error.message;
+      status.style.color = 'red';
+    });
+}
+
+
+    function signIn() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          const user = userCredential.user;
+          updateUI(user);
+          status.textContent = 'Signed in successfully!';
+          status.style.color = 'green';
+        })
+        .catch(error => {
+          status.textContent = 'Error: ' + error.message;
+          status.style.color = 'red';
+        });
+    }
+
+    function signOut() {
+      auth.signOut()
+        .then(() => {
+          updateUI(null);
+          status.textContent = 'Signed out successfully!';
+          status.style.color = 'green';
+        })
+        .catch(error => {
+          status.textContent = 'Error: ' + error.message;
+          status.style.color = 'red';
+        });
+    }
+
+    function updateUI(user) {
+      if (user) {
+        document.getElementById('user-email').textContent = user.email;
+        document.getElementById('user-info').classList.remove('hidden');
+        document.getElementById('auth-form').classList.add('hidden');
+        document.querySelector('.date-selection').classList.remove('hidden');
+      } else {
+        document.getElementById('user-email').textContent = '';
+        document.getElementById('user-info').classList.add('hidden');
+        document.getElementById('auth-form').classList.remove('hidden');
+        document.querySelector('.date-selection').classList.add('hidden');
+        document.getElementById('game-list').classList.add('hidden');
+        document.getElementById('game-list').innerHTML = '';
+      }
+    }
+
+    auth.onAuthStateChanged(user => {
+      updateUI(user);
+    });
+
+    function loadAvailableGames() {
+      const rentDate = document.getElementById('rent-date').value;
+      const returnDate = document.getElementById('return-date').value;
+
+      if (!rentDate || !returnDate) {
+        status.textContent = 'Please select both rental and return dates.';
+        status.style.color = 'red';
+        return;
+      }
+
+      if (rentDate > returnDate) {
+        status.textContent = 'Return date must be after rental date.';
+        status.style.color = 'red';
+        return;
+      }
+
+      const gamesRef = database.ref('games');
+      gamesRef.once('value')
+        .then(gamesSnapshot => {
+          const games = gamesSnapshot.val() || {};
+          const availableGames = [];
+          const rentalsRef = database.ref('rentals');
+
+          rentalsRef.once('value')
+            .then(rentalsSnapshot => {
+              const rentals = rentalsSnapshot.val() || {};
+              const rentedGames = {};
+
+              // Collect rented games for the selected dates
+              for (const rentalId in rentals) {
+                const rental = rentals[rentalId];
+                if (
+                  rental.status === 'active' &&
+                  !(
+                    returnDate < rental.rentDate ||
+                    rentDate > rental.returnDate
+                  )
+                ) {
+                  rentedGames[rental.gameId] = true;
+                }
+              }
+
+              // Filter available games
+              for (const gameId in games) {
+                if (!rentedGames[gameId] && games[gameId].available) {
+                  const game = games[gameId];
+                  game.id = gameId; // Keep track of the game's ID
+                  availableGames.push(game);
+                }
+              }
+
+              if (availableGames.length > 0) {
+                displayAvailableGames(availableGames);
+                status.textContent = 'Available games loaded.';
+                status.style.color = 'green';
+              } else {
+                document.getElementById('game-list').classList.add('hidden');
+                status.textContent = 'No games available for the selected dates.';
+                status.style.color = 'red';
+              }
+            });
+        })
+        .catch(error => {
+          status.textContent = 'Error: ' + error.message;
+          status.style.color = 'red';
+        });
+    }
+
+    function displayAvailableGames(games) {
+      const gameListDiv = document.getElementById('game-list');
+      gameListDiv.innerHTML = '';
+      games.forEach(game => {
+        const gameItem = document.createElement('div');
+        gameItem.className = 'game-item';
+        gameItem.innerHTML = `
+          <img src="${game.imageUrl}" alt="${game.name}">
+          <h4>${game.name}</h4>
+          <p><strong>Genre:</strong> ${game.genre}</p>
+          <p><strong>Price:</strong> $${game.price}</p>
+          <button onclick="rentGame('${game.id}')">Rent This Game</button>
+        `;
+        gameListDiv.appendChild(gameItem);
+      });
+      gameListDiv.classList.remove('hidden');
+    }
+
+    function rentGame(gameId) {
+      const user = auth.currentUser;
+      if (!user) {
+        status.textContent = 'Please sign in to rent the game.';
+        status.style.color = 'red';
+        return;
+      }
+
+      const rentDate = document.getElementById('rent-date').value;
+      const returnDate = document.getElementById('return-date').value;
+
+      const userId = user.uid;
+
+      const newRentalRef = database.ref('rentals').push();
+      newRentalRef.set({
+        gameId: gameId,
+        userId: userId,
+        rentDate: rentDate,
+        returnDate: returnDate,
+        status: 'active'
+      })
+      .then(() => {
+        status.textContent = 'Game rented successfully!';
+        status.style.color = 'green';
+        document.getElementById('game-list').classList.add('hidden');
+        document.getElementById('game-list').innerHTML = '';
+      })
+      .catch(error => {
+        status.textContent = 'Error: ' + error.message;
+        status.style.color = 'red';
+      });
+    }
+  </script>
+</body>
+</html>

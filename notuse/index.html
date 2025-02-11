@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Rental Site</title>
+</head>
+<body>
+    <h1>Game Rental Site</h1>
+    <!-- Registration Form -->
+    <div id="register-form">
+        <h2>Register</h2>
+        <input type="email" id="register-email" placeholder="Email">
+        <input type="password" id="register-password" placeholder="Password">
+        <button onclick="register()">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-form">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button id="login-button">Login</button>
+
+    </div>
+
+
+    <!-- Rental Form -->
+    <div id="rental-form" style="display:none;">
+        <h2>Rent Game</h2>
+        <p id="rental-game-name"></p>
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date"><br>
+        <label for="end-date">End Date:</label>
+        <input type="date" id="end-date"><br>
+        <button onclick="rentGame()">Rent</button>
+        <button onclick="closeRentalForm()">Cancel</button>
+    </div>
+
+    <script src="script.js" type="module"></script>
+
+</body>
+</html>

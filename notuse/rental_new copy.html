@@ -75,6 +75,16 @@
         margin-left: 0;
       }
     }
+
+    .navbar-text {
+      color: #fff;
+      margin-right: 15px;
+    }
+
+    #cart-items .media {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -95,7 +105,15 @@
           aria-label="Search">
         <button class="btn btn-outline-dark" type="submit">Search</button>
       </form>
+      <button class="btn btn-outline-dark ml-2" onclick="showCart()">
+        Cart (<span id="cart-count">0</span>)
+      </button>
+      <!-- Display User Name and Auth Button -->
+      <span class="navbar-text" id="user-name-display"></span>
       <button class="btn btn-outline-dark ml-2" id="auth-button" onclick="openAuthModal()">Sign In</button>
+      <!-- In the Navigation Bar -->
+
+
     </div>
   </nav>
 
@@ -143,12 +161,37 @@
             <label for="signin-password">Password</label>
             <input type="password" class="form-control" id="signin-password" placeholder="Password">
           </div>
+          
           <button type="button" class="btn btn-primary" onclick="signIn()">Sign In</button>
           <p class="mt-3">Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
         </div>
       </div>
     </div>
   </div>
+
+<!-- Cart Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Your Cart</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Cart Items -->
+        <div id="cart-items">
+          <!-- Cart items will be populated here -->
+        </div>
+        <div class="text-right">
+          <button class="btn btn-success" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Sign-Up Modal -->
   <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
@@ -171,6 +214,16 @@
             <label for="signup-password">Password</label>
             <input type="password" class="form-control" id="signup-password" placeholder="Password">
           </div>
+          <!-- Sign-Up Form -->
+<div class="form-group">
+  <label for="signup-name">Full Name</label>
+  <input type="text" class="form-control" id="signup-name" placeholder="Enter your name">
+</div>
+<div class="form-group">
+  <label for="signup-phone">Phone Number</label>
+  <input type="text" class="form-control" id="signup-phone" placeholder="Enter your phone number">
+</div>
+
           <button type="button" class="btn btn-primary" onclick="signUp()">Sign Up</button>
         </div>
       </div>
@@ -211,8 +264,13 @@
     const database = firebase.database();
 
     // Initialize Flatpickr date pickers
-    flatpickr("#rent-date", { dateFormat: "Y-m-d" });
-    flatpickr("#return-date", { dateFormat: "Y-m-d" });
+   // flatpickr("#rent-date", { dateFormat: "Y-m-d" });
+   // flatpickr("#return-date", { dateFormat: "Y-m-d" });
+// Initialize Flatpickr date pickers with future dates only
+flatpickr("#rent-date", { dateFormat: "Y-m-d", minDate: "today" });
+flatpickr("#return-date", { dateFormat: "Y-m-d", minDate: "today" });
+
+let logoutTimer; // Timer for automatic logout
 
     // Open the sign-in modal
     function openAuthModal() {
@@ -227,25 +285,38 @@
 
     // Sign up function
     function signUp() {
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+  const name = document.getElementById('signup-name').value;
+  const phone = document.getElementById('signup-phone').value;
 
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(userCredential => {
-          // Store user email in the database (optional)
-          const userId = userCredential.user.uid;
-          database.ref(`users/${userId}`).set({
-            email: email
-          });
-          $('#signUpModal').modal('hide');
-          updateAuthUI();
-          alert('Signed up successfully!');
-        })
-        .catch(error => {
-          console.error('Error signing up:', error);
-          alert(error.message);
-        });
-    }
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      const userId = userCredential.user.uid;
+
+      // Store user profile information in the database
+      database.ref(`users/${userId}`).set({
+        email: email,
+        name: name,
+        phone: phone
+      })
+      .then(() => {
+        // Data saved successfully!
+        $('#signUpModal').modal('hide');
+        updateAuthUI();
+        alert('Signed up successfully!');
+      })
+      .catch(error => {
+        console.error('Error saving user data:', error);
+        alert('Error saving user data: ' + error.message);
+      });
+    })
+    .catch(error => {
+      console.error('Error signing up:', error);
+      alert(error.message);
+    });
+}
+
 
     // Sign in function
     function signIn() {
@@ -275,16 +346,43 @@
     }
 
     // Update the navigation bar based on authentication state
+    // Update the navigation bar based on authentication state
     function updateAuthUI() {
       const user = auth.currentUser;
       const authButton = document.getElementById('auth-button');
+      const userNameDisplay = document.getElementById('user-name-display');
 
       if (user) {
-        authButton.textContent = 'Sign Out';
+        // Fetch user's name from the database
+        database.ref(`users/${user.uid}`).once('value')
+          .then(snapshot => {
+            const userInfo = snapshot.val();
+            const userName = userInfo && userInfo.name ? userInfo.name : user.email;
+
+            // Display user's name
+            userNameDisplay.textContent = `Welcome, ${userName}`;
+          })
+          .catch(error => {
+            console.error('Error fetching user name:', error);
+            userNameDisplay.textContent = `Welcome, ${user.email}`;
+          });
+
+        authButton.textContent = 'Logout';
         authButton.onclick = signOut;
+
+        // Set up automatic logout after 10 minutes
+        clearTimeout(logoutTimer);
+        logoutTimer = setTimeout(() => {
+          alert('You have been logged out due to inactivity.');
+          signOut();
+        }, 10 * 60 * 1000); // 10 minutes in milliseconds
       } else {
+        userNameDisplay.textContent = '';
         authButton.textContent = 'Sign In';
         authButton.onclick = openAuthModal;
+
+        // Clear the logout timer
+        clearTimeout(logoutTimer);
       }
     }
 
@@ -293,8 +391,30 @@
       updateAuthUI();
     });
 
+    // Reset logout timer on user interaction
+    function resetLogoutTimer() {
+      if (auth.currentUser) {
+        clearTimeout(logoutTimer);
+        logoutTimer = setTimeout(() => {
+          alert('You have been logged out due to inactivity.');
+          signOut();
+        }, 10 * 60 * 1000);
+      }
+    }
+
+        // Listen for user interactions to reset logout timer
+        ['click', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(event => {
+      document.addEventListener(event, resetLogoutTimer);
+    });
+
     // Load available games based on selected dates
     function loadAvailableGames() {
+      // Check if the user is logged in
+      const user = auth.currentUser;
+      if (!user) {
+        alert('Please sign in to rent a game.');
+        return;
+      }
       const rentDate = document.getElementById('rent-date').value;
       const returnDate = document.getElementById('return-date').value;
 
@@ -361,49 +481,233 @@
     }
 
     function displayAvailableGames(games) {
-      const gameListDiv = document.getElementById('game-list');
+  const gameListDiv = document.getElementById('game-list');
 
-      if (games.length === 0) {
-        gameListDiv.innerHTML = '<p class="col-12 text-center">No games available for the selected dates.</p>';
-        return;
+  if (games.length === 0) {
+    gameListDiv.innerHTML = '<p class="col-12 text-center">No games available for the selected dates.</p>';
+    return;
+  }
+
+  games.forEach(game => {
+    const gameCard = document.createElement('div');
+    gameCard.className = 'col-md-3 game-card';
+
+    gameCard.innerHTML = `
+      <div class="card h-100">
+        <img src="${game.imageUrl}" class="card-img-top" alt="${game.name}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">${game.name}</h5>
+          <p class="card-text">Genre: ${game.genre}</p>
+          <p class="card-text">Price: $${game.price}</p>
+          <button class="btn btn-primary mt-auto" onclick="addToCart('${game.id}', '${game.name}', '${game.imageUrl}', '${game.genre}', ${game.price})">Add to Cart</button>
+        </div>
+      </div>
+    `;
+
+    gameListDiv.appendChild(gameCard);
+  });
+}
+
+
+
+
+    let cart = [];
+
+// Add a game to the cart
+function addToCart(gameId, name, imageUrl, genre, price) {
+  if (cart.some(item => item.gameId === gameId)) {
+    alert('This game is already in your cart.');
+    return;
+  }
+  cart.push({ gameId, name, imageUrl, genre, price });
+  updateCartCount();
+  alert('Game added to cart.');
+}
+
+// Update cart item count
+function updateCartCount() {
+  document.getElementById('cart-count').textContent = cart.length;
+}
+
+// Show cart contents
+function showCart() {
+  const cartItemsDiv = document.getElementById('cart-items');
+  cartItemsDiv.innerHTML = '';
+
+  if (cart.length === 0) {
+    cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+  } else {
+    cart.forEach((item, index) => {
+      const cartItem = document.createElement('div');
+      cartItem.className = 'media mb-3';
+      cartItem.innerHTML = `
+        <img src="${item.imageUrl}" class="mr-3" alt="${item.name}" style="width: 64px; height: 64px; object-fit: cover;">
+        <div class="media-body">
+          <h5 class="mt-0">${item.name}</h5>
+          <p>Genre: ${item.genre}</p>
+          <p>Price: $${item.price}</p>
+          <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
+        </div>
+      `;
+
+      cartItemsDiv.appendChild(cartItem);
+    });
+  }
+
+  $('#cartModal').modal('show');
+}
+
+// Remove a game from the cart
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCartCount();
+  showCart();
+}
+
+// Proceed to checkout
+function checkout() {
+  $('#cartModal').modal('hide');
+
+  const user = auth.currentUser;
+  if (!user) {
+    alert('Please sign in to proceed with the checkout.');
+    return;
+  }
+
+  const rentDate = document.getElementById('rent-date').value;
+  const returnDate = document.getElementById('return-date').value;
+
+  if (!rentDate || !returnDate) {
+    alert('Please select both rental and return dates.');
+    return;
+  }
+  if (rentDate > returnDate) {
+    alert('Return date must be after rental date.');
+    return;
+  }
+
+  validateCartAvailability(rentDate, returnDate)
+    .then(allAvailable => {
+      if (allAvailable) {
+        rentGames(rentDate, returnDate);
+      } else {
+        alert('Some games in your cart are no longer available for the selected dates. They have been removed from your cart.');
+        showCart();
+      }
+    })
+    .catch(error => {
+      console.error('Error during checkout:', error);
+    });
+}
+
+// Validate cart availability
+function validateCartAvailability(rentDate, returnDate) {
+  return new Promise((resolve, reject) => {
+    database.ref('rentals').once('value')
+      .then(rentalsSnapshot => {
+        const rentals = rentalsSnapshot.val() || {};
+        const unavailableGameIds = new Set();
+
+        for (const rentalId in rentals) {
+          const rental = rentals[rentalId];
+          if (
+            rental.status === 'active' &&
+            !(
+              returnDate < rental.rentDate ||
+              rentDate > rental.returnDate
+            )
+          ) {
+            unavailableGameIds.add(rental.gameId);
+          }
+        }
+
+        const initialCartLength = cart.length;
+        cart = cart.filter(item => !unavailableGameIds.has(item.gameId));
+        updateCartCount();
+
+        resolve(cart.length === initialCartLength);
+      })
+      .catch(error => reject(error));
+  });
+}
+
+// Rent multiple games
+function rentGames(rentDate, returnDate) {
+  const user = auth.currentUser;
+
+  database.ref(`users/${user.uid}`).once('value')
+    .then(userSnapshot => {
+      const userInfo = userSnapshot.val();
+
+      if (!userInfo) {
+        throw new Error('User profile information not found.');
       }
 
-      games.forEach(game => {
-        const gameCard = document.createElement('div');
-        gameCard.className = 'col-md-3 game-card';
-
-        gameCard.innerHTML = `
-          <div class="card h-100">
-            <img src="${game.imageUrl}" class="card-img-top" alt="${game.name}">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">${game.name}</h5>
-              <p class="card-text">Genre: ${game.genre}</p>
-              <p class="card-text">Price: $${game.price}</p>
-              <button class="btn btn-success mt-auto" onclick="rentGame('${game.id}')">Rent Now</button>
-            </div>
-          </div>
-        `;
-
-        gameListDiv.appendChild(gameCard);
+      const rentalPromises = cart.map(item => {
+        const rentalRef = database.ref('rentals').push();
+        return rentalRef.set({
+          gameId: item.gameId,
+          userId: user.uid,
+          userEmail: userInfo.email,
+          userName: userInfo.name || '',
+          userPhone: userInfo.phone || '',
+          rentDate: rentDate,
+          returnDate: returnDate,
+          status: 'active'
+        });
       });
-    }
+
+      Promise.all(rentalPromises)
+        .then(() => {
+          alert('Games rented successfully!');
+          cart = [];
+          updateCartCount();
+          loadAvailableGames();
+        })
+        .catch(error => {
+          console.error('Error renting games:', error);
+          alert('An error occurred while renting the games.');
+        });
+    })
+    .catch(error => {
+      console.error('Error fetching user info:', error);
+      alert('An error occurred while fetching user information.');
+    });
+}
+
 
     function rentGame(gameId) {
-      // Check if the user is logged in
-      const user = auth.currentUser;
-      if (!user) {
-        alert('Please sign in to rent a game.');
-        return;
+  // Check if the user is logged in
+  const user = auth.currentUser;
+  if (!user) {
+    alert('Please sign in to rent a game.');
+    return;
+  }
+
+  console.log('User is signed in:', user.uid);
+
+  const rentDate = document.getElementById('rent-date').value;
+  const returnDate = document.getElementById('return-date').value;
+
+  // Fetch user profile information
+  console.log(`Fetching user info for UID: ${user.uid}`);
+  database.ref(`users/${user.uid}`).once('value')
+    .then(userSnapshot => {
+      const userInfo = userSnapshot.val();
+      console.log('User info fetched:', userInfo);
+
+      if (!userInfo) {
+        throw new Error('User profile information not found.');
       }
 
-      const rentDate = document.getElementById('rent-date').value;
-      const returnDate = document.getElementById('return-date').value;
-
-      // Create the rental record
+      // Create the rental record including user profile information
       const rentalRef = database.ref('rentals').push();
       rentalRef.set({
         gameId: gameId,
         userId: user.uid,
+        userEmail: userInfo.email,
+        userName: userInfo.name || '',
+        userPhone: userInfo.phone || '',
         rentDate: rentDate,
         returnDate: returnDate,
         status: 'active'
@@ -416,7 +720,13 @@
         console.error('Error renting game:', error);
         alert('An error occurred while renting the game.');
       });
-    }
+    })
+    .catch(error => {
+      console.error('Error fetching user info:', error);
+      alert('An error occurred while fetching user information.');
+    });
+}
+
 
     // Search all games
     function searchAllGames() {

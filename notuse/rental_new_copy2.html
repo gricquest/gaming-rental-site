@@ -712,8 +712,6 @@ function rentGames(rentDate, returnDate, overallTotal) {
     })
     .then(() => {
       alert(`Games rented successfully! Total cost: $${overallTotal.toFixed(2)}`);
-       // Generate the invoice
-       generateInvoice(overallTotal);
       cart = [];
       updateCartCount();
       loadAvailableGames();
@@ -836,117 +834,6 @@ function rentGames(rentDate, returnDate, overallTotal) {
         gameListDiv.appendChild(gameCard);
       });
     }
-
-    function generateInvoice(overallTotal) {
-  // Create or update the invoice modal
-  let invoiceModal = document.getElementById('invoiceModal');
-  if (!invoiceModal) {
-    invoiceModal = document.createElement('div');
-    invoiceModal.id = 'invoiceModal';
-    invoiceModal.className = 'modal fade';
-    invoiceModal.tabIndex = -1;
-    invoiceModal.role = 'dialog';
-    invoiceModal.innerHTML = `
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Invoice</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="invoice-content">
-            <!-- Invoice content will be inserted here -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" onclick="printInvoice()">Print Invoice</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(invoiceModal);
-  }
-
-  // Build the invoice content
-  const invoiceContent = document.getElementById('invoice-content');
-  invoiceContent.innerHTML = ''; // Clear previous content
-
-  let invoiceHTML = `
-    <p>Thank you for your rental!</p>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Game</th>
-          <th>Price per Day</th>
-          <th>Days</th>
-          <th>Total Cost</th>
-        </tr>
-      </thead>
-      <tbody>
-  `;
-
-  const rentalDays = calculateRentalDays();
-
-  cart.forEach(item => {
-    invoiceHTML += `
-      <tr>
-        <td>${item.name}</td>
-        <td>$${item.price.toFixed(2)}</td>
-        <td>${rentalDays}</td>
-        <td>$${item.totalCost.toFixed(2)}</td>
-      </tr>
-    `;
-  });
-
-  invoiceHTML += `
-      </tbody>
-    </table>
-    <h5 class="text-right">Overall Total: $${overallTotal.toFixed(2)}</h5>
-  `;
-
-  invoiceContent.innerHTML = invoiceHTML;
-
-  $('#invoiceModal').modal('show');
-}
-
-function printInvoice() {
-  const invoiceContent = document.getElementById('invoice-content').innerHTML;
-
-  const printWindow = window.open('', '', 'height=600,width=800');
-
-  if (printWindow) {
-    var htmlContent = '<html><head><title>Invoice</title>';
-    htmlContent += '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">';
-    htmlContent += '<style>body { font-family: Arial, sans-serif; margin: 20px; }</style>';
-    htmlContent += '</head><body>';
-    htmlContent += invoiceContent;
-    htmlContent += '</body></html>';
-
-    printWindow.document.open();
-    printWindow.document.write(htmlContent);
-    printWindow.document.close();
-
-    printWindow.focus();
-
-    printWindow.onload = function () {
-      printWindow.print();
-      printWindow.close();
-    };
-  } else {
-    alert('Please allow pop-ups for this website to print the invoice.');
-  }
-}
-
-
-
-
-
-
-
-
-
   </script>
 </body>
 </html>

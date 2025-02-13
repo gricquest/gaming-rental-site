@@ -4,6 +4,7 @@ const sgMail = require("@sendgrid/mail");
 
 admin.initializeApp();
 
+
 // Retrieve SendGrid API Key from environment variables
 const SENDGRID_API_KEY = functions.config().sendgrid.key;
 
@@ -121,3 +122,68 @@ exports.sendReturnConfirmationEmail = functions.database.ref("/rentals/{rentalId
     return null;
   }
 });
+
+
+exports.sendOrderInvoiceEmail = functions.database.ref("/orders/{orderId}")
+  .onCreate((snapshot, context) => {
+    const order = snapshot.val();
+    const { userEmail, userName, rentDate, returnDate, rentalDays, totalCost, items } = order;
+
+    // Compose email content
+    let emailContent = `
+      <p>Dear ${userName},</p>
+      <p>Thank you for your rental order!</p>
+      <p><strong>Order Details:</strong></p>
+      <ul>
+        <li><strong>Rent Date:</strong> ${rentDate}</li>
+        <li><strong>Return Date:</strong> ${returnDate}</li>
+        <li><strong>Rental Days:</strong> ${rentalDays}</li>
+      </ul>
+      <p><strong>Items Rented:</strong></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Price per Day</th>
+            <th>Total Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    items.forEach(item => {
+      emailContent += `
+        <tr>
+          <td>${item.gameName}</td>
+          <td>$${item.pricePerDay.toFixed(2)}</td>
+          <td>$${item.totalCost.toFixed(2)}</td>
+        </tr>
+      `;
+    });
+
+    emailContent += `
+        </tbody>
+      </table>
+      <p><strong>Overall Total Cost:</strong> $${totalCost.toFixed(2)}</p>
+      <p>We hope you enjoy your gaming experience!</p>
+      <p>Best regards,<br>Your Company Name</p>
+    `;
+
+    const msg = {
+      to: userEmail,
+      from: "no-reply@gricquest.com", // Use your verified sender
+      subject: "Your Rental Order Invoice",
+      html: emailContent,
+    };
+
+    // Send the email
+    return sgMail.send(msg)
+      .then(() => {
+        console.log("Order invoice email sent to:", userEmail);
+        return null;
+      })
+      .catch(error => {
+        console.error("Error sending invoice email:", error);
+        return null;
+      });
+  });

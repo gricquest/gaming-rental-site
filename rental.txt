@@ -412,83 +412,77 @@ let logoutTimer; // Timer for automatic logout
 
     // Load available games based on selected dates
     function loadAvailableGames() {
-  // Check if the user is logged in
-  const user = auth.currentUser;
-  if (!user) {
-    alert('Please sign in to rent a game.');
-    return;
-  }
-  const rentDate = document.getElementById('rent-date').value;
-  const returnDate = document.getElementById('return-date').value;
+      // Check if the user is logged in
+      const user = auth.currentUser;
+      if (!user) {
+        alert('Please sign in to rent a game.');
+        return;
+      }
+      const rentDate = document.getElementById('rent-date').value;
+      const returnDate = document.getElementById('return-date').value;
 
-  // Validate dates
-  if (!rentDate || !returnDate) {
-    alert('Please select both rental and return dates.');
-    return;
-  }
-  if (rentDate > returnDate) {
-    alert('Return date must be after rental date.');
-    return;
-  }
-  // Calculate rental period in days
-  calculateRentalDays();
-  // Clear previous results
-  document.getElementById('game-list').innerHTML = '';
+      // Validate dates
+      if (!rentDate || !returnDate) {
+        alert('Please select both rental and return dates.');
+        return;
+      }
+      if (rentDate > returnDate) {
+        alert('Return date must be after rental date.');
+        return;
+      }
+      // Calculate rental period in days
+      calculateRentalDays();
+      // Clear previous results
+      document.getElementById('game-list').innerHTML = '';
 
-  // Fetch games and orders from Firebase
-  fetchAvailableGames(rentDate, returnDate);
-}
+      // Fetch games and rentals from Firebase
+      fetchAvailableGames(rentDate, returnDate);
+    }
 
+    function fetchAvailableGames(rentDate, returnDate) {
+      // Fetch all games
+      database.ref('games').once('value')
+        .then(gamesSnapshot => {
+          const games = gamesSnapshot.val() || {};
+          const gameList = [];
 
+          // Fetch all rentals
+          database.ref('rentals').once('value')
+            .then(rentalsSnapshot => {
+              const rentals = rentalsSnapshot.val() || {};
 
-function fetchAvailableGames(rentDate, returnDate) {
-  // Fetch all games
-  database.ref('games').once('value')
-    .then(gamesSnapshot => {
-      const games = gamesSnapshot.val() || {};
-      const gameList = [];
-
-      // Fetch all orders
-      database.ref('orders').once('value')
-        .then(ordersSnapshot => {
-          const orders = ordersSnapshot.val() || {};
-
-          // Identify games that are rented out during the selected period
-          const unavailableGameIds = new Set();
-          for (const orderId in orders) {
-            const order = orders[orderId];
-            order.items.forEach(item => {
-              if (
-                order.status === 'active' &&
-                item.status !== 'returned' &&
-                !(
-                  returnDate < order.rentDate ||
-                  rentDate > order.returnDate
-                )
-              ) {
-                unavailableGameIds.add(item.gameId);
+              // Identify games that are rented out during the selected period
+              const unavailableGameIds = new Set();
+              for (const rentalId in rentals) {
+                const rental = rentals[rentalId];
+                if (
+                  rental.status === 'active' &&
+                  !(
+                    returnDate < rental.rentDate ||
+                    rentDate > rental.returnDate
+                  )
+                ) {
+                  unavailableGameIds.add(rental.gameId);
+                }
               }
+
+              // Filter available games
+              for (const gameId in games) {
+                if (!unavailableGameIds.has(gameId) && games[gameId].available) {
+                  const game = games[gameId];
+                  game.id = gameId; // Store the game ID
+                  gameList.push(game);
+                }
+              }
+
+              // Display the games
+              displayAvailableGames(gameList);
             });
-          }
-
-          // Filter available games
-          for (const gameId in games) {
-            if (!unavailableGameIds.has(gameId) && games[gameId].available) {
-              const game = games[gameId];
-              game.id = gameId; // Store the game ID
-              gameList.push(game);
-            }
-          }
-
-          // Display the games
-          displayAvailableGames(gameList);
+        })
+        .catch(error => {
+          console.error('Error fetching games:', error);
         });
-    })
-    .catch(error => {
-      console.error('Error fetching games:', error);
-    });
-}
-
+    }
 
     function displayAvailableGames(games) {
   const gameListDiv = document.getElementById('game-list');
@@ -656,7 +650,7 @@ function checkout() {
 }
 
 
-/* // Validate cart availability
+// Validate cart availability
 function validateCartAvailability(rentDate, returnDate) {
   return new Promise((resolve, reject) => {
     database.ref('rentals').once('value')
@@ -685,44 +679,7 @@ function validateCartAvailability(rentDate, returnDate) {
       })
       .catch(error => reject(error));
   });
-} */
-
-
-// Validate cart availability
-// Validate cart availability
-function validateCartAvailability(rentDate, returnDate) {
-  return new Promise((resolve, reject) => {
-    database.ref('orders').once('value')
-      .then(ordersSnapshot => {
-        const orders = ordersSnapshot.val() || {};
-        const unavailableGameIds = new Set();
-
-        for (const orderId in orders) {
-          const order = orders[orderId];
-          order.items.forEach(item => {
-            if (
-              order.status === 'active' &&
-              item.status !== 'returned' &&
-              !(
-                returnDate < order.rentDate ||
-                rentDate > order.returnDate
-              )
-            ) {
-              unavailableGameIds.add(item.gameId);
-            }
-          });
-        }
-
-        const initialCartLength = cart.length;
-        cart = cart.filter(item => !unavailableGameIds.has(item.gameId));
-        updateCartCount();
-
-        resolve(cart.length === initialCartLength);
-      })
-      .catch(error => reject(error));
-  });
 }
-
 
 // Rent multiple games
 function rentGames(rentDate, returnDate, overallTotal) {
@@ -736,32 +693,7 @@ function rentGames(rentDate, returnDate, overallTotal) {
         throw new Error('User profile information not found.');
       }
 
-      const rentalDays = calculateRentalDays();
-
-      // Prepare order data
-      const orderData = {
-        userId: user.uid,
-        userEmail: userInfo.email,
-        userName: userInfo.name || '',
-        userPhone: userInfo.phone || '',
-        rentDate: rentDate,
-        returnDate: returnDate,
-        rentalDays: rentalDays,
-        status: 'active',
-        totalCost: overallTotal,
-        items: []
-      };
-
       const rentalPromises = cart.map(item => {
-        // Add item to order data
-        orderData.items.push({
-          gameId: item.gameId,
-          gameName: item.name,
-          pricePerDay: item.price,
-          totalCost: item.totalCost
-        });
-
-        // Create individual rental records (if still needed)
         const rentalRef = database.ref('rentals').push();
         return rentalRef.set({
           gameId: item.gameId,
@@ -776,14 +708,12 @@ function rentGames(rentDate, returnDate, overallTotal) {
         });
       });
 
-      // Create order record
-      const orderRef = database.ref('orders').push();
-      const orderPromise = orderRef.set(orderData);
-
-      return Promise.all([...rentalPromises, orderPromise]);
+      return Promise.all(rentalPromises);
     })
     .then(() => {
-      alert('Games rented successfully! An invoice has been sent to your email.');
+      alert(`Games rented successfully! Total cost: $${overallTotal.toFixed(2)}`);
+       // Generate the invoice
+       generateInvoice(overallTotal);
       cart = [];
       updateCartCount();
       loadAvailableGames();
@@ -793,7 +723,6 @@ function rentGames(rentDate, returnDate, overallTotal) {
       alert('An error occurred while renting the games.');
     });
 }
-
 
 
 
@@ -982,90 +911,34 @@ function rentGames(rentDate, returnDate, overallTotal) {
   $('#invoiceModal').modal('show');
 }
 
-
-
-
-
-function generateInvoiceHtml(rentalData) {
-  let gamesList = '';
-  let totalAmount = 0;
-
-  rentalData.games.forEach(game => {
-    const gameTotal = game.price * game.quantity * rentalData.numberOfDays;
-    totalAmount += gameTotal;
-
-    gamesList += `
-      <tr>
-        <td>${game.title}</td>
-        <td>${game.quantity}</td>
-        <td>$${game.price.toFixed(2)}</td>
-        <td>${rentalData.numberOfDays}</td>
-        <td>$${gameTotal.toFixed(2)}</td>
-      </tr>
-    `;
-  });
-
-  return `
-    <div style="font-family: Arial, sans-serif; color: #333;">
-      <h2>Thank you for renting with GRICQUEST!</h2>
-      <p>Dear ${rentalData.customerName},</p>
-      <p>Here is the summary of your rental:</p>
-      <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-          <tr>
-            <th style="border-bottom: 2px solid #ddd; text-align: left;">Game Title</th>
-            <th style="border-bottom: 2px solid #ddd; text-align: left;">Quantity</th>
-            <th style="border-bottom: 2px solid #ddd; text-align: left;">Price/Day</th>
-            <th style="border-bottom: 2px solid #ddd; text-align: left;">Days</th>
-            <th style="border-bottom: 2px solid #ddd; text-align: left;">Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${gamesList}
-          <tr>
-            <td colspan="4" style="text-align: right; font-weight: bold;">Grand Total:</td>
-            <td style="font-weight: bold;">$${totalAmount.toFixed(2)}</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>Rental Period: ${rentalData.rentalDate} to ${rentalData.returnDate}</p>
-      <p>If you have any questions, feel free to contact us at support@gricquest.com.</p>
-      <p>Happy Gaming!</p>
-      <p>The GRICQUEST Team</p>
-    </div>
-  `;
-}
-
-
-
-
-/* function printInvoice() {
+function printInvoice() {
   const invoiceContent = document.getElementById('invoice-content').innerHTML;
-     const printWindow = window.open('', '', 'hei    t=600,width=800');
 
-        printWindow) {
+  const printWindow = window.open('', '', 'height=600,width=800');
+
+  if (printWindow) {
     var htmlContent = '<html><head><title>Invoice</title>';
     htmlContent += '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">';
-      htmlCon    nt += '<style>body { font-family: Arial, sans-serif; margin: 20px; }</style>';
+    htmlContent += '<style>body { font-family: Arial, sans-serif; margin: 20px; }</style>';
     htmlContent += '</head><body>';
-    htmlContent    = invoiceContent;
-    htmlContent += '</bo    ></html>';
+    htmlContent += invoiceContent;
+    htmlContent += '</body></html>';
 
-    printWindow.docum  ent.o  pen();
-    printWindow.doc    ent.write(htmlContent);
+    printWindow.document.open();
+    printWindow.document.write(htmlContent);
     printWindow.document.close();
 
-    printWindow.fo    s();
+    printWindow.focus();
 
     printWindow.onload = function () {
-      printWindow.pr    t();
-      printWin      close();
+      printWindow.print();
+      printWindow.close();
     };
   } else {
-    alert('Please allow pop       for this website to print the invoice.');
+    alert('Please allow pop-ups for this website to print the invoice.');
   }
 }
- */
+
   </script>
 </body>
 </html>

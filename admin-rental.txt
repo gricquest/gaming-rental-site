@@ -93,35 +93,33 @@
     </div>
   </div>
     <!-- Admin Content -->
-    
-      <div class="admin-content d-none">
-        <!-- Active Rentals Section -->
-        <div id="rentals-section">
-          <div class="mt-4">
-            <h3>Currently Rented Games</h3>
-            <div id="status" class="mt-3"></div>
-            <div class="table-responsive mt-3">
-              <table class="table table-striped table-bordered" id="rentals-table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th>Order ID</th>
-                    <th>User Email</th>
-                    <th>Game Name</th>
-                    <th>Rent Date</th>
-                    <th>Return Date</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Rentals will be dynamically inserted here -->
-                </tbody>
-              </table>
-            </div>
+    <div class="admin-content d-none">
+      <!-- Active Rentals Section -->
+      <div id="rentals-section">
+        <div class="mt-4">
+          <h3>Currently Rented Games</h3>
+          <div id="status" class="mt-3"></div>
+          <div class="table-responsive mt-3">
+            <table class="table table-striped table-bordered" id="rentals-table">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Rental ID</th>
+                  <th>User Email</th>
+                  <th>Game Name</th>
+                  <th>Rent Date</th>
+                  <th>Return Date</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Rentals will be dynamically inserted here -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-          
+    
       <!-- Product Update Section -->
       <div id="products-section" class="d-none">
         <!-- Product Upload Section -->
@@ -430,7 +428,7 @@ function loadProductsForEditing() {
       }
     });
 
-    /* function loadActiveRentals() {
+    function loadActiveRentals() {
       console.log('loadActiveRentals() called from:', new Error().stack);
       const rentalsRef = database.ref('rentals');
       const rentalsTableBody = document.querySelector('#rentals-table tbody');
@@ -504,56 +502,10 @@ function loadProductsForEditing() {
             showStatus('Error: ' + error.message, 'danger');
           });
       });
-    } */
+    }
 
-    function loadActiveRentals() {
-  const user = firebase.auth().currentUser;
-  if (!user) {
-    alert('Please sign in to view your active rentals.');
-    return;
-  }
-
-  const userId = user.uid;
-  const rentalsRef = database.ref('orders');
-  rentalsRef.orderByChild('status').equalTo('active').once('value', snapshot => {
-      const orders = snapshot.val();
-      const rentalsTableBody = document.getElementById('rentals-table').getElementsByTagName('tbody')[0];
-      rentalsTableBody.innerHTML = '';
-
-      if (orders) {
-        Object.keys(orders).forEach(orderId => {
-          const order = orders[orderId];
-          if (order.status === 'active') {
-            order.items.forEach(item => {
-              const row = rentalsTableBody.insertRow();
-              row.innerHTML = `
-                <td>${orderId}</td>
-                <td>${order.userEmail}</td>
-                <td>${item.gameName}</td>
-                <td>${order.rentDate}</td>
-                <td>${order.returnDate}</td>
-                <td>${item.status || 'active'}</td>
-                <td>
-                  <button class="btn btn-primary btn-sm" onclick="markAsReturned('${orderId}', '${item.gameId}')">Mark as Returned</button>
-                </td>
-              `;
-            });
-          }
-        });
-      } else {
-        rentalsTableBody.innerHTML = '<tr><td colspan="7">No active rentals found.</td></tr>';
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching active rentals:', error);
-      alert('Error fetching active rentals.');
-    });
-}
-
-
-    /* function markAsReturned(rentalId) {
+    function markAsReturned(rentalId) {
       const rentalRef = database.ref(`rentals/${rentalId}`);
-
       rentalRef.update({ status: 'returned' })
         .then(() => {
           showStatus(`Rental ${rentalId} marked as returned.`, 'success');
@@ -562,43 +514,7 @@ function loadProductsForEditing() {
         .catch(error => {
           showStatus('Error: ' + error.message, 'danger');
         });
-    } */
-
-    function markAsReturned(orderId, gameId) {
-  const orderRef = database.ref(`orders/${orderId}`);
-  orderRef.once('value')
-    .then(snapshot => {
-      const order = snapshot.val();
-
-      // Update the status of the order and the item to 'returned'
-      const updatedItems = order.items.map(item => {
-        if (item.gameId === gameId) {
-          return { ...item, status: 'returned' };
-        }
-        return item;
-      });
-
-      // Check if all items are returned to update order status
-      const allReturned = updatedItems.every(item => item.status === 'returned');
-      const updatedStatus = allReturned ? 'returned' : 'active';
-
-      return orderRef.update({
-        items: updatedItems,
-        status: updatedStatus,
-      });
-    })
-    .then(() => {
-      alert('Game marked as returned.');
-      loadActiveRentals();
-    })
-    .catch(error => {
-      console.error('Error marking game as returned:', error);
-      alert('Error marking game as returned.');
-    });
-}
-
-
-
+    }
 
     function showStatus(message, type) {
       statusDiv.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;

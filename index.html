@@ -188,13 +188,56 @@
         <div id="cart-items">
           <!-- Cart items will be populated here -->
         </div>
-        <div class="text-right">
-          <button class="btn btn-success" onclick="checkout()">Proceed to Checkout</button>
+        <div class="form-check mt-3">
+          <input type="checkbox" class="form-check-input" id="agree-terms">
+          <label class="form-check-label" for="agree-terms">
+            I agree to the <a href="#" data-toggle="modal" data-target="#termsModal">terms and conditions</a>
+          </label>
         </div>
+        <div class="text-right">
+          <!-- <button class="btn btn-primary" onclick="checkout()">Proceed to Checkout</button>  -->
+          <button class="btn btn-primary" id="checkout-button" disabled>Checkout</button>
+        </div> 
       </div>
     </div>
   </div>
 </div>
+<!-- Terms and Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Insert your terms and conditions text here -->
+        <p><b>Rental Agreement - Terms and Conditions:</b><br>
+          The renter of the games agrees and accepts to the below terms and conditions, and considers this as a rental agreement for the possession of the games rented from GRICQuest. Failure to read and comply with this terms and agreements will result in violation of the same.<br>
+          The games listed in cart are rented out for a tenure of 5 days. The rental tenure for these games can be extended for maximum of another 5 days, charged at 20% of the base rental charge per day. The renter agrees to the below terms and agreements:<br>
+          •	<b>Data Storage</b> - All payments for reservations must be made using a card, which will be done through the payment gateway (Stripe) used by the hosted server. Your full name, address, and contact number are stored at our end during the checkout process. We do not store or have access to your card details entered. <br>
+          •	<b>Payment Authorization </b> - An invoice will be issued for the rental fee and the full MSRP of the games being rented. The rental fee will be charged immediately to your card, and a hold will be placed on your card for the MSRP amount. Upon returning the game in the agreed condition within the rental period, the remaining invoice will be satisfied, and the hold will be canceled. If otherwise, charges are applied before releasing the hold on your card. You authorize us to charge your card for any extensions, late fees accrued, game loss/damage in addition to your rental tenure charge.<br>
+          •	<b>Delay/No Communication Charges </b>- Late fees will be automatically applied for the next 5 days at the rate of 50% of the base rental charge per day for the next 5 days. (eg, a Game rented at $15 for 5 days, would have a late fee of $7.5/day for the next 1-5 days until the game is received.) Failure to communicate/return the games within the late period, authorizes us to charge the full MSRP of the game, along with any accrued late fees during this period for the rented games, and any further rentals will be restricted.<br>
+          •	<b>Order Cancellation </b>- The renter may be able to cancel the order for a full refund 48 hours before the rental start date. If not, your card will be charged for the rental duration even if the products are not picked up/delivered.<br>
+          •	<b>Game Condition </b>- You agree to return the game in the EXACT condition in which you received it, with all of its pieces, the parts bagged, cards still in sleeves, etc. No alterations or attachments may be made to the game. As a courtesy, we ask you to organize the components in the game as received. We reserve the right to charge your credit card for the full MSRP of the game in case of irreparable damage, or partially for loss of components/damage, upon inspection of the returned game. This includes, but is not limited to, damage by Fire, Food/Water/Liquids/Bodily Fluids, Human or Animal Damages to game / box, and Lost Pieces or components. <br>
+          •	<b>Lending and Ownership</b> - You agree to keep the game in your possession and not lend or sub-rent it to anyone else during your rental tenure.<br>
+          •	<b>Safety & Choking Hazard Warning</b> - Games rented from us are intended to be used by audiences as indicated by the manufacturer of the games, exercising caution and adult supervision as needed, at your own risk. By renting a game, you acknowledge that it may contain several tiny pieces, plastic bags, and/or other components that may pose a choking hazard to small children if left unattended. The game’s packaging, inserts and instruction manuals usually contain age recommendations and warnings regarding safety listed by the manufacturer of the games, which you would need to adhere for your personal safety and the safety of those who may come in contact with the game while it is in your possession. You can also check with us on this aspect, before renting out the games. By using this rental service, you accept full responsibility for the safe use of any game rented until it is returned.<br>
+          •	<b>Rights reserved to cancel an order</b> - We reserve the rights at GRICQuest to cancel or partially fulfil the order. In which case, the refund is made in accordance to the games rented or withheld.<br>
+          •	<b>Service Restriction</b> - We are currently only providing services to a restricted number of zip codes, due to our current logistics. The Self-pickup and self-drop off of the games are from Mountain House (zipcode - 95391). Delivery/Pickup services options currently cater to the following zipcodes of Mountain House, Tracy, Livermore, Dublin and Pleasanton cities (94551, 94566, 94568, 94588, 94550, 95391, 95376, 95377, 95304). If you don't find your zip codes listed, kindly reach out to check for a possibility of delivery/pickup.<br>
+          <b>All communications should be directed via email to gricquest@gmail.com or by calling/texting at +1(925)236-0441. </b> <br>
+          </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
   <!-- Sign-Up Modal -->
   <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel" aria-hidden="true">
@@ -405,10 +448,44 @@ let logoutTimer; // Timer for automatic logout
       }
     }
 
-        // Listen for user interactions to reset logout timer
-        ['click', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(event => {
+        // Listen for user interactions to reset logout timer Added below section in DOMContent
+       /*  ['click', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(event => {
       document.addEventListener(event, resetLogoutTimer);
-    });
+    }); */
+
+    document.addEventListener('DOMContentLoaded', () => {
+  const agreeTermsCheckbox = document.getElementById('agree-terms');
+  const checkoutButton = document.getElementById('checkout-button');
+
+  // Enable or disable the checkout button based on checkbox state
+  agreeTermsCheckbox.addEventListener('change', () => {
+    checkoutButton.disabled = !agreeTermsCheckbox.checked;
+  });
+
+  // Event listeners for user activity
+  ['click', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(event => {
+    document.addEventListener(event, resetLogoutTimer);
+  });
+
+  /* // Load active rentals after user authentication
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      loadActiveRentals();
+    }
+  }); */
+});
+
+
+
+
+  //  document.addEventListener('DOMContentLoaded', () => {
+  // const agreeTermsCheckbox = document.getElementById('agree-terms');
+  // const checkoutButton = document.getElementById('checkout-button');
+
+  // // Enable or disable the checkout button based on checkbox state
+  // agreeTermsCheckbox.addEventListener('change', () => {
+  //   checkoutButton.disabled = !agreeTermsCheckbox.checked;
+  // }); 
 
     // Load available games based on selected dates
     function loadAvailableGames() {
@@ -624,6 +701,11 @@ function checkout() {
     alert('Please sign in to proceed with the checkout.');
     return;
   }
+  const agreeTermsCheckbox = document.getElementById('agree-terms');
+  if (!agreeTermsCheckbox.checked) {
+    alert('Please agree to the terms and conditions before proceeding.');
+    return;
+  }
 
   const rentDate = document.getElementById('rent-date').value;
   const returnDate = document.getElementById('return-date').value;
@@ -655,7 +737,7 @@ function checkout() {
     });
 }
 
-
+ document.getElementById('checkout-button').addEventListener('click', checkout);
 /* // Validate cart availability
 function validateCartAvailability(rentDate, returnDate) {
   return new Promise((resolve, reject) => {

@@ -156,6 +156,10 @@
               <input type="date" class="form-control" id="product-release-date" required>
             </div>
             <div class="form-group">
+              <label for="product-quantity">Quantity</label>
+              <input type="number" class="form-control" id="product-quantity" placeholder="Enter quantity" min="1" required>
+            </div>
+            <div class="form-group">
               <label for="product-image">Product Image</label>
               <input type="file" class="form-control-file" id="product-image" accept="image/*" required>
             </div>
@@ -179,6 +183,8 @@
                   <th>Price</th>
                   <th>Platform</th>
                   <th>Release Date</th>
+                  <th>Total Qty</th>
+                  <th>Available Qty</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -231,6 +237,10 @@
             <input type="date" class="form-control" id="edit-product-release-date" required>
           </div>
           <div class="form-group">
+            <label for="edit-product-quantity">Quantity</label>
+            <input type="number" class="form-control" id="edit-product-quantity" min="0" required>
+          </div>
+          <div class="form-group">
             <label for="edit-product-image">Product Image</label>
             <input type="file" class="form-control-file" id="edit-product-image" accept="image/*">
             <small class="form-text text-muted">Leave empty to keep the current image.</small>
@@ -245,7 +255,7 @@
   </div>
 </div>
     
-    </div>
+
  
 
   <!-- Footer -->
@@ -379,6 +389,8 @@ function loadProductsForEditing() {
           <td>$${product.price}</td>
           <td>${product.platform}</td>
           <td>${product.releaseDate}</td>
+          <td>${product.totalQuantity}</td>
+          <td>${product.quantity}</td>
           <td>
             <button class="btn btn-sm btn-primary" onclick="editProduct('${productId}')">Edit</button>
             <button class="btn btn-sm btn-danger" onclick="deleteProduct('${productId}')">Delete</button>
@@ -430,82 +442,7 @@ function loadProductsForEditing() {
       }
     });
 
-    /* function loadActiveRentals() {
-      console.log('loadActiveRentals() called from:', new Error().stack);
-      const rentalsRef = database.ref('rentals');
-      const rentalsTableBody = document.querySelector('#rentals-table tbody');
-        rentalsTableBody.innerHTML = '';
-      rentalsRef.orderByChild('status').equalTo('active').once('value', snapshot => {
-        const rentals = snapshot.val() || {};
-        const rentalsTableBody = document.querySelector('#rentals-table tbody');
-        rentalsTableBody.innerHTML = '';
-
-        const userIds = new Set();
-        const gameIds = new Set();
-
-        // Collect user IDs and game IDs to fetch their details
-        for (const rentalId in rentals) {
-          userIds.add(rentals[rentalId].userId);
-          gameIds.add(rentals[rentalId].gameId);
-        }
-
-        // Fetch user emails and game names
-        const userPromises = [];
-        userIds.forEach(userId => {
-          userPromises.push(
-            database.ref(`users/${userId}/email`).once('value')
-          );
-        });
-
-        const gamePromises = [];
-        gameIds.forEach(gameId => {
-          gamePromises.push(
-            database.ref(`games/${gameId}`).once('value')
-          );
-        });
-
-        Promise.all([...userPromises, ...gamePromises])
-          .then(results => {
-            const userEmails = {};
-            const gameNames = {};
-
-            // Parse user emails
-            let index = 0;
-            userIds.forEach(userId => {
-              const emailSnapshot = results[index++];
-              userEmails[userId] = emailSnapshot.val() || 'Unknown Email';
-            });
-
-            // Parse game names
-            gameIds.forEach(gameId => {
-              const gameSnapshot = results[index++];
-              gameNames[gameId] = (gameSnapshot.val() && gameSnapshot.val().name) || 'Unknown Game';
-            });
-
-            // Populate the table
-            for (const rentalId in rentals) {
-              const rental = rentals[rentalId];
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                <td>${rentalId}</td>
-                <td>${userEmails[rental.userId]}</td>
-                <td>${gameNames[rental.gameId]}</td>
-                <td>${rental.rentDate}</td>
-                <td>${rental.returnDate}</td>
-                <td>${rental.status}</td>
-                <td><button class="btn btn-sm btn-success" onclick="markAsReturned('${rentalId}')">Mark as Returned</button></td>
-              `;
-              rentalsTableBody.appendChild(row);
-            }
-
-            showStatus('Active rentals loaded.', 'success');
-          })
-          .catch(error => {
-            showStatus('Error: ' + error.message, 'danger');
-          });
-      });
-    } */
-
+    
     function loadActiveRentals() {
   const user = firebase.auth().currentUser;
   if (!user) {
@@ -564,7 +501,7 @@ function loadProductsForEditing() {
         });
     } */
 
-    function markAsReturned(orderId, gameId) {
+/*     function markAsReturned(orderId, gameId) {
   const orderRef = database.ref(`orders/${orderId}`);
   orderRef.once('value')
     .then(snapshot => {
@@ -596,7 +533,53 @@ function loadProductsForEditing() {
       alert('Error marking game as returned.');
     });
 }
+ */
+ function markAsReturned(orderId, gameId) {
+  const orderRef = database.ref(`orders/${orderId}`);
+  orderRef.once('value')
+    .then(snapshot => {
+      const order = snapshot.val();
 
+      // Update the status of the item to 'returned'
+      const updatedItems = order.items.map(item => {
+        if (item.gameId === gameId) {
+          return { ...item, status: 'returned' };
+        }
+        return item;
+      });
+
+      // Check if all items are returned to update order status
+      const allReturned = updatedItems.every(item => item.status === 'returned');
+      const updatedStatus = allReturned ? 'returned' : 'active';
+
+      // Update the order
+      return orderRef.update({
+        items: updatedItems,
+        status: updatedStatus,
+      });
+    })
+    .then(() => {
+      // Increment the game's quantity
+      const gameRef = database.ref(`games/${gameId}`);
+      return gameRef.transaction(game => {
+        if (game) {
+          const newQuantity = (game.quantity || 0) + 1;
+          game.quantity = newQuantity;
+          game.available = true; // Mark the game as available if it wasn't already
+          return game;
+        }
+        return game;
+      });
+    })
+    .then(() => {
+      alert('Game marked as returned.');
+      loadActiveRentals();
+    })
+    .catch(error => {
+      console.error('Error marking game as returned:', error);
+      alert('Error marking game as returned.');
+    });
+}
 
 
 
@@ -619,6 +602,8 @@ document.getElementById('product-upload-form').addEventListener('submit', functi
   const productPlatform = document.getElementById('product-platform').value.trim();
   const productReleaseDate = document.getElementById('product-release-date').value;
   const productImageFile = document.getElementById('product-image').files[0];
+// Get form values
+const productQuantity = parseInt(document.getElementById('product-quantity').value, 10);
 
   if (!productImageFile) {
     showProductUploadStatus('Please select an image file.', 'danger');
@@ -656,8 +641,10 @@ document.getElementById('product-upload-form').addEventListener('submit', functi
           price: productPrice,
           platform: productPlatform,
           releaseDate: productReleaseDate,
+          totalQuantity: productQuantity,
           imageUrl: downloadURL,
-          available: true
+          quantity: productQuantity, 
+          available: productQuantity > 0 // Set availability based on quantity
         })
         .then(() => {
           // Clear the form
@@ -695,6 +682,7 @@ function editProduct(productId) {
         document.getElementById('edit-product-genre').value = product.genre;
         document.getElementById('edit-product-price').value = product.price;
         document.getElementById('edit-product-platform').value = product.platform;
+        document.getElementById('edit-product-quantity').value = product.totalQuantity || 1;
         document.getElementById('edit-product-release-date').value = product.releaseDate;
         // Show the modal
         $('#editProductModal').modal('show');
@@ -719,7 +707,7 @@ document.getElementById('edit-product-form').addEventListener('submit', function
   const productPlatform = document.getElementById('edit-product-platform').value.trim();
   const productReleaseDate = document.getElementById('edit-product-release-date').value;
   const productImageFile = document.getElementById('edit-product-image').files[0];
-
+  const productQuantity = parseInt(document.getElementById('edit-product-quantity').value, 10);
   const productRef = database.ref(`games/${productId}`);
 
   if (productImageFile) {
@@ -749,6 +737,8 @@ document.getElementById('edit-product-form').addEventListener('submit', function
             price: productPrice,
             platform: productPlatform,
             releaseDate: productReleaseDate,
+            //quantity: productQuantity,
+            totalQuantity: productQuantity,
             imageUrl: downloadURL
           });
         });
@@ -762,6 +752,8 @@ document.getElementById('edit-product-form').addEventListener('submit', function
       genre: productGenre,
       price: productPrice,
       platform: productPlatform,
+      //quantity: productQuantity,
+      totalQuantity: productQuantity,
       releaseDate: productReleaseDate
     });
   }

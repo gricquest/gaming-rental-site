@@ -81,6 +81,12 @@
       margin-right: 15px;
     }
 
+    .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure the navbar stays on top of other content */
+
     #cart-items .media {
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
@@ -518,7 +524,7 @@ let logoutTimer; // Timer for automatic logout
 
 
 
-function fetchAvailableGames(rentDate, returnDate) {
+/* function fetchAvailableGames(rentDate, returnDate) {
   // Fetch all games
   database.ref('games').once('value')
     .then(gamesSnapshot => {
@@ -565,9 +571,80 @@ function fetchAvailableGames(rentDate, returnDate) {
       console.error('Error fetching games:', error);
     });
 }
+ */
+
+ function fetchAvailableGames(rentDateStr, returnDateStr) {
+  // Convert dates using dayjs
+  const rentDate = dayjs(rentDateStr);
+  const returnDate = dayjs(returnDateStr);
+
+  // Fetch all games
+  database.ref('games').once('value')
+    .then(gamesSnapshot => {
+      const games = gamesSnapshot.val() || {};
+
+      // Fetch all orders
+      database.ref('orders').once('value')
+        .then(ordersSnapshot => {
+          const orders = ordersSnapshot.val() || {};
+
+          // Initialize rented quantities map
+          const rentedQuantities = {};
+
+          // Calculate rented quantities
+          for (const orderId in orders) {
+            const order = orders[orderId];
+            const orderRentDate = dayjs(order.rentDate);
+            const orderReturnDate = dayjs(order.returnDate);
+
+            const isOverlapping = order.status === 'active' && !(
+              returnDate.isBefore(orderRentDate, 'day') || rentDate.isAfter(orderReturnDate, 'day')
+            );
+
+            if (isOverlapping) {
+              order.items.forEach(item => {
+                if (item.status !== 'returned') {
+                  const gameId = item.gameId;
+                  rentedQuantities[gameId] = (rentedQuantities[gameId] || 0) + 1;
+                }
+              });
+            }
+          }
+
+          // Prepare available games list
+          const gameList = [];
+          for (const gameId in games) {
+            const game = games[gameId];
+
+            const totalQuantity = game.totalQuantity || game.quantity || 0;
+            const rentedQuantity = rentedQuantities[gameId] || 0;
+            const availableQuantity = totalQuantity - rentedQuantity;
+
+            // Output for debugging
+            console.log(`Game: ${game.name}, Total Qty: ${totalQuantity}, Rented Qty: ${rentedQuantity}, Available Qty: ${availableQuantity}`);
+
+            if (availableQuantity > 0) {
+              game.id = gameId;
+              game.totalQuantity = totalQuantity;
+              game.availableQuantity = availableQuantity;
+              gameList.push(game);
+            }
+          }
+
+          // Display the games
+          displayAvailableGames(gameList);
+        })
+        .catch(error => {
+          console.error('Error fetching orders:', error);
+        });
+    })
+    .catch(error => {
+      console.error('Error fetching games:', error);
+    });
+}
 
 
-    function displayAvailableGames(games) {
+/* function displayAvailableGames(games) {
   const gameListDiv = document.getElementById('game-list');
 
   if (games.length === 0) {
@@ -585,6 +662,7 @@ function fetchAvailableGames(rentDate, returnDate) {
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">${game.name}</h5>
           <p class="card-text">Genre: ${game.genre}</p>
+          <p class="card-text">Available Copies: ${game.quantity}</p> <!-- Display quantity -->
           <p class="card-text">Price: $${game.price}</p>
           <button class="btn btn-primary mt-auto" onclick="addToCart('${game.id}', '${game.name}', '${game.imageUrl}', '${game.genre}', ${game.price})">Add to Cart</button>
         </div>
@@ -594,7 +672,38 @@ function fetchAvailableGames(rentDate, returnDate) {
     gameListDiv.appendChild(gameCard);
   });
 }
+ */
 
+ function displayAvailableGames(games) {
+  const gameListDiv = document.getElementById('game-list');
+  gameListDiv.innerHTML = ''; // Clear previous content
+
+  if (games.length === 0) {
+    gameListDiv.innerHTML = '<p class="col-12 text-center">No games available for the selected dates.</p>';
+    return;
+  }
+
+  games.forEach(game => {
+    const gameCard = document.createElement('div');
+    gameCard.className = 'col-md-3 game-card';
+
+    gameCard.innerHTML = `
+      <div class="card h-100">
+        <img src="${game.imageUrl}" class="card-img-top" alt="${game.name}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">${game.name}</h5>
+          <p class="card-text">Genre: ${game.genre}</p>
+          <p class="card-text">Total Copies: ${game.totalQuantity}</p>
+          <p class="card-text">Available Copies: ${game.availableQuantity}</p>
+          <p class="card-text">Price: $${game.price}</p>
+          <button class="btn btn-primary mt-auto" onclick="addToCart('${game.id}', '${game.name}', '${game.imageUrl}', '${game.genre}', ${game.price})">Add to Cart</button>
+        </div>
+      </div>
+    `;
+
+    gameListDiv.appendChild(gameCard);
+  });
+}
 
 
 
@@ -612,7 +721,7 @@ function addToCart(gameId, name, imageUrl, genre, price) {
   cart.push({ gameId, name, imageUrl, genre, price, totalCost });
   updateCartCount();
   alert('Game added to cart.');
-  updateCartTotal(); // Update total cost
+  //updateCartTotal(); // Update total cost
 }
 
 function calculateRentalDays() {
@@ -737,42 +846,12 @@ function checkout() {
     });
 }
 
- document.getElementById('checkout-button').addEventListener('click', checkout);
-/* // Validate cart availability
-function validateCartAvailability(rentDate, returnDate) {
-  return new Promise((resolve, reject) => {
-    database.ref('rentals').once('value')
-      .then(rentalsSnapshot => {
-        const rentals = rentalsSnapshot.val() || {};
-        const unavailableGameIds = new Set();
-
-        for (const rentalId in rentals) {
-          const rental = rentals[rentalId];
-          if (
-            rental.status === 'active' &&
-            !(
-              returnDate < rental.rentDate ||
-              rentDate > rental.returnDate
-            )
-          ) {
-            unavailableGameIds.add(rental.gameId);
-          }
-        }
-
-        const initialCartLength = cart.length;
-        cart = cart.filter(item => !unavailableGameIds.has(item.gameId));
-        updateCartCount();
-
-        resolve(cart.length === initialCartLength);
-      })
-      .catch(error => reject(error));
-  });
-} */
+document.getElementById('checkout-button').addEventListener('click', checkout);
 
 
 // Validate cart availability
 // Validate cart availability
-function validateCartAvailability(rentDate, returnDate) {
+/* function validateCartAvailability(rentDate, returnDate) {
   return new Promise((resolve, reject) => {
     database.ref('orders').once('value')
       .then(ordersSnapshot => {
@@ -804,10 +883,34 @@ function validateCartAvailability(rentDate, returnDate) {
       .catch(error => reject(error));
   });
 }
+ */
+ function validateCartAvailability(rentDate, returnDate) {
+  return new Promise((resolve, reject) => {
+    // Fetch the latest game quantities
+    database.ref('games').once('value')
+      .then(gamesSnapshot => {
+        const games = gamesSnapshot.val() || {};
+        let allAvailable = true;
+
+        cart.forEach(item => {
+          const game = games[item.gameId];
+          if (!game || game.quantity <= 0) {
+            // Remove item from cart if not available
+            allAvailable = false;
+            cart = cart.filter(cartItem => cartItem.gameId !== item.gameId);
+          }
+        });
+
+        updateCartCount();
+        resolve(allAvailable);
+      })
+      .catch(error => reject(error));
+  });
+}
 
 
 // Rent multiple games
-function rentGames(rentDate, returnDate, overallTotal) {
+/* function rentGames(rentDate, returnDate, overallTotal) {
   const user = auth.currentUser;
 
   database.ref(`users/${user.uid}`).once('value')
@@ -875,7 +978,104 @@ function rentGames(rentDate, returnDate, overallTotal) {
       alert('An error occurred while renting the games.');
     });
 }
+ */
+ function rentGames(rentDate, returnDate, overallTotal) {
+  const user = auth.currentUser;
 
+  database.ref(`users/${user.uid}`).once('value')
+    .then(userSnapshot => {
+      const userInfo = userSnapshot.val();
+
+      if (!userInfo) {
+        throw new Error('User profile information not found.');
+      }
+
+      const rentalDays = calculateRentalDays();
+
+      // Prepare order data
+      const orderData = {
+        userId: user.uid,
+        userEmail: userInfo.email,
+        userName: userInfo.name || '',
+        userPhone: userInfo.phone || '',
+        rentDate: rentDate,
+        returnDate: returnDate,
+        rentalDays: rentalDays,
+        status: 'active',
+        totalCost: overallTotal,
+        items: []
+      };
+
+      // Fetch the latest quantities of the games in the cart
+      const gameIds = cart.map(item => item.gameId);
+      return database.ref('games').once('value')
+        .then(gamesSnapshot => {
+          const gamesData = gamesSnapshot.val() || {};
+          const updates = {}; // To hold all database updates
+
+          // Check availability and prepare updates
+          cart.forEach(item => {
+            const game = gamesData[item.gameId];
+            if (!game) {
+              throw new Error(`Game '${item.name}' not found.`);
+            }
+
+            const currentQuantity = game.quantity || 0;
+            if (currentQuantity <= 0) {
+              throw new Error(`Game '${item.name}' is out of stock.`);
+            }
+
+            // Decrement quantity
+            const newQuantity = currentQuantity - 1;
+            updates[`games/${item.gameId}/quantity`] = newQuantity;
+
+            // Update 'available' status if quantity is zero
+            if (newQuantity === 0) {
+              updates[`games/${item.gameId}/available`] = false;
+            }
+
+            // Prepare order items
+            orderData.items.push({
+              gameId: item.gameId,
+              gameName: item.name,
+              pricePerDay: item.price,
+              totalCost: item.totalCost
+            });
+
+            // Create individual rental records in updates
+            const rentalRef = database.ref('rentals').push();
+            updates[`rentals/${rentalRef.key}`] = {
+              gameId: item.gameId,
+              userId: user.uid,
+              userEmail: userInfo.email,
+              userName: userInfo.name || '',
+              userPhone: userInfo.phone || '',
+              rentDate: rentDate,
+              returnDate: returnDate,
+              status: 'active',
+              totalCost: item.totalCost
+            };
+          });
+
+          // Create order record in updates
+          const orderRef = database.ref('orders').push();
+          updates[`orders/${orderRef.key}`] = orderData;
+
+          // Apply all updates atomically
+          return database.ref().update(updates);
+        });
+    })
+    .then(() => {
+      alert('Games rented successfully! An invoice has been sent to your email.');
+      cart = [];
+      updateCartCount();
+      loadAvailableGames();
+    })
+    .catch(error => {
+      console.error('Error renting games:', error);
+      alert(error.message || 'An error occurred while renting the games.');
+    });
+}
 
 
 
@@ -1121,7 +1321,7 @@ function generateInvoiceHtml(rentalData) {
 
 
 
-/* function printInvoice() {
+function printInvoice() {
   const invoiceContent = document.getElementById('invoice-content').innerHTML;
      const printWindow = window.open('', '', 'hei    t=600,width=800');
 
@@ -1147,7 +1347,7 @@ function generateInvoiceHtml(rentalData) {
     alert('Please allow pop       for this website to print the invoice.');
   }
 }
- */
+
   </script>
 </body>
 </html>

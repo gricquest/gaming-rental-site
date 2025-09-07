@@ -92,6 +92,25 @@
   padding-bottom: 10px;
     }
     
+    .game-card {
+  margin-bottom: 30px;
+}
+
+.nav-tabs .nav-link {
+  color: #007bff;
+}
+
+.nav-tabs .nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.navbar-nav .nav-link {
+  color: black !important; /* Change text color to black */
+  font-size: 1rem; /* Increase font size */
+}
+
   </style>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
   
@@ -106,9 +125,25 @@
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <!-- Navbar Content -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- Add any additional navbar items here -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="./index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./discover-further.html">Discover Further</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./MembershipOptions.html">Membership</a>
+        </li>        
+        <li class="nav-item">
+          <a class="nav-link" href="./FAQ.html">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./contact.html">Contact</a>
+        </li>
+
+      </ul>
       <form class="form-inline ml-auto" onsubmit="searchAllGames(); return false;">
         <input class="form-control mr-sm-2 search-input" type="search" id="search-input" placeholder="Search games"
           aria-label="Search">
@@ -120,9 +155,8 @@
       <!-- Display User Name and Auth Button -->
       <span class="navbar-text" id="user-name-display"></span>
       <button class="btn btn-outline-dark ml-2" id="auth-button" onclick="openAuthModal()">Sign In</button>
-      <!-- In the Navigation Bar -->
-
-
+  
+    
     </div>
   </nav>
 
@@ -144,11 +178,26 @@
   </section>
 
   <!-- Main Content -->
-  <main class="container mt-5">
-    <div id="game-list" class="row">
+<!--   <main class="container mt-5">
+    <div id="game-list" class="row"> -->
       <!-- Game cards will be inserted here -->
-    </div>
-  </main>
+  <!--   </div>
+  </main> -->
+<!-- Main Content -->
+<!-- Main Content -->
+<main class="container mt-5">
+  <!-- Genre Tabs -->
+  <ul class="nav nav-tabs" id="genre-tabs" role="tablist">
+    <!-- Tabs will be dynamically inserted here -->
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content" id="genre-tabContent">
+    <!-- Tab panes will be dynamically inserted here -->
+  </div>
+</main>
+
+  
 
   <!-- Sign-In Modal -->
   <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
@@ -281,6 +330,26 @@
       </div>
     </div>
   </div>
+
+  <section class="text" id="section-text" data-section="true" data-section-key="text"><link rel="stylesheet" type="text/css" href="./text-c69cfc7f7c4c0e9119e001940ed9a7c979af67e4de966e906b6338580a792035.css">
+
+    <div class="text__wrapper palette-three text__wrapper--padding-top text__wrapper--padding-bottom" id="text-text" style="--padding-top: 24px;--padding-bottom: 24px;--padding-top-mobile: 18px;--padding-bottom-mobile: 18px;--text-align: center;">
+      <div class="text__container container"><div class="text__content bq-content rx-content"><p>Re<b></b>nt Your Fa<b></b>vourite Tableto<b></b>p Games in 3 easy steps</p></div></div>
+    </div>
+    
+    
+    </section>
+    <section class="columns" data-section="true" data-section-key="columns" id="section-columns"><link href="./images/columns-e73bfd267d943e909f53557defb9426280f8b9dc38cc1b9306c01b723d815ecf.css" rel="stylesheet" type="text/css"/>
+      <div class="columns__wrapper palette-two columns__wrapper--padding-top columns__wrapper--padding-bottom" style="--padding-top: 24px;--padding-bottom: 24px;--padding-top-mobile: 18px;--padding-bottom-mobile: 18px;--grid-element: 3;">
+      <div class="columns__container container">
+      <div class="columns__grid"><div class="columns__item" id="column_914694"><div class="columns__image-wrapper"><img alt="" class="columns__image ls-is-cached lazyloaded" data-src="images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg" data-srcset="images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 80w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 120w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 192w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 300w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 420w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 640w" sizes="(max-width: 320px) 80px, (max-width: 480px) 120px, (max-width: 768px) 192px, (max-width: 1200px) 300px, (max-width: 1680px) 420px, 640px" src="./images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg" srcset="images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 80w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 120w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 192w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 300w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 420w, images/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 640w"/></div><div class="columns__text"><strong class="columns__title h4">1. Pick and Choose your games for rent</strong><div class="columns__description bq-content rx-content"><p>Choose a maximum of 5 games to rent out from our diverse  collection, catering to all age groups, and add them to your cart. </p></div></div></div><div class="columns__item" id="column_999507"><div class="columns__image-wrapper"><img alt="" class="columns__image ls-is-cached lazyloaded" data-src="images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg" data-srcset="images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 80w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 120w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 192w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 300w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 420w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 640w" sizes="(max-width: 320px) 80px, (max-width: 480px) 120px, (max-width: 768px) 192px, (max-width: 1200px) 300px, (max-width: 1680px) 420px, 640px" src="./images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg" srcset="images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 80w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 120w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 192w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 300w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 420w, images/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 640w"/></div><div class="columns__text"><strong class="columns__title h4">2. Select the Dates for renting out</strong><div class="columns__description bq-content rx-content"><p>Choose the date you would like your rental to begin, and the games are reserved for the next 5 days from your start date, exclusively for you.</p></div></div></div><div class="columns__item" id="column"><div class="columns__image-wrapper"><img alt="" class="columns__image ls-is-cached lazyloaded" data-src="images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg" data-srcset="images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 80w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 120w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 192w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 300w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 420w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 640w" sizes="(max-width: 320px) 80px, (max-width: 480px) 120px, (max-width: 768px) 192px, (max-width: 1200px) 300px, (max-width: 1680px) 420px, 640px" src="./images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg" srcset="images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 80w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 120w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 192w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 300w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 420w, images/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 640w"/></div><div class="columns__text"><strong class="columns__title h4">3. Complete Payment to Confirm Your Reservation</strong><div class="columns__description bq-content rx-content"><p>Proceed to checkout, select your preferred delivery option, and make an online payment to secure your reservation. You can either pick up your games or await their delivery to start enjoying.</p></div></div></div></div>
+      </div>
+      </section>
+      <section class="text" data-section="true" data-section-key="text_420172" id="section-text_420172"><link href="./images/text-c69cfc7f7c4c0e9119e001940ed9a7c979af67e4de966e906b6338580a792035.css" rel="stylesheet" type="text/css"/>
+        <div class="text__wrapper palette-three text__wrapper--padding-top text__wrapper--padding-bottom" id="text-text_420172" style="--padding-top: 24px;--padding-bottom: 24px;--padding-top-mobile: 18px;--padding-bottom-mobile: 18px;--text-align: left;">
+        <div class="text__container container"><div class="text__content bq-content rx-content"><p>Effortlessly reserve our games. For additional information, refer to our Process Handout and Rental Agreement in the Discover Further section. Explore the FAQ section for answers to common queries, and feel free to reach out if you have any further questions!<br/></p></div></div>
+        </div>
+        </section>
 
   <!-- Footer -->
   <footer class="bg-dark text-white mt-5 p-4 text-center">
@@ -516,8 +585,8 @@ let logoutTimer; // Timer for automatic logout
   // Calculate rental period in days
   calculateRentalDays();
   // Clear previous results
-  document.getElementById('game-list').innerHTML = '';
-
+  //document.getElementById('game-list').innerHTML = '';
+document.getElementById('genre-tabContent').innerHTML = '';
   // Fetch games and orders from Firebase
   fetchAvailableGames(rentDate, returnDate);
 }
@@ -631,8 +700,22 @@ let logoutTimer; // Timer for automatic logout
             }
           }
 
+          // After you have the gameList (available games), extract genres
+  const genresSet = new Set();
+  gameList.forEach(game => {
+    if (game.genre) {
+      genresSet.add(game.genre);
+    }
+  });
+  // Convert the set to an array and sort it
+  const genres = Array.from(genresSet).sort();
+
+  // Now, proceed to display the genres and games
+  displayGenreTabs(genres);
+  displayAvailableGamesByGenre(gameList, genres);
+
           // Display the games
-          displayAvailableGames(gameList);
+          //displayAvailableGames(gameList);
         })
         .catch(error => {
           console.error('Error fetching orders:', error);
@@ -642,6 +725,84 @@ let logoutTimer; // Timer for automatic logout
       console.error('Error fetching games:', error);
     });
 }
+
+// Function to display genre tabs
+function displayGenreTabs(genres) {
+  const genreTabs = document.getElementById('genre-tabs');
+  genreTabs.innerHTML = ''; // Clear previous tabs
+
+  // Add "All" tab
+  genreTabs.innerHTML += `
+    <li class="nav-item">
+      <a class="nav-link active" id="genre-tab-all" data-toggle="tab" href="#genre-all" role="tab" aria-controls="genre-all" aria-selected="true">All</a>
+    </li>
+  `;
+
+  // Add tabs for each genre
+  genres.forEach((genre, index) => {
+    genreTabs.innerHTML += `
+      <li class="nav-item">
+        <a class="nav-link" id="genre-tab-${index}" data-toggle="tab" href="#genre-${index}" role="tab" aria-controls="genre-${index}" aria-selected="false">${genre}</a>
+      </li>
+    `;
+  });
+}
+
+// Function to display available games by genre
+function displayAvailableGamesByGenre(games, genres) {
+  const tabContent = document.getElementById('genre-tabContent');
+  tabContent.innerHTML = ''; // Clear previous content
+
+  // All games tab pane
+  let allGamesContent = '<div class="row">';
+  games.forEach(game => {
+    allGamesContent += generateGameCard(game);
+  });
+  allGamesContent += '</div>';
+
+  tabContent.innerHTML += `
+    <div class="tab-pane fade show active" id="genre-all" role="tabpanel" aria-labelledby="genre-tab-all">
+      ${allGamesContent}
+    </div>
+  `;
+
+  // Games by genre
+  genres.forEach((genre, index) => {
+    let genreGamesContent = '<div class="row">';
+    games.forEach(game => {
+      if (game.genre === genre) {
+        genreGamesContent += generateGameCard(game);
+      }
+    });
+    genreGamesContent += '</div>';
+
+    tabContent.innerHTML += `
+      <div class="tab-pane fade" id="genre-${index}" role="tabpanel" aria-labelledby="genre-tab-${index}">
+        ${genreGamesContent}
+      </div>
+    `;
+  });
+}
+
+// Helper function to generate a game card HTML
+function generateGameCard(game) {
+  return `
+    <div class="col-md-3 game-card">
+      <div class="card h-100">
+        <img src="${game.imageUrl}" class="card-img-top" alt="${game.name}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">${game.name}</h5>
+          <p class="card-text">Genre: ${game.genre}</p>
+          <p class="card-text">Available Copies: ${game.availableQuantity}</p>
+          <p class="card-text">Price: $${game.price}</p>
+          <button class="btn btn-primary mt-auto" onclick="addToCart('${game.id}', '${game.name}', '${game.imageUrl}', '${game.genre}', ${game.price})">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+
 
 
 /* function displayAvailableGames(games) {

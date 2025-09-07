@@ -368,42 +368,42 @@
   }
 }
 
-
 function loadProductsForEditing() {
-  console.log('loadProductsForEditing() called');
   const productsRef = database.ref('games');
   const productsTableBody = document.querySelector('#products-table tbody');
   productsTableBody.innerHTML = ''; // Clear the table body
 
-  productsRef.once('value')
-    .then(snapshot => {
-      const products = snapshot.val() || {};
+  // Listen for value changes on the products node
+  productsRef.on('value', snapshot => {
+    const products = snapshot.val() || {};
+    productsTableBody.innerHTML = ''; // Clear the table body before updating
 
-      for (const productId in products) {
-        const product = products[productId];
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${productId}</td>
-          <td>${product.name}</td>
-          <td>${product.genre}</td>
-          <td>$${product.price}</td>
-          <td>${product.platform}</td>
-          <td>${product.releaseDate}</td>
-          <td>${product.totalQuantity}</td>
-          <td>${product.quantity}</td>
-          <td>
-            <button class="btn btn-sm btn-primary" onclick="editProduct('${productId}')">Edit</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteProduct('${productId}')">Delete</button>
-          </td>
-        `;
-        productsTableBody.appendChild(row);
-      }
-    })
-    .catch(error => {
-      console.error('Error loading products:', error);
-      showStatus('Error loading products: ' + error.message, 'danger', 'edit-products-status');
-    });
+    for (const productId in products) {
+      const product = products[productId];
+      const row = document.createElement('tr');
+      row.id = `product-row-${productId}`; // Add an id to the row for easy updating
+      row.innerHTML = `
+        <td>${productId}</td>
+        <td>${product.name}</td>
+        <td>${product.genre}</td>
+        <td>$${product.price}</td>
+        <td>${product.platform}</td>
+        <td>${product.releaseDate}</td>
+        <td>${product.totalQuantity || product.quantity}</td>
+        <td>${product.quantity}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" onclick="editProduct('${productId}')">Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteProduct('${productId}')">Delete</button>
+        </td>
+      `;
+      productsTableBody.appendChild(row);
+    }
+  }, error => {
+    console.error('Error loading products:', error);
+    showStatus('Error loading products: ' + error.message, 'danger', 'edit-products-status');
+  });
 }
+
 
 
     // Update the updateAdminUI function

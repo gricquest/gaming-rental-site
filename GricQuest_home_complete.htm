@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)https://gricquest.com/ -->
+<html lang="en" class="modern-design touch" data-orientation="portrait" style="--top-bar-height: 0px; --header-height: 81px; --header-transform: 0px; --date-picker-height: 70px; --date-picker-block-height: 71px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="origin-trial" content="A/kargTFyk8MR5ueravczef/wIlTkbVk1qXQesp39nV+xNECPdLBVeYffxrM8TmZT6RArWGQVCJ0LRivD7glcAUAAACQeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5jb206NDQzIiwiZmVhdHVyZSI6IkRpc2FibGVUaGlyZFBhcnR5U3RvcmFnZVBhcnRpdGlvbmluZzIiLCJleHBpcnkiOjE3NDIzNDIzOTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#A6804D">
+    
+    <style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    animation-delay: -1ms;
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.fad.fa-inverse,
+.fa-duotone.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}</style><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/base-18a6910cc96f577b3b2ce5ba85c5d338b05b9a3b99a0b8dacd8db217d31a2cbb.css">
+    <link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/rx-5aec592ba929c7cff1b2b90bcf18f35ffc0609673aafc9d01f88f38e1a921197.css">
+    
+    <link rel="stylesheet" href="./GricQuest_home_complete_files/client_v2-5117a0f55f4800cdff4bda5c9501d17e3999798c4aa4c6732ff08ff403aca43c.css"><link rel="stylesheet" href="./GricQuest_home_complete_files/648-a9aad9ae.css"><link rel="stylesheet" href="./GricQuest_home_complete_files/store_v2-a898c494.css"><script type="text/javascript" async="" charset="utf-8" src="./GricQuest_home_complete_files/recaptcha__en.js.download" crossorigin="anonymous" integrity="sha384-jf2mERW8WH2M+UziYJqb5zn6+3s50s+HOV/YWiSQE0QCWluCff6yMvvBynKl9zaL"></script><script src="./GricQuest_home_complete_files/ff3b3de2b5.js.download" crossorigin="anonymous"></script><style media="all" id="fa-kit-upload"></style><style media="all" id="fa-v4-font-face">/*!
+ * Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license (Commercial License)
+ * Copyright 2024 Fonticons, Inc.
+ */@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-0.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-0.ttf) format("truetype");unicode-range:u+f001,u+f004-f005,u+f007-f008,u+f00c,u+f011-f012,u+f015,u+f018-f019,u+f01c,u+f023-f025,u+f02a,u+f02c-f031,u+f03a,u+f03d,u+f04a-f04e,u+f05b,u+f060-f064,u+f067-f068,u+f06b-f06d,u+f072,u+f075,u+f077-f078,u+f07b,u+f084,u+f086,u+f091,u+f093,u+f095,u+f09c,u+f0a3,u+f0ad,u+f0b0-f0b1,u+f0c0-f0c2,u+f0c6,u+f0c8,u+f128,u+f12a,u+f155,u+f283,u+f292,u+f295}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-1.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-1.ttf) format("truetype");unicode-range:u+f040,u+f0c9,u+f0cc,u+f0ce,u+f0d1,u+f0d7,u+f0dc,u+f0e0,u+f0e7-f0e8,u+f0f3,u+f106,u+f108-f109,u+f10e,u+f110-f112,u+f11e,u+f121,u+f126,u+f129,u+f12c-f12e,u+f130-f132,u+f135,u+f13d,u+f140,u+f145,u+f15b,u+f164,u+f188,u+f1ab,u+f1ad-f1ae,u+f1b2,u+f1b8,u+f1bb,u+f1c0,u+f1ce,u+f1d8,u+f1dc,u+f1e4-f1e6,u+f1eb-f1ec,u+f205,u+f217,u+f21a-f21d,u+f22d,u+f233-f234,u+f238,u+f246,u+f251,u+f275,u+f29e,u+f2a0,u+f2a7,u+f2bb,u+f2cc-f2cd,u+f2db}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-3.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-3.ttf) format("truetype");unicode-range:u+f069,u+f1fa}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-12.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-12.ttf) format("truetype");unicode-range:u+f000,u+f002,u+f009-f00b,u+f00d-f00e,u+f010,u+f013,u+f01e,u+f021,u+f026-f029,u+f02b,u+f032-f039,u+f03b-f03c,u+f042-f043,u+f048-f049,u+f050-f05a,u+f05e,u+f06a,u+f071,u+f073-f074,u+f076,u+f079-f07a,u+f07c,u+f083,u+f085,u+f089,u+f08d,u+f098,u+f09e,u+f0a1}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-13.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-13.ttf) format("truetype");unicode-range:u+f045,u+f0a8-f0ab,u+f0c3-f0c4,u+f0ca-f0cb,u+f0cd,u+f0d8-f0db,u+f0dd-f0de,u+f0e2-f0e3,u+f0e9-f0ea,u+f0ed-f0ee,u+f0f0-f0f2,u+f0f4,u+f0f9-f0fe,u+f100-f105,u+f107,u+f10d,u+f11b,u+f120,u+f122,u+f124-f125,u+f127,u+f12b,u+f134,u+f137-f13a,u+f141-f144,u+f146,u+f14a-f14b,u+f14d,u+f153-f154,u+f157-f159,u+f15c-f15d,u+f162,u+f165,u+f182-f183,u+f187,u+f193,u+f197,u+f199,u+f19c-f19d,u+f1ac,u+f1b0,u+f1b3,u+f1b9-f1ba,u+f1cd,u+f1da,u+f1dd-f1de,u+f1e0-f1e2}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-14.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-solid-900-14.ttf) format("truetype");unicode-range:u+f0f5,u+f1b1,u+f1f6,u+f1fb-f1fe,u+f200-f201,u+f204,u+f206-f207,u+f20b,u+f218,u+f21e,u+f221-f22c,u+f235-f236,u+f239,u+f240-f245,u+f249,u+f24e,u+f250,u+f252-f254,u+f25c,u+f26c,u+f276-f277,u+f279,u+f28b,u+f28d,u+f290-f291,u+f29a,u+f29d,u+f2a1-f2a4,u+f2a8,u+f2b6,u+f2b9,u+f2bd,u+f2c2,u+f2c7-f2cb,u+f2ce,u+f2d1,u+f2d3}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-brands-400-0.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-brands-400-0.ttf) format("truetype");unicode-range:u+f081-f082,u+f08c,u+f092,u+f099,u+f09b,u+f0d2-f0d5,u+f0e1,u+f113,u+f136,u+f13b-f13c,u+f15a,u+f167-f16e,u+f170-f174,u+f179-f17e,u+f180-f181,u+f184,u+f189-f18d,u+f194,u+f198,u+f19a-f19b,u+f19e,u+f1a0-f1a4,u+f1b4,u+f1bc,u+f1be,u+f1e8,u+f1ed,u+f1f0-f1f1,u+f20e,u+f210,u+f213-f214,u+f230,u+f232,u+f23a,u+f26b,u+f270,u+f288,u+f299,u+f29b,u+f2a6,u+f2b0,u+f2c5-f2c6,u+f2e0}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-brands-400-1.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-brands-400-1.ttf) format("truetype");unicode-range:u+f1a5-f1aa,u+f1b5-f1b7,u+f1bd,u+f1ca-f1cc,u+f1d0-f1d7,u+f1e7,u+f1e9,u+f1ee,u+f1f2-f1f5,u+f202-f203,u+f208-f209,u+f20d,u+f211-f212,u+f215-f216,u+f231,u+f237,u+f23b-f23e,u+f24b-f24c,u+f25e,u+f260-f261,u+f263-f26a,u+f26d-f26e,u+f27c-f27e,u+f280-f282,u+f284-f287,u+f289-f28a,u+f293-f294,u+f296-f298,u+f2a5,u+f2a9-f2ae,u+f2b1-f2b4,u+f2b8,u+f2c4,u+f2d5-f2da,u+f2dd-f2de}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-brands-400-2.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-brands-400-2.ttf) format("truetype");unicode-range:u+f166}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-0.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-0.ttf) format("truetype");unicode-range:u+f006,u+f017,u+f03e,u+f06e,u+f08a,u+f096-f097,u+f09d,u+f0a6,u+f0c5,u+f0e5-f0e6,u+f114,u+f11d,u+f2c0}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-1.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-1.ttf) format("truetype");unicode-range:u+f003,u+f016,u+f087,u+f0a2,u+f0eb,u+f0f7-f0f8,u+f10c,u+f11c,u+f133,u+f14e,u+f186,u+f1c1-f1c3,u+f1d9,u+f1db,u+f1ea,u+f1f9,u+f20a,u+f24d,u+f25d,u+f2b5,u+f2bc,u+f2d2}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-12.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-12.ttf) format("truetype");unicode-range:u+f022,u+f044,u+f05c-f05d,u+f070,u+f094,u+f0a0,u+f115,u+f29c}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-13.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-13.ttf) format("truetype");unicode-range:u+f01d,u+f046,u+f088,u+f0a4-f0a5,u+f0a7,u+f0c7,u+f0f6,u+f118-f11a,u+f147,u+f150-f152,u+f185,u+f191-f192,u+f196,u+f1c4-f1c9,u+f1e3}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-14.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-14.ttf) format("truetype");unicode-range:u+f014,u+f1f7,u+f247-f248,u+f24a,u+f255-f25b,u+f271-f274,u+f278,u+f28c,u+f28e,u+f2b7,u+f2ba,u+f2be,u+f2c1,u+f2c3,u+f2d0,u+f2dc}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-15.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-15.ttf) format("truetype");unicode-range:u+f01a-f01b,u+f18e,u+f190,u+f2d4}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-16.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-regular-400-16.ttf) format("truetype");unicode-range:u+f27b}@font-face{font-family:"FontAwesome";font-display:block;src:url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-v4compatibility.woff2) format("woff2"),url(https://ka-p.fontawesome.com/releases/v6.7.2/webfonts/pro-fa-v4compatibility.ttf) format("truetype");unicode-range:u+f041,u+f047,u+f065-f066,u+f07d-f07e,u+f080,u+f08b,u+f08e,u+f090,u+f09a,u+f0ac,u+f0ae,u+f0b2,u+f0d0,u+f0d6,u+f0e4,u+f0ec,u+f10a-f10b,u+f123,u+f13e,u+f148-f149,u+f14c,u+f156,u+f15e,u+f160-f161,u+f163,u+f175-f178,u+f195,u+f1f8,u+f219,u+f27a}</style><style media="all" id="fa-v5-font-face">/*!
+ </style>
+    <script>
+  var booqableOptions = {
+    company: 'gricquest',
+    primaryColor: '#000000',
+    storeProvider: 'Booqable',
+    cart: {
+      id: '',
+      from: '',
+      till: '',
+      startLocationId: '',
+      stopLocationId: '',
+      backToStoreUrl: ''
+    },
+    currency: {
+      symbol: '$',
+      decimal: '.',
+      thousand: ',',
+      precision: '2',
+      format: '%s%v'
+    },
+    disableLauncher: true
+  };
+</script>
+<script src="./GricQuest_home_complete_files/booqable_v2.js.download"></script><script src="./GricQuest_home_complete_files/runtime-408951dde5ea48cd5312.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/963-f7bac102851021e0accc.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/854-0877e84abe0cc24c2d8d.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/644-acf8e439a19840bade2e.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/648-e1d1bb44b6c8f20091f9.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/81-3f1cc39202362874b9b8.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/104-70aecc4d4f2d9ca92116.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/836-f25437ddef2d24c50df2.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/543-ee6c7d9724d4adcbc2c4.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/195-6a885814af3214fdb288.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/508-3fa870dcd7ad20b2c72f.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/281-13c3d389632a3b5fa9fd.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/673-5530cce70aa6b8a354ae.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/373-983c6f516745badfeca6.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/352-5086087b5d6762b0dd63.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/611-3bcdb5a6f6c11bcde451.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/173-95e309c5f0e3609abd7a.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/460-3cbdf2740648ffe2cee2.js.download" charset="UTF-8"></script><script src="./GricQuest_home_complete_files/store_v2-369e9a02962b6ad850f5.js.download" charset="UTF-8"></script>
+<script src="./GricQuest_home_complete_files/api.js.download"></script>
+
+
+
+
+
+<style>
+  .grecaptcha-badge {
+    display: none !important;
+    z-index: 9999;
+  }
+
+  body:has(form[name="contact"]) div > .grecaptcha-badge {
+    display: block !important;
+  }
+</style>
+
+<script>
+  window.addEventListener('load', function() {
+    
+  })
+</script>
+
+
+
+
+
+
+    <link rel="preconnect" href="https://fonts.bunny.net/"><link href="./GricQuest_home_complete_files/css" rel="stylesheet"><link href="./GricQuest_home_complete_files/css" rel="stylesheet"><link href="./GricQuest_home_complete_files/css" rel="stylesheet">
+    <style>
+  :root {--background-primary:#FFFFFF;
+      --background-primary-00:#FFFFFF00;
+      --background-primary-10:#FFFFFF1A;
+      --background-primary-45:#FFFFFF73;
+      --background-primary-60:#FFFFFF99;--color-primary:#000000;
+      --color-primary-30:#0000004D;
+      --color-primary-hover:#00000052;
+      --color-primary-active:#0000008F;
+      --color-third:#00000066;
+      --color-fourth:#00000026;
+      --color-image-placeholder:#00000026;
+      --color-placeholder:#00000059;
+      --color-border:#00000026;--color-secondary:#000000;--background-accent:#A6804D;
+      --background-accent-00:#A6804D00;
+      --background-accent-hover:#A6804DCC;
+      --background-accent-active:#A6804DBA;
+      --background-accent-secondary-hover:#A6804D52;
+      --background-accent-secondary-active:#A6804D8F;--color-accent:#000000;--color-outline:#000000;
+      --color-outline-hover:#000000CC;
+      --color-outline-active:#000000BA;--background-primary-2:#0F1717;
+      --background-primary-2-00:#0F171700;
+      --background-primary-2-10:#0F17171A;
+      --background-primary-2-45:#0F171773;
+      --background-primary-2-60:#0F171799;--color-primary-2:#A6804D;
+      --color-primary-2-30:#A6804D4D;
+      --color-primary-2-hover:#A6804D52;
+      --color-primary-2-active:#A6804D8F;
+      --color-third-2:#A6804D66;
+      --color-fourth-2:#A6804D47;
+      --color-image-placeholder-2:#A6804D47;
+      --color-placeholder-2:#A6804D59;
+      --color-border-2:#A6804D47;--color-secondary-2:#B3B398;--background-accent-2:#A6804D;
+      --background-accent-2-00:#A6804D00;
+      --background-accent-2-hover:#A6804DCC;
+      --background-accent-2-active:#A6804DBA;
+      --background-accent-secondary-2-hover:#A6804D52;
+      --background-accent-secondary-2-active:#A6804D8F;--color-accent-2:#000000;--color-outline-2:#FFD000;
+      --color-outline-2-hover:#FFD000CC;
+      --color-outline-2-active:#FFD000BA;--background-primary-3:#FFD000;
+      --background-primary-3-00:#FFD00000;
+      --background-primary-3-10:#FFD0001A;
+      --background-primary-3-45:#FFD00073;
+      --background-primary-3-60:#FFD00099;--color-primary-3:#000000;
+      --color-primary-3-30:#0000004D;
+      --color-primary-3-85:#000000D9;
+      --color-primary-3-hover:#00000052;
+      --color-primary-3-active:#0000008F;
+      --color-third-3:#00000066;
+      --color-fourth-3:#00000026;
+      --color-image-placeholder-3:#00000026;
+      --color-placeholder-3:#00000059;
+      --color-border-3:#00000026;--color-secondary-3:#000000;--background-accent-3:#0F1717;
+      --background-accent-3-00:#0F171700;
+      --background-accent-3-hover:#0F1717BA;
+      --background-accent-3-active:#0F1717A6;
+      --background-accent-secondary-3-hover:#0F171752;
+      --background-accent-secondary-3-active:#0F17178F;--color-accent-3:#AD1D1D;--color-outline-3:#000000;
+      --color-outline-3-hover:#000000CC;
+      --color-outline-3-active:#000000BA;--font-heading: "Martel Sans", sans-serif;--font-body: "Martel Sans", sans-serif;--font-tagline: "Martel Sans", sans-serif;--font-size-h1:100px;--font-size-h2:48px;--font-size-h3:40px;--font-size-tagline:14px;--font-weight-h1:      700;
+    --font-weight-h2:      700;
+    --font-weight-h3:      700;
+    --font-weight-headers: 700;--social-size: 21px;--social-spacing: 7px;--border-radius-dynamic: 0px;
+        --border-radius-rounded: 0px;
+        --border-radius-circle: 0px;
+        --border-radius-checkbox: 0px;--branding-color:#FFD000;}
+
+  #cc-main {
+    --cc-btn-border-radius: var(--border-radius-dynamic);
+    --cc-modal-border-radius: var(--border-radius-rounded);
+  }#cc-main {
+        --cc-bg: var(--background-primary);
+        --cc-font-family: var(--font-body);
+
+        --cc-primary-color: var(--color-primary);
+        --cc-secondary-color: var(--color-primary);
+
+        --cc-btn-primary-bg: var(--background-accent);
+        --cc-btn-primary-color: var(--color-accent);
+        --cc-btn-primary-border-color: transparent;
+
+        --cc-btn-primary-hover-bg: var(--background-accent-hover);
+        --cc-btn-primary-hover-color: var(--color-accent);
+        --cc-btn-primary-hover-border-color: var(--background-accent-hover);
+
+        --cc-btn-secondary-bg: transparent;
+        --cc-btn-secondary-color: var(--color-primary);
+        --cc-btn-secondary-border-color: var(--background-accent);
+
+        --cc-btn-secondary-hover-bg: var(--background-accent-secondary-hover);
+        --cc-btn-secondary-hover-border-color: var(--background-accent-secondary-hover);
+        --cc-btn-secondary-hover-color: var(--color-primary);
+
+        --cc-cookie-category-block-bg: transparent;
+        --cc-cookie-category-block-hover-bg: transparent;
+
+        --cc-toggle-readonly-bg: var(--background-accent-hover);
+        --cc-toggle-readonly-knob-icon-color: var(--background-accent-hover);
+        --cc-toggle-on-bg: var(--background-accent);
+
+        .pm__section-arrow {
+          background: none !important;
+        }
+      }</style>
+
+
+    <title>GricQuest</title>
+<meta property="og:title" content="GricQuest">
+<meta name="twitter:title" content="GricQuest">
+
+<meta property="og:site_name" content="GricQuest">
+
+
+  <link rel="shortcut icon" href="https://content.booqablecdn.com/uploads/490b91f581a0475f937a76191907d454/company/favicon/e520b6e2-1f52-4000-a33d-31a11b7546ce/c8379824-8fce-48dc-aaf7-b1401e909f1b(2).png">
+
+
+
+
+<meta name="twitter:card" content="summary">
+<meta property="og:locale" content="en">
+
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gricquest.com/">
+
+
+
+  <meta property="og:image" content="https://content.booqablecdn.com/uploads/490b91f581a0475f937a76191907d454/company/logo/e520b6e2-1f52-4000-a33d-31a11b7546ce/d5228cf6-a0a3-4606-8d5b-be4af43f6c1e(2).png">
+  <meta property="og:image:secure_url" content="https://content.booqablecdn.com/uploads/490b91f581a0475f937a76191907d454/company/logo/e520b6e2-1f52-4000-a33d-31a11b7546ce/d5228cf6-a0a3-4606-8d5b-be4af43f6c1e(2).png">
+  <meta name="twitter:image" content="https://content.booqablecdn.com/uploads/490b91f581a0475f937a76191907d454/company/logo/e520b6e2-1f52-4000-a33d-31a11b7546ce/d5228cf6-a0a3-4606-8d5b-be4af43f6c1e(2).png">
+
+  
+    <meta property="og:image:alt" content="GricQuest">
+    <meta name="twitter:image:alt" content="GricQuest">
+  
+
+
+  <style type="text/css">[data-vaul-drawer]{touch-action:none;will-change:transform;transition:transform .5s cubic-bezier(.32, .72, 0, 1);animation-duration:.5s;animation-timing-function:cubic-bezier(0.32,0.72,0,1)}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=open]{animation-name:slideFromBottom}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=bottom][data-state=closed]{animation-name:slideToBottom}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=top][data-state=open]{animation-name:slideFromTop}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=top][data-state=closed]{animation-name:slideToTop}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=left][data-state=open]{animation-name:slideFromLeft}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=left][data-state=closed]{animation-name:slideToLeft}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=right][data-state=open]{animation-name:slideFromRight}[data-vaul-drawer][data-vaul-snap-points=false][data-vaul-drawer-direction=right][data-state=closed]{animation-name:slideToRight}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=bottom]{transform:translate3d(0,var(--initial-transform,100%),0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=top]{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=left]{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}[data-vaul-drawer][data-vaul-snap-points=true][data-vaul-drawer-direction=right]{transform:translate3d(var(--initial-transform,100%),0,0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=top]{transform:translate3d(0,var(--snap-point-height,0),0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=bottom]{transform:translate3d(0,var(--snap-point-height,0),0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=left]{transform:translate3d(var(--snap-point-height,0),0,0)}[data-vaul-drawer][data-vaul-delayed-snap-points=true][data-vaul-drawer-direction=right]{transform:translate3d(var(--snap-point-height,0),0,0)}[data-vaul-overlay][data-vaul-snap-points=false]{animation-duration:.5s;animation-timing-function:cubic-bezier(0.32,0.72,0,1)}[data-vaul-overlay][data-vaul-snap-points=false][data-state=open]{animation-name:fadeIn}[data-vaul-overlay][data-state=closed]{animation-name:fadeOut}[data-vaul-animate=false]{animation:none!important}[data-vaul-overlay][data-vaul-snap-points=true]{opacity:0;transition:opacity .5s cubic-bezier(.32, .72, 0, 1)}[data-vaul-overlay][data-vaul-snap-points=true]{opacity:1}[data-vaul-drawer]:not([data-vaul-custom-container=true])::after{content:'';position:absolute;background:inherit;background-color:inherit}[data-vaul-drawer][data-vaul-drawer-direction=top]::after{top:initial;bottom:100%;left:0;right:0;height:200%}[data-vaul-drawer][data-vaul-drawer-direction=bottom]::after{top:100%;bottom:initial;left:0;right:0;height:200%}[data-vaul-drawer][data-vaul-drawer-direction=left]::after{left:initial;right:100%;top:0;bottom:0;width:200%}[data-vaul-drawer][data-vaul-drawer-direction=right]::after{left:100%;right:initial;top:0;bottom:0;width:200%}[data-vaul-overlay][data-vaul-snap-points=true]:not([data-vaul-snap-points-overlay=true]):not(
+[data-state=closed]
+){opacity:0}[data-vaul-overlay][data-vaul-snap-points-overlay=true]{opacity:1}[data-vaul-handle]{display:block;position:relative;opacity:.7;background:#e2e2e4;margin-left:auto;margin-right:auto;height:5px;width:32px;border-radius:1rem;touch-action:pan-y}[data-vaul-handle]:active,[data-vaul-handle]:hover{opacity:1}[data-vaul-handle-hitarea]{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100%,2.75rem);height:max(100%,2.75rem);touch-action:inherit}@media (hover:hover) and (pointer:fine){[data-vaul-drawer]{user-select:none}}@media (pointer:fine){[data-vaul-handle-hitarea]:{width:100%;height:100%}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeOut{to{opacity:0}}@keyframes slideFromBottom{from{transform:translate3d(0,var(--initial-transform,100%),0)}to{transform:translate3d(0,0,0)}}@keyframes slideToBottom{to{transform:translate3d(0,var(--initial-transform,100%),0)}}@keyframes slideFromTop{from{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}to{transform:translate3d(0,0,0)}}@keyframes slideToTop{to{transform:translate3d(0,calc(var(--initial-transform,100%) * -1),0)}}@keyframes slideFromLeft{from{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}to{transform:translate3d(0,0,0)}}@keyframes slideToLeft{to{transform:translate3d(calc(var(--initial-transform,100%) * -1),0,0)}}@keyframes slideFromRight{from{transform:translate3d(var(--initial-transform,100%),0,0)}to{transform:translate3d(0,0,0)}}@keyframes slideToRight{to{transform:translate3d(var(--initial-transform,100%),0,0)}}</style><style data-styled="active" data-styled-version="6.1.14"></style><style type="text/css">
+    .bq-branded, .bq-branded:before, .bq-branded:after {
+      background: #000000 !important;
+      color: #FFFFFF !important;
+    }
+  .bq-branded-font { color: #000000 !important; }.bq-branded-font-color { color: #FFFFFF !important; }.bq-branded-border { border-color: #FFFFFF !important; }.bq-branded-focus:focus { border-color: #000000 !important; }.bq-branded-border-color { border-color: #000000 !important; }</style></head>
+  <body class="loaded">
+
+    <header class="header header--sticky" id="header" style="position: fixed;">
+      <section class="top-bar" id="section-top-bar">
+</section>
+      <section class="header__wrapper" id="section-header"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/header-1a99625c128a619d1dc0d5a125129aa7d7d9ab0d0521bc7a2c742692a1a7dfb7.css">
+<link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/mega-menu-14f3ed3dae130e7079d3930991151ed291318b2f506f7167eaaa22f297ba94e7.css"><style>
+  
+  bq-minicart-button {
+    height: 24px;
+    --minicart-button-badge-size: 12px;
+    --minicart-button-border-radius: 50%;
+    --minicart-button-font: var(--font-body, --minicart-font, sans-serif);
+    --minicart-button-font-size: 14px;
+    --minicart-button-hover-opacity: 1;
+    --minicart-button-outer-background: transparent;
+    --minicart-button-outer-background-hover: transparent;
+    --minicart-button-outer-border: none;
+    --minicart-button-outer-border-radius: 0;
+    --minicart-button-outer-hover-border: none;
+    --minicart-button-outer-padding: 0;
+    --minicart-button-outer-transition: none;
+    --minicart-button-padding: 4px;
+    --minicart-button-size: 22px;
+    --minicart-button-transition-property: all;
+    --minicart-button-transition-timing-function: var(--transition-function-ease-in-out);
+    --minicart-button-transition-delay: 0ms;
+    --minicart-button-transition-duration: var(--animation-duration, 200ms);
+
+    
+      
+        --minicart-button-color: var(--color-primary);
+      
+
+      
+        --minicart-button-accent-color: var(--background-accent);
+      
+
+      
+        --minicart-button-badge-color: var(--color-accent);
+      
+
+      
+        --minicart-button-hover-color: var(--color-outline-hover);
+      
+
+    }
+
+</style>
+
+
+
+<div class="header__inner palette-one" style="--grid-item-gap: 24px;
+  --grid-item-width: 200px;--padding-top: 8px;--padding-bottom: 8px;--padding-top-mobile: 8px;--padding-bottom-mobile: 8px;--header-justify-content: flex-end;--menu-transform: translate(0, -100%);
+    --menu-width: 100%;
+    --menu-left: 0;
+    --menu-right: 0;
+    --menu-max-height: 0;">
+  <div class="header__content header__content--padding-top header__content--padding-bottom">
+    <div class="header__container container">
+      <div class="header__content-inner header__mobile-menu-opener-right">
+        <div class="header__logo-wrapper">
+          <a href="https://gricquest.com/" class="header__logo"><img class="header__logo-image" alt="GricQuest" src="./GricQuest_home_complete_files/clr8lbrrp0103357ymvqeo3h5name-091ae26c0a3e85b380c0bb24e268d74a8e150c92e6fde8f6f1eacd522b6da02f(2).PNG" srcset="https://images.booqablecdn.com/keep-type/w420/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/clr8lbrrp0103357ymvqeo3h5name-091ae26c0a3e85b380c0bb24e268d74a8e150c92e6fde8f6f1eacd522b6da02f(2).PNG 420w, https://images.booqablecdn.com/keep-type/w640/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/clr8lbrrp0103357ymvqeo3h5name-091ae26c0a3e85b380c0bb24e268d74a8e150c92e6fde8f6f1eacd522b6da02f(2).PNG 640w" sizes="(max-width: 360px) 420px, 640px"></a>
+        </div><div class="header__nav-wrapper"><input type="checkbox" id="mobile-menu-opener" style="display: none;">
+      <label for="mobile-menu-opener" class="menu__opener">
+        <span></span>
+      </label>
+
+      <nav class="header__nav menu menu--position menu-wide mobile-menu-top" style="display: none;">
+        <div class="menu__wrapper">
+          <ul class="header__nav-list menu__list"><li class="menu__item"><a href="https://gricquest.com/" class="menu__link">Home</a></li><li class="menu__item"><a href="https://gricquest.com/pages/discover-further" class="menu__link">Discover Further</a></li><li class="menu__item"><a href="https://gricquest.com/collections" class="menu__link">Game Catalog</a></li><li class="menu__item"><a href="https://gricquest.com/pages/subscription-plans" class="menu__link">Membership</a></li><li class="menu__item"><a href="https://gricquest.com/pages/collaboration" class="menu__link">Collaborate</a></li><li class="menu__item"><a href="https://gricquest.com/pages/faq" class="menu__link">FAQ</a></li><li class="menu__item"><a href="https://gricquest.com/pages/contact" class="menu__link">Contact Us</a></li></ul><div class="menu__bottom">
+      <div class="menu__icons">
+        <div class="menu__social">
+
+<style>
+  
+  .social-networks {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(-1 * var(--social-spacing, 6px)) calc(-1 * var(--social-spacing, 6px));
+    font-size: var(--social-size, 21px);
+  }
+
+  .social-networks__item {
+    margin: 0 var(--social-spacing, 6px) var(--social-spacing, 6px);
+  }
+
+  .palette-one .social-networks__link:hover {
+    color: var(--color-outline-hover, #F4B841CC);
+  }
+
+  .palette-one .social-networks__link:active {
+    color: var(--color-outline-active, #F4B841BA);
+  }
+
+  .palette-two .social-networks__link:hover {
+    color: var(--color-outline-2-hover, #F4B841CC);
+  }
+
+  .palette-two .social-networks__link:active {
+    color: var(--color-outline-2-active, #F4B841BA);
+  }
+
+  .palette-three .social-networks__link:hover {
+    color: var(--color-outline-3-hover, #0B1A26CC);
+  }
+
+  .palette-three .social-networks__link:active {
+    color: var(--color-outline-3-active, #0B1A26BA);
+  }
+
+  @media (min-width: 992px) {
+    .social-networks {
+      justify-content: flex-end;
+    }
+  }
+
+</style>
+
+
+<ul class="social-networks">
+  
+    <li class="social-networks__item">
+      <a href="https:" target="_blank" class="social-networks__link">
+        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+      </a>
+    </li>
+  
+  
+    <li class="social-networks__item">
+      <a href="https:" target="_blank" class="social-networks__link">
+        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+      </a>
+    </li>
+  
+  
+    <li class="social-networks__item">
+      <a href="https:" target="_blank" class="social-networks__link">
+        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+      </a>
+    </li>
+  
+  
+    <li class="social-networks__item">
+      <a href="https:" target="_blank" class="social-networks__link">
+        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+      </a>
+    </li>
+  
+  
+  
+  
+  
+  
+  
+</ul>
+</div>
+      </div>
+    </div></div>
+      </nav></div><div class="header__links header__links--with-search header__links--with-cart"><div class="header__search">
+    <input type="checkbox" id="search-opener" style="display: none">
+    <label for="search-opener" class="header__search-opener"><svg fill="none" height="25" viewBox="0 0 24 25" width="24" xmlns="http://www.w3.org/2000/svg"><g stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m11 19.0642c4.4183 0 8-3.5817 8-8 0-4.41827-3.5817-7.99999-8-7.99999-4.41828 0-8 3.58172-8 7.99999 0 4.4183 3.58172 8 8 8z"></path><path d="m20.9999 21.0642-4.35-4.35"></path></g></svg>
+</label>
+
+    <div class="header__search-wrapper" style="display: none">
+      <form id="search" action="https://gricquest.com/search" role="search">
+        <div class="header__search-input-wrapper">
+          <i class="header__search-icon"><svg fill="none" height="25" viewBox="0 0 24 25" width="24" xmlns="http://www.w3.org/2000/svg"><g stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m11 19.0642c4.4183 0 8-3.5817 8-8 0-4.41827-3.5817-7.99999-8-7.99999-4.41828 0-8 3.58172-8 7.99999 0 4.4183 3.58172 8 8 8z"></path><path d="m20.9999 21.0642-4.35-4.35"></path></g></svg>
+</i>
+          <input type="search" name="q" class="header__search-input" placeholder="Search">
+        </div>
+        <span class="header__search-reset"></span>
+      </form>
+    </div>
+  </div><div class="header__cart">
+<style>
+  bq-minicart-button[initialized="true"] + i {
+    display: none !important;
+  }
+</style>
+<bq-minicart-button initialized="true"><template shadowrootmode="open"><div class="bq-minicart-button"><span class="Wrapper-eLhXKf" aria-expanded="false"><div id="booqable-minicart-button" class="Button-cuHJAo hrhFFp"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="cart-shopping" class="svg-inline--fa fa-cart-shopping fa-lg " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48l45.5 0c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5L488 384c13.3 0 24-10.7 24-24s-10.7-24-24-24l-288.3 0c-11.5 0-21.4-8.2-23.6-19.5L170.7 288l288.5 0c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32l-411 0C111 12.8 91.6 0 69.5 0L24 0zM131.1 80l389.6 0L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8l-297.6 0L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"></path></svg></div></span></div><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-minicart-button>
+<i class="fa-regular fa-spinner-third fa-spin" aria-hidden="true"></i>
+      </div></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const header = document.querySelector('.header');
+  
+    header.classList.add('header--sticky')
+  
+</script>
+
+
+</section>
+    </header>
+
+    <main id="main">
+      <section class="images" id="section-images" data-section="true" data-section-key="images"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/images-b8696e4b41db2db72215f138b95bdfedf41738405709724e4761ecbc8b146a2d.css"><div class="images__wrapper images__wrapper-full-width section-with-date-picker palette-two" style="--overlay-color:#FFFFFF;--height: 790px;--padding-top: 35px;--padding-bottom: 35px;--padding-top-mobile: 40px;--padding-bottom-mobile: 40px;"><div class="images__container container images__container--padding-top images__container--padding-bottom" style="--text-justify-content: flex-end;
+                  --text-align-items: flex-start;
+                  --text-align: right;
+                  --margin-bottom: 70px;
+                  --margin-left: auto;
+                  --margin-right: 0;
+                  --padding-left: 37px;
+                  --padding-right: 0;
+
+              --text-justify-content-mobile: flex-start;
+                  --text-align-items-mobile: flex-start;
+                  --text-align-mobile: left;
+                  --margin-bottom-mobile: 60px;
+                  --margin-left-mobile: 0;
+                  --margin-right-mobile: auto;
+
+              
+                --color-overlay:#FFFFFF;">
+                    <div class="images__text-area images__text-area--color">
+                      <div class="images__content"><h1 class="images__title"><p>Rent</p>
+<p>Subscribe</p>
+<p>Collaborate</p></h1><div class="images__buttons"></div></div>
+                    </div>
+                  </div>
+
+                  <div class="images__vision" style="--opacity-overlay: 40%;
+                --background-overlay:#131314;
+                --background-overlay-00:#13131400;
+                --background-overlay-45:#13131473;"><div class="images__vision-wrapper images__vision-wrapper--desktop images__vision-wrapper--overlay"><img class="images__image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg" data-srcset="https://images.booqablecdn.com/w320/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 320w, https://images.booqablecdn.com/w480/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 480w, https://images.booqablecdn.com/w768/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 768w, https://images.booqablecdn.com/w1200/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 1200w, https://images.booqablecdn.com/w1680/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 1680w, https://images.booqablecdn.com/w2560/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 2560w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 768px, (max-width: 1200px) 1200px, (max-width: 1680px) 1680px, 2560px" srcset="https://images.booqablecdn.com/w320/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 320w, https://images.booqablecdn.com/w480/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 480w, https://images.booqablecdn.com/w768/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 768w, https://images.booqablecdn.com/w1200/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 1200w, https://images.booqablecdn.com/w1680/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 1680w, https://images.booqablecdn.com/w2560/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 2560w" src="./GricQuest_home_complete_files/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg"></div><div class="images__vision-wrapper images__vision-wrapper--mobile images__vision-wrapper--overlay"><img class="images__image lazyload" alt="" data-src="https://images.booqablecdn.com/w160/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg" data-srcset="https://images.booqablecdn.com/w160/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 160w, https://images.booqablecdn.com/w240/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 240w, https://images.booqablecdn.com/w384/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 384w, https://images.booqablecdn.com/w600/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 600w, https://images.booqablecdn.com/w840/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 840w, https://images.booqablecdn.com/w1280/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/7eda6a5f-32d2-59e1-9082-a273dd558a7b-0c5362c7fef9bb97c30273317cb2ab122276be8941e2fc45b51ae023be6e9f0e.jpg 1280w" sizes="(max-width: 320px) 160px, (max-width: 480px) 240px, (max-width: 768px) 384px, (max-width: 1200px) 600px, (max-width: 1680px) 840px, 1280px"></div></div><div class="images__date-picker date-picker"><style>
+  @keyframes move {
+    0% {
+      transform: translateY(15%) rotate(90deg);
+    }
+
+    33% {
+      transform: translateY(75%) rotate(90deg);
+    }
+
+    66% {
+      transform: translateY(-20%) rotate(90deg);
+    }
+
+    100% {
+      transform: translateY(15%) rotate(90deg);
+    }
+  }
+
+  .date-picker__icon {
+    margin: 0 8px 0 0;
+  }
+
+  .date-picker__icon svg {
+    transform: translateY(15%) rotate(90deg);
+    animation: 1.5s infinite alternate move;
+    width: 16px;
+    height: 17px;
+  }
+
+  .date-picker__title {
+    display: flex;
+    font-size: 18px;
+    font-weight: var(--font-weight-regular, 400);
+  }
+
+  .date-picker__overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(var(--date-picker-height, 75px) / 2);
+    z-index: 0;
+    background: var(--background-primary, #FFFFFF);
+  }
+
+  .date-picker__container {
+    position: relative;
+    padding-bottom: 1px;
+    z-index: 1;
+  }
+
+  .date-picker__component {
+    min-height: var(--date-picker-height, 70px);
+    margin: 0 1px;
+  }
+
+  .section-with-date-picker {
+    flex-direction: column;
+  }
+
+  .section-with-date-picker .date-picker__instance {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .section-with-date-picker .date-picker__title {
+    justify-content: flex-start;
+  }
+
+  #section-images .palette-one .date-picker__title path {
+    fill: var(--color-primary, #0B1A26);
+  }
+
+  #section-images .palette-one.date-picker__overlay {
+    background: var(--background-primary, #FFFFFF);
+  }
+
+  #section-images .palette-two .date-picker__title path {
+    fill: var(--color-primary-2, #FFFFFF);
+  }
+
+  #section-images .palette-two.date-picker__overlay {
+    background: var(--background-primary-2, #0B1A26);
+  }
+
+  #section-images .palette-three .date-picker__title path {
+    fill: var(--color-primary-3, #0B1A26);
+  }
+
+  #section-images .palette-three.date-picker__overlay {
+    background: var(--background-primary-3, #F4B841);
+  }
+
+  #section-images bq-date-picker {
+    --date-picker-border-radius: var(--border-radius-dynamic, 0);
+    --date-picker-cleanstate-padding: 11px 22px;
+    --date-picker-section-padding: 12px;
+    --date-picker-title-size: 16px;
+    --date-picker-text-size: 16px;
+    --date-picker-title-line-height: 1.5;
+    --date-picker-text-line-height: 1.5;
+
+    
+      
+        --date-picker-background-color: var(--background-primary-2);
+      
+
+      
+        --date-picker-text-color: var(--color-primary-2);
+        --date-picker-placeholder-color: var(--color-placeholder-2);
+        --date-picker-section-border: 1px solid var(--color-border-2);
+      
+
+      
+        --date-picker-cleanstate-background-color: var(--background-accent-2);
+        --date-picker-box-shadow: 0 0 0 1px var(--background-accent-2);
+      
+
+      
+        --date-picker-icon-color: var(--color-accent-2);
+        --date-picker-cleanstate-text-color: var(--color-accent-2);
+      
+
+    }
+</style>
+<div class="date-picker__instance date-picker-instance">
+  <div class="date-picker__container container"><div class="date-picker__component">
+      <bq-date-picker branding-color="" initialized="true"><template shadowrootmode="open"><div class="bq-date-picker"><div class="DatePicker-fDwWES jtJAHn"><div class="Cleanstate-dEwDyX jucCFi"><svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="calendar" class="svg-inline--fa fa-calendar Icon-fyJPMx CalendarIcon-gqsKOp hCyUFx iZlcZA" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M112 0c8.8 0 16 7.2 16 16l0 48 192 0 0-48c0-8.8 7.2-16 16-16s16 7.2 16 16l0 48 32 0c35.3 0 64 28.7 64 64l0 32 0 32 0 256c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 192l0-32 0-32C0 92.7 28.7 64 64 64l32 0 0-48c0-8.8 7.2-16 16-16zM416 192L32 192l0 256c0 17.7 14.3 32 32 32l320 0c17.7 0 32-14.3 32-32l0-256zM384 96L64 96c-17.7 0-32 14.3-32 32l0 32 384 0 0-32c0-17.7-14.3-32-32-32z"></path></svg><div class="CleanstateLabels-blCOFL jgDtDF"><div class="CleanstateTitle-DMrOu cFVWfk">Select a rental period</div><div class="CleanstateLabel-XZmOc dsJfVh">View prices and availability</div></div><svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right Icon-fyJPMx ChevronIcon-iFxOTY hCyUFx giBUcI" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M299.3 244.7c6.2 6.2 6.2 16.4 0 22.6l-192 192c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6L265.4 256 84.7 75.3c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0l192 192z"></path></svg></div></div></div><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-date-picker>
+    </div>
+  </div><div class="date-picker__overlay section-with-date-picker__overlay palette-two"></div></div><script>
+  const setColor = () => {
+    const nodes = document.querySelectorAll('.section-with-date-picker'),
+          body = document.querySelector('body');
+
+    nodes.forEach(node => {
+      const section = node.parentElement.nextElementSibling,
+            target = node.querySelector('.section-with-date-picker__overlay');
+
+      if (section) {
+        const children = [...section.children],
+              first = 'palette-one',
+              second = 'palette-two',
+              third = 'palette-three';
+
+        children.forEach(child => {
+          const isFirst = child.classList.contains(first),
+                isSecond = child.classList.contains(second),
+                isThird = child.classList.contains(third);
+
+          return isFirst ? target.classList.add(first)
+              : isSecond ? target.classList.add(second)
+              : isThird ? target.classList.add(third)
+              : false;
+        });
+      } else {
+        const res = getComputedStyle(body).backgroundColor;
+
+        target.style.setProperty('background-color',`${res}`);
+      }
+    });
+  };
+
+  setTimeout(setColor, 350);
+
+</script>
+</div></div>
+</section><section class="text" id="section-text_220018" data-section="true" data-section-key="text_220018"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/text-c69cfc7f7c4c0e9119e001940ed9a7c979af67e4de966e906b6338580a792035.css">
+
+<div class="text__wrapper palette-two text__wrapper--padding-top text__wrapper--padding-bottom" id="text-text_220018" style="--padding-top: 24px;--padding-bottom: 24px;--padding-top-mobile: 18px;--padding-bottom-mobile: 18px;--text-align: left;">
+  <div class="text__container container"><h2 class="text__title">A Game on Demand Service for Tabletop Games</h2><div class="text__content bq-content rx-content"><p dir="ltr">Are you eager to create and cherish special moments with friends and family? Perhaps you want to bond over quality, screen-free time, host a Game Night challenge, or throw a themed or casual party? Maybe you're eager to try that ONE game before committing to adding it to your collection? Look no further than GricQuest. Dive into our diverse selection of tabletop games, including board, card, dice, tiles, and more. Our collection is regularly updated with the latest, most popular, and even vintage and rare collector's editions. From keen tots to serious tabletop gamers, GricQuest caters to a range of interests. You can rent games for specific durations, subscribe to our monthly mystery box rentals, or collaborate with us to create a fantastic experience for your event. Unleash the fun with GricQuest - Where every roll, move, and strategy comes to life!</p>
+<p></p></div></div>
+</div>
+
+
+</section><section class="products" id="section-products" data-section="true" data-section-key="products"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/products-f4db4a6a400b19eaf8584dc9a897f2950d557653fd8a3aab5146801f91f6abbe.css">
+  <link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/product-card-a9cfe2695e6e575742b2f4d42487cf83f361f5496e90c84db5a3af5e5802ee78.css"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/carousel-d0b7dab2750bd34acc996797345c7e3c695956fb915b4dfa4bac230bb3879154.css">
+
+  
+
+  <div class="products__wrapper palette-one products__wrapper--padding-top products__wrapper--padding-bottom" style="--padding-top: 24px;--padding-bottom: 24px;--padding-top-mobile: 18px;--padding-bottom-mobile: 40px;">
+    <div class="products__container container">
+      <div class="products__list carousel carousel__pause carousel--controls initialized" aria-role="Gallery"><input class="carousel__timer" type="hidden" name="hidden" value="5" aria-hidden="true">
+          <div class="carousel__wrapper"><div class="carousel__item">
+                  <div class="carousel__inner">
+
+<div class="product-card" id="a8592130-0b0b-4868-a83b-955f6987c836" style="--object-fit: cover;">
+  <div class="product-card__vision" style="position: relative; overflow: hidden;"><img class="product-card__image focal-image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg" data-srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 1280w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 576px, (max-width: 1200px) 900px, (max-width: 1680px) 840px, 1280px" data-focal-x="0" data-focal-y="0" srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/ba3aa27e-382f-428a-952d-d84705bebe78/upload.jpeg 1280w" src="./GricQuest_home_complete_files/upload.jpeg" data-focus-x="0" data-focus-y="0" style="min-height: 100%; min-width: 100%; position: absolute; inset: 0px 0px 0px -1.36986%; max-height: 100%; opacity: 1;"><a class="product-card__link" href="https://gricquest.com/products/a-game-of-thrones-catan-board-game-base-game"></a></div>
+
+  <div class="product-card__meta">
+    <div class="product-card__availability"><bq-product-availability product-id="a8592130-0b0b-4868-a83b-955f6987c836" initialized="true" visible="false"><template shadowrootmode="open"><span class="bq-product-availability"></span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-availability></div>
+
+    <h3 class="product-card__title"><a class="product-card__link" href="https://gricquest.com/products/a-game-of-thrones-catan-board-game-base-game">A Game of Thrones Catan: Brotherhood of the Watch</a></h3><div class="product-card__price-info">
+        <div class="product-card__price-wrapper">
+          <span class="product-card__price"><bq-product-price product-id="a8592130-0b0b-4868-a83b-955f6987c836" default-price="$15.00" initialized="true"><template shadowrootmode="open"><span class="bq-product-price">$15.00</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price></span>
+          <span class="product-card__price-separator">/</span>
+          <span class="product-card__period"><bq-product-price-label product-id="a8592130-0b0b-4868-a83b-955f6987c836" default-label="5 days" initialized="true"><template shadowrootmode="open"><span class="bq-product-price-label">5 days</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price-label></span>
+        </div>
+      </div></div>
+</div>
+</div>
+                </div><div class="carousel__item">
+                  <div class="carousel__inner">
+
+<div class="product-card" id="c96d556d-7755-40d2-81aa-099ee0f91a35" style="--object-fit: cover;">
+  <div class="product-card__vision" style="position: relative; overflow: hidden;"><img class="product-card__image focal-image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg" data-srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 1280w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 576px, (max-width: 1200px) 900px, (max-width: 1680px) 840px, 1280px" data-focal-x="0" data-focal-y="0" srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/09f1bbbf-75d0-4de0-8b26-2eee27d4e972/1707610630-883195940595404-0064-6997/61kPcwoI77L.jpg 1280w" src="./GricQuest_home_complete_files/61kPcwoI77L.jpg" data-focus-x="0" data-focus-y="0" style="min-height: 100%; min-width: 100%; position: absolute; inset: 0px 0px 0px -1.0274%; max-height: 100%; opacity: 1;"><a class="product-card__link" href="https://gricquest.com/products/tokaido-deluxe-edition"></a></div>
+
+  <div class="product-card__meta">
+    <div class="product-card__availability"><bq-product-availability product-id="c96d556d-7755-40d2-81aa-099ee0f91a35" initialized="true" visible="false"><template shadowrootmode="open"><span class="bq-product-availability"></span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-availability></div>
+
+    <h3 class="product-card__title"><a class="product-card__link" href="https://gricquest.com/products/tokaido-deluxe-edition">Tokaido: Deluxe Edition</a></h3><div class="product-card__price-info">
+        <div class="product-card__price-wrapper">
+          <span class="product-card__price"><bq-product-price product-id="c96d556d-7755-40d2-81aa-099ee0f91a35" default-price="$15.00" initialized="true"><template shadowrootmode="open"><span class="bq-product-price">$15.00</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price></span>
+          <span class="product-card__price-separator">/</span>
+          <span class="product-card__period"><bq-product-price-label product-id="c96d556d-7755-40d2-81aa-099ee0f91a35" default-label="5 days" initialized="true"><template shadowrootmode="open"><span class="bq-product-price-label">5 days</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price-label></span>
+        </div>
+      </div></div>
+</div>
+</div>
+                </div><div class="carousel__item">
+                  <div class="carousel__inner">
+
+<div class="product-card" id="3897434b-0433-4700-b79b-5c947e505e37" style="--object-fit: cover;">
+  <div class="product-card__vision" style="position: relative; overflow: hidden;"><img class="product-card__image focal-image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg" data-srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 1280w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 576px, (max-width: 1200px) 900px, (max-width: 1680px) 840px, 1280px" data-focal-x="0" data-focal-y="0" srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/084b6e1f-2acc-45f9-85ca-9dff639ca5ac/upload.jpeg 1280w" src="./GricQuest_home_complete_files/upload(1).jpeg" data-focus-x="0" data-focus-y="0" style="min-height: 100%; min-width: 100%; position: absolute; inset: 0px 0px 0px -1.0274%; max-height: 100%; opacity: 1;"><a class="product-card__link" href="https://gricquest.com/products/libellud-dixit-board-game-2021-refresh"></a></div>
+
+  <div class="product-card__meta">
+    <div class="product-card__availability"><bq-product-availability product-id="3897434b-0433-4700-b79b-5c947e505e37" initialized="true" visible="false"><template shadowrootmode="open"><span class="bq-product-availability"></span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-availability></div>
+
+    <h3 class="product-card__title"><a class="product-card__link" href="https://gricquest.com/products/libellud-dixit-board-game-2021-refresh">Dixit</a></h3><div class="product-card__price-info">
+        <div class="product-card__price-wrapper">
+          <span class="product-card__price"><bq-product-price product-id="3897434b-0433-4700-b79b-5c947e505e37" default-price="$10.00" initialized="true"><template shadowrootmode="open"><span class="bq-product-price">$10.00</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price></span>
+          <span class="product-card__price-separator">/</span>
+          <span class="product-card__period"><bq-product-price-label product-id="3897434b-0433-4700-b79b-5c947e505e37" default-label="5 days" initialized="true"><template shadowrootmode="open"><span class="bq-product-price-label">5 days</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price-label></span>
+        </div>
+      </div></div>
+</div>
+</div>
+                </div><div class="carousel__item">
+                  <div class="carousel__inner">
+
+<div class="product-card" id="35af8de5-7fdd-4e18-a02f-1a0b09503ec8" style="--object-fit: cover;">
+  <div class="product-card__vision" style="position: relative; overflow: hidden;"><img class="product-card__image focal-image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg" data-srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 1280w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 576px, (max-width: 1200px) 900px, (max-width: 1680px) 840px, 1280px" data-focal-x="0" data-focal-y="0" srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/f40b016a-0171-4453-b4eb-2c33f1727ce0/1718322078-914081010878160-0008-1017/upload.jpeg 1280w" src="./GricQuest_home_complete_files/upload(2).jpeg" data-focus-x="0" data-focus-y="0" style="min-height: 100%; min-width: 100%; position: absolute; inset: 0px 0px 0px -1.0274%; opacity: 1;"><a class="product-card__link" href="https://gricquest.com/products/the-quacks-of-quedlinburg-e2efa48e-798c-4ed0-8743-179f24a6986c"></a></div>
+
+  <div class="product-card__meta">
+    <div class="product-card__availability"><bq-product-availability product-id="35af8de5-7fdd-4e18-a02f-1a0b09503ec8" initialized="true" visible="false"><template shadowrootmode="open"><span class="bq-product-availability"></span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-availability></div>
+
+    <h3 class="product-card__title"><a class="product-card__link" href="https://gricquest.com/products/the-quacks-of-quedlinburg-e2efa48e-798c-4ed0-8743-179f24a6986c">The Quacks of Quedlinburg</a></h3><div class="product-card__price-info">
+        <div class="product-card__price-wrapper">
+          <span class="product-card__price"><bq-product-price product-id="35af8de5-7fdd-4e18-a02f-1a0b09503ec8" default-price="$10.00" initialized="true"><template shadowrootmode="open"><span class="bq-product-price">$10.00</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price></span>
+          <span class="product-card__price-separator">/</span>
+          <span class="product-card__period"><bq-product-price-label product-id="35af8de5-7fdd-4e18-a02f-1a0b09503ec8" default-label="5 days" initialized="true"><template shadowrootmode="open"><span class="bq-product-price-label">5 days</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price-label></span>
+        </div>
+      </div></div>
+</div>
+</div>
+                </div><div class="carousel__item">
+                  <div class="carousel__inner">
+
+<div class="product-card" id="0d098940-5f12-4616-8e73-4b02daa2d459" style="--object-fit: cover;">
+  <div class="product-card__vision" style="position: relative; overflow: hidden;"><img class="product-card__image focal-image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg" data-srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 1280w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 576px, (max-width: 1200px) 900px, (max-width: 1680px) 840px, 1280px" data-focal-x="0" data-focal-y="0" srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/1986f14d-72f3-4b09-8e69-db248135727a/upload.jpeg 1280w" src="./GricQuest_home_complete_files/upload(3).jpeg" data-focus-x="0" data-focus-y="0" style="min-height: 100%; min-width: 100%; position: absolute; inset: 0px 0px 0px -1.36986%; max-height: 100%; opacity: 1;"><a class="product-card__link" href="https://gricquest.com/products/eeboo-gathering-a-garden-board-game-a31614fc-a4d6-4cce-ae7e-afb5d9ec7642"></a></div>
+
+  <div class="product-card__meta">
+    <div class="product-card__availability"><bq-product-availability product-id="0d098940-5f12-4616-8e73-4b02daa2d459" initialized="true" visible="false"><template shadowrootmode="open"><span class="bq-product-availability"></span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-availability></div>
+
+    <h3 class="product-card__title"><a class="product-card__link" href="https://gricquest.com/products/eeboo-gathering-a-garden-board-game-a31614fc-a4d6-4cce-ae7e-afb5d9ec7642">Gathering a Garden</a></h3><div class="product-card__price-info">
+        <div class="product-card__price-wrapper">
+          <span class="product-card__price"><bq-product-price product-id="0d098940-5f12-4616-8e73-4b02daa2d459" default-price="$5.00" initialized="true"><template shadowrootmode="open"><span class="bq-product-price">$5.00</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price></span>
+          <span class="product-card__price-separator">/</span>
+          <span class="product-card__period"><bq-product-price-label product-id="0d098940-5f12-4616-8e73-4b02daa2d459" default-label="5 days" initialized="true"><template shadowrootmode="open"><span class="bq-product-price-label">5 days</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price-label></span>
+        </div>
+      </div></div>
+</div>
+</div>
+                </div><div class="carousel__item">
+                  <div class="carousel__inner">
+
+<div class="product-card" id="b189d8b4-f3df-4072-a2be-f2599b375abc" style="--object-fit: cover;">
+  <div class="product-card__vision" style="position: relative; overflow: hidden;"><img class="product-card__image focal-image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg" data-srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 1280w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 576px, (max-width: 1200px) 900px, (max-width: 1680px) 840px, 1280px" data-focal-x="0" data-focal-y="0" srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/2d34d861-aacf-48d0-bb8e-586fa03687bb/upload.jpeg 1280w" src="./GricQuest_home_complete_files/upload(4).jpeg" data-focus-x="0" data-focus-y="0" style="min-height: 100%; min-width: 100%; position: absolute; inset: -20.0784% 0px 0px; max-width: 100%; opacity: 1;"><a class="product-card__link" href="https://gricquest.com/products/my-first-carcassonne-board-game"></a></div>
+
+  <div class="product-card__meta">
+    <div class="product-card__availability"><bq-product-availability product-id="b189d8b4-f3df-4072-a2be-f2599b375abc" initialized="true" visible="false"><template shadowrootmode="open"><span class="bq-product-availability"></span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-availability></div>
+
+    <h3 class="product-card__title"><a class="product-card__link" href="https://gricquest.com/products/my-first-carcassonne-board-game">My First Carcassonne</a></h3><div class="product-card__price-info">
+        <div class="product-card__price-wrapper">
+          <span class="product-card__price"><bq-product-price product-id="b189d8b4-f3df-4072-a2be-f2599b375abc" default-price="$10.00" initialized="true"><template shadowrootmode="open"><span class="bq-product-price">$10.00</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price></span>
+          <span class="product-card__price-separator">/</span>
+          <span class="product-card__period"><bq-product-price-label product-id="b189d8b4-f3df-4072-a2be-f2599b375abc" default-label="5 days" initialized="true"><template shadowrootmode="open"><span class="bq-product-price-label">5 days</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price-label></span>
+        </div>
+      </div></div>
+</div>
+</div>
+                </div><div class="carousel__item">
+                  <div class="carousel__inner">
+
+<div class="product-card" id="f1620297-801b-46c7-8e4c-cf00fde4213c" style="--object-fit: cover;">
+  <div class="product-card__vision" style="position: relative; overflow: hidden;"><img class="product-card__image focal-image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg" data-srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 1280w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 576px, (max-width: 1200px) 900px, (max-width: 1680px) 840px, 1280px" data-focal-x="0" data-focal-y="0" srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/565f7f2d-8513-4f3a-b8e4-9b36b0adf8c1/1708026278-380813195787735-0050-7683/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg 1280w" src="./GricQuest_home_complete_files/GUEST_be3b19b9-23af-4b89-90ca-300615074349.jpg" data-focus-x="0" data-focus-y="0" style="min-height: 100%; min-width: 100%; position: absolute; inset: 0px 0px 0px -1.0274%; max-height: 100%; opacity: 1;"><a class="product-card__link" href="https://gricquest.com/products/taco-cat-goat-cheese-pizza"></a></div>
+
+  <div class="product-card__meta">
+    <div class="product-card__availability"><bq-product-availability product-id="f1620297-801b-46c7-8e4c-cf00fde4213c" initialized="true" visible="false"><template shadowrootmode="open"><span class="bq-product-availability"></span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-availability></div>
+
+    <h3 class="product-card__title"><a class="product-card__link" href="https://gricquest.com/products/taco-cat-goat-cheese-pizza">Taco Cat Goat Cheese Pizza</a></h3><div class="product-card__price-info">
+        <div class="product-card__price-wrapper">
+          <span class="product-card__price"><bq-product-price product-id="f1620297-801b-46c7-8e4c-cf00fde4213c" default-price="$3.00" initialized="true"><template shadowrootmode="open"><span class="bq-product-price">$3.00</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price></span>
+          <span class="product-card__price-separator">/</span>
+          <span class="product-card__period"><bq-product-price-label product-id="f1620297-801b-46c7-8e4c-cf00fde4213c" default-label="5 days" initialized="true"><template shadowrootmode="open"><span class="bq-product-price-label">5 days</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price-label></span>
+        </div>
+      </div></div>
+</div>
+</div>
+                </div><div class="carousel__item">
+                  <div class="carousel__inner">
+
+<div class="product-card" id="0e3c4265-fb98-4eb5-ab6f-e9c2f58b024a" style="--object-fit: cover;">
+  <div class="product-card__vision" style="position: relative; overflow: hidden;"><img class="product-card__image focal-image lazyloaded" alt="" data-src="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg" data-srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 1280w" sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, (max-width: 768px) 576px, (max-width: 1200px) 900px, (max-width: 1680px) 840px, 1280px" data-focal-x="0" data-focal-y="0" data-focus-x="0" data-focus-y="0" style="min-height: 100%; min-width: 100%; position: absolute; inset: 0px 0px 0px -9.93151%; opacity: 1; max-height: 100%;" srcset="https://images.booqablecdn.com/w320/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 320w, https://images.booqablecdn.com/w480/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 480w, https://images.booqablecdn.com/w576/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 576w, https://images.booqablecdn.com/w840/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 840w, https://images.booqablecdn.com/w900/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 900w, https://images.booqablecdn.com/w1280/uploads/490b91f581a0475f937a76191907d454/photo/photo/7c813234-9428-4b13-8b12-5e0db324cc50/upload.jpeg 1280w" src="./GricQuest_home_complete_files/upload(5).jpeg"><a class="product-card__link" href="https://gricquest.com/products/stonemaier-games-stm910-wingspan-with-swift-start-pack-multi-colored-dc2e19f7-05ba-493e-a535-a9b49c6eadd0"></a></div>
+
+  <div class="product-card__meta">
+    <div class="product-card__availability"><bq-product-availability product-id="0e3c4265-fb98-4eb5-ab6f-e9c2f58b024a" initialized="true" visible="false"><template shadowrootmode="open"><span class="bq-product-availability"></span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-availability></div>
+
+    <h3 class="product-card__title"><a class="product-card__link" href="https://gricquest.com/products/stonemaier-games-stm910-wingspan-with-swift-start-pack-multi-colored-dc2e19f7-05ba-493e-a535-a9b49c6eadd0">Wingspan</a></h3><div class="product-card__price-info">
+        <div class="product-card__price-wrapper">
+          <span class="product-card__price"><bq-product-price product-id="0e3c4265-fb98-4eb5-ab6f-e9c2f58b024a" default-price="$15.00" initialized="true"><template shadowrootmode="open"><span class="bq-product-price">$15.00</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price></span>
+          <span class="product-card__price-separator">/</span>
+          <span class="product-card__period"><bq-product-price-label product-id="0e3c4265-fb98-4eb5-ab6f-e9c2f58b024a" default-label="5 days" initialized="true"><template shadowrootmode="open"><span class="bq-product-price-label">5 days</span><style data-styled="active" data-styled-version="6.1.14"></style></template></bq-product-price-label></span>
+        </div>
+      </div></div>
+</div>
+</div>
+                </div></div><div class="carousel__navigation" aria-role="Carousel navigation">
+              <span class="carousel__btn prev" aria-label="Prev slide">
+                Previous slide<svg fill="none" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg"><path d="m8 .128418-1.41 1.410002 5.58 5.59h-12.17v2h12.17l-5.58 5.58998 1.41 1.41 8-7.99998z" fill="#0b1a26"></path></svg>
+</span>
+              <span class="carousel__btn next" aria-label="Next slide">
+                Next slide<svg fill="none" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg"><path d="m8 .128418-1.41 1.410002 5.58 5.59h-12.17v2h12.17l-5.58 5.58998 1.41 1.41 8-7.99998z" fill="#0b1a26"></path></svg>
+</span>
+            </div><div class="carousel__pagination" aria-role="Carousel pagination"><span class="carousel__dot" data-index="1" aria-label="Jump to slide 1">
+                  Go to slide 1
+                </span><span class="carousel__dot active" data-index="2" aria-label="Jump to slide 2">
+                  Go to slide 2
+                </span><span class="carousel__dot" data-index="3" aria-label="Jump to slide 3">
+                  Go to slide 3
+                </span><span class="carousel__dot" data-index="4" aria-label="Jump to slide 4">
+                  Go to slide 4
+                </span><span class="carousel__dot" data-index="5" aria-label="Jump to slide 5">
+                  Go to slide 5
+                </span><span class="carousel__dot hidden" data-index="6" aria-label="Jump to slide 6">
+                  Go to slide 6
+                </span><span class="carousel__dot hidden" data-index="7" aria-label="Jump to slide 7">
+                  Go to slide 7
+                </span><span class="carousel__dot hidden" data-index="8" aria-label="Jump to slide 8">
+                  Go to slide 8
+                </span></div></div>
+    </div>
+  </div>
+</section><section class="collections" id="section-collections" data-section="true" data-section-key="collections"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/collections-623b3038310ed4d2f7ed3a03c63b889280540f01effcf42aaea5522af1103b40.css">
+
+  <div class="collections__wrapper palette-one collections__wrapper--with-overlay collections__wrapper--padding-top collections__wrapper--padding-bottom" style="--padding-top: 24px;--padding-bottom: 112px;--padding-top-mobile: 18px;--padding-bottom-mobile: 40px;--color-overlay:#FFFFFF;
+      --background-overlay:#000000;
+      --background-overlay-00:#00000000;">
+    <div class="collections__container container"><ul class="collections__list collections__list-1"><li class="collections__item" id="collection"><a class="collections__link" href="https://gricquest.com/collections/all"><span class="collections__image-item"><img class="collections__image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w80/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg" data-srcset="https://images.booqablecdn.com/w80/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 80w, https://images.booqablecdn.com/w120/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 120w, https://images.booqablecdn.com/w192/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 192w, https://images.booqablecdn.com/w300/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 300w, https://images.booqablecdn.com/w420/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 420w, https://images.booqablecdn.com/w640/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 640w" sizes="(max-width: 320px) 80px, (max-width: 480px) 120px, (max-width: 768px) 192px, (max-width: 1200px) 300px, (max-width: 1680px) 420px, 640px" srcset="https://images.booqablecdn.com/w80/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 80w, https://images.booqablecdn.com/w120/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 120w, https://images.booqablecdn.com/w192/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 192w, https://images.booqablecdn.com/w300/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 300w, https://images.booqablecdn.com/w420/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 420w, https://images.booqablecdn.com/w640/uploads/490b91f581a0475f937a76191907d454/photo/photo/3cfe8aa2-2902-4116-8ce3-a7ad81df922e/upload.jpeg 640w" src="./GricQuest_home_complete_files/upload(6).jpeg"></span></a><h3 class="collections__heading"><a href="https://gricquest.com/collections/all">All products</a></h3>
+    </li></ul>
+</div>
+  </div>
+</section><section class="logos" id="section-logos" data-section="true" data-section-key="logos">
+</section><section class="text" id="section-text" data-section="true" data-section-key="text"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/text-c69cfc7f7c4c0e9119e001940ed9a7c979af67e4de966e906b6338580a792035.css">
+
+<div class="text__wrapper palette-three text__wrapper--padding-top text__wrapper--padding-bottom" id="text-text" style="--padding-top: 24px;--padding-bottom: 24px;--padding-top-mobile: 18px;--padding-bottom-mobile: 18px;--text-align: center;">
+  <div class="text__container container"><div class="text__content bq-content rx-content"><p>Re<b></b>nt Your Fa<b></b>vourite Tableto<b></b>p Games in 3 easy steps</p></div></div>
+</div>
+
+
+</section><section class="columns" id="section-columns" data-section="true" data-section-key="columns"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/columns-e73bfd267d943e909f53557defb9426280f8b9dc38cc1b9306c01b723d815ecf.css">
+
+  <div class="columns__wrapper palette-two columns__wrapper--padding-top columns__wrapper--padding-bottom" style="--padding-top: 24px;--padding-bottom: 24px;--padding-top-mobile: 18px;--padding-bottom-mobile: 18px;--grid-element: 3;">
+    <div class="columns__container container">
+      <div class="columns__grid"><div class="columns__item" id="column_914694"><div class="columns__image-wrapper"><img class="columns__image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg" data-srcset="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 80w, https://images.booqablecdn.com/w120/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 120w, https://images.booqablecdn.com/w192/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 192w, https://images.booqablecdn.com/w300/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 300w, https://images.booqablecdn.com/w420/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 420w, https://images.booqablecdn.com/w640/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 640w" sizes="(max-width: 320px) 80px, (max-width: 480px) 120px, (max-width: 768px) 192px, (max-width: 1200px) 300px, (max-width: 1680px) 420px, 640px" srcset="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 80w, https://images.booqablecdn.com/w120/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 120w, https://images.booqablecdn.com/w192/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 192w, https://images.booqablecdn.com/w300/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 300w, https://images.booqablecdn.com/w420/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 420w, https://images.booqablecdn.com/w640/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg 640w" src="./GricQuest_home_complete_files/2f1bcb08-6e65-5e30-929c-c2b0448ba5cb-f244bebc52172d82a68b84cd9a1eab7c7a4fa4fec57b14adb53b5ab12e8d9c58.jpg"></div><div class="columns__text"><strong class="columns__title h4">1. Pick and Choose your games for rent</strong><div class="columns__description bq-content rx-content"><p>Choose a maximum of 5 games to rent out from our diverse  collection, catering to all age groups, and add them to your cart.&nbsp;</p></div></div></div><div class="columns__item" id="column_999507"><div class="columns__image-wrapper"><img class="columns__image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg" data-srcset="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 80w, https://images.booqablecdn.com/w120/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 120w, https://images.booqablecdn.com/w192/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 192w, https://images.booqablecdn.com/w300/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 300w, https://images.booqablecdn.com/w420/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 420w, https://images.booqablecdn.com/w640/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 640w" sizes="(max-width: 320px) 80px, (max-width: 480px) 120px, (max-width: 768px) 192px, (max-width: 1200px) 300px, (max-width: 1680px) 420px, 640px" srcset="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 80w, https://images.booqablecdn.com/w120/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 120w, https://images.booqablecdn.com/w192/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 192w, https://images.booqablecdn.com/w300/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 300w, https://images.booqablecdn.com/w420/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 420w, https://images.booqablecdn.com/w640/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg 640w" src="./GricQuest_home_complete_files/a7ccef4a-380f-58cc-a13a-7abd393492d1-0e417bf140a9cb977b9e3b58e8736b87530d81e27cf238c8c24e6be7960eb516.jpg"></div><div class="columns__text"><strong class="columns__title h4">2. Select the Dates for renting out</strong><div class="columns__description bq-content rx-content"><p>Choose the date you would like your rental to begin, and the games are reserved for the next 5 days from your start date, exclusively for you.</p></div></div></div><div class="columns__item" id="column"><div class="columns__image-wrapper"><img class="columns__image ls-is-cached lazyloaded" alt="" data-src="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg" data-srcset="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 80w, https://images.booqablecdn.com/w120/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 120w, https://images.booqablecdn.com/w192/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 192w, https://images.booqablecdn.com/w300/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 300w, https://images.booqablecdn.com/w420/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 420w, https://images.booqablecdn.com/w640/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 640w" sizes="(max-width: 320px) 80px, (max-width: 480px) 120px, (max-width: 768px) 192px, (max-width: 1200px) 300px, (max-width: 1680px) 420px, 640px" srcset="https://images.booqablecdn.com/w80/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 80w, https://images.booqablecdn.com/w120/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 120w, https://images.booqablecdn.com/w192/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 192w, https://images.booqablecdn.com/w300/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 300w, https://images.booqablecdn.com/w420/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 420w, https://images.booqablecdn.com/w640/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg 640w" src="./GricQuest_home_complete_files/5f938306-0d58-5ada-ae18-ad1be57b2d35-d72a624045c598e5d2db1b67694faff408857bf0ec53b7ae4b966cf3f34430bb.jpg"></div><div class="columns__text"><strong class="columns__title h4">3. Complete Payment to Confirm Your Reservation</strong><div class="columns__description bq-content rx-content"><p>Proceed to checkout, select your preferred delivery option, and make an online payment to secure your reservation. You can either pick up your games or await their delivery to start enjoying.</p></div></div></div></div>
+    </div>
+  </div>
+</section><section class="text" id="section-text_420172" data-section="true" data-section-key="text_420172"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/text-c69cfc7f7c4c0e9119e001940ed9a7c979af67e4de966e906b6338580a792035.css">
+
+<div class="text__wrapper palette-three text__wrapper--padding-top text__wrapper--padding-bottom" id="text-text_420172" style="--padding-top: 24px;--padding-bottom: 24px;--padding-top-mobile: 18px;--padding-bottom-mobile: 18px;--text-align: left;">
+  <div class="text__container container"><div class="text__content bq-content rx-content"><p>Effortlessly reserve our games. For additional information, refer to our Process Handout and Rental Agreement in the Discover Further section. Explore the FAQ section for answers to common queries, and feel free to reach out if you have any further questions!<br></p></div></div>
+</div>
+
+
+</section>
+    </main>
+
+    <footer class="footer" id="section-footer"><link rel="stylesheet" type="text/css" href="./GricQuest_home_complete_files/footer-d01ba594644d8e9f8200950a36c0a586a4d14098d26140b688995c5feaeed2d7.css">
+
+<div class="footer__wrapper palette-one footer__wrapper--padding-top footer__wrapper--padding-bottom" style="--padding-top: 80px;--padding-bottom: 80px;--padding-top-mobile: 40px;--padding-bottom-mobile: 40px;">
+  <div class="footer__container container">
+    <div class="footer__top footer__top--with-logo">
+      <div class="footer__logo-wrapper">
+        <a href="https://gricquest.com/" class="footer__logo"><img class="footer__logo-image" alt="GricQuest" src="./GricQuest_home_complete_files/clr8l8k0w00zd357yyb2yx4raimg3723-4feabc03ff495273ff935121cd3049888963ad6b04ee70773f7edf497e615df3(2).PNG" srcset="https://images.booqablecdn.com/keep-type/w420/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/clr8l8k0w00zd357yyb2yx4raimg3723-4feabc03ff495273ff935121cd3049888963ad6b04ee70773f7edf497e615df3(2).PNG 420w, https://images.booqablecdn.com/keep-type/w640/assets/c4b6c7a1-937e-4666-afe9-d4e9fdd250b0/clr8l8k0w00zd357yyb2yx4raimg3723-4feabc03ff495273ff935121cd3049888963ad6b04ee70773f7edf497e615df3(2).PNG 640w" sizes="(max-width: 360px) 420px, 640px"></a>
+      </div><nav class="footer__menu"></nav></div>
+    <div class="footer__bottom"><div class="footer__copy"><p>2025GricQuest. All right reserved.&nbsp;|&nbsp;<a href="https://booqable.com/?source=Shop&amp;campaign=Cart" target="_blank" aria-label="Powered by Booqable Rental Software">Powered by Booqable</a></p></div><div class="footer__icons"><div class="footer__social">
+
+<style>
+  
+  .social-networks {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(-1 * var(--social-spacing, 6px)) calc(-1 * var(--social-spacing, 6px));
+    font-size: var(--social-size, 21px);
+  }
+
+  .social-networks__item {
+    margin: 0 var(--social-spacing, 6px) var(--social-spacing, 6px);
+  }
+
+  .palette-one .social-networks__link:hover {
+    color: var(--color-outline-hover, #F4B841CC);
+  }
+
+  .palette-one .social-networks__link:active {
+    color: var(--color-outline-active, #F4B841BA);
+  }
+
+  .palette-two .social-networks__link:hover {
+    color: var(--color-outline-2-hover, #F4B841CC);
+  }
+
+  .palette-two .social-networks__link:active {
+    color: var(--color-outline-2-active, #F4B841BA);
+  }
+
+  .palette-three .social-networks__link:hover {
+    color: var(--color-outline-3-hover, #0B1A26CC);
+  }
+
+  .palette-three .social-networks__link:active {
+    color: var(--color-outline-3-active, #0B1A26BA);
+  }
+
+  @media (min-width: 992px) {
+    .social-networks {
+      justify-content: flex-end;
+    }
+  }
+
+</style>
+
+
+<ul class="social-networks">
+  
+    <li class="social-networks__item">
+      <a href="https:" target="_blank" class="social-networks__link">
+        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+      </a>
+    </li>
+  
+  
+    <li class="social-networks__item">
+      <a href="https:" target="_blank" class="social-networks__link">
+        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+      </a>
+    </li>
+  
+  
+    <li class="social-networks__item">
+      <a href="https:" target="_blank" class="social-networks__link">
+        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+      </a>
+    </li>
+  
+  
+    <li class="social-networks__item">
+      <a href="https:" target="_blank" class="social-networks__link">
+        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+      </a>
+    </li>
+  
+  
+  
+  
+  
+  
+  
+</ul>
+</div></div></div>
+  </div>
+</div>
+
+
+</footer>
+
+    <script src="./GricQuest_home_complete_files/lazysizes.min-6e61be2f374a0122510025578940baf7ef8dbbcaf3ecc5f5535cfc81bd1cfd39.js.download" defer=""></script>
+    <script src="./GricQuest_home_complete_files/touch-device-notch-9633e042631f5a390a3d5d493eefd1e1548e3ed3d3ce0ad719751f7603179fdb.js.download" defer=""></script>
+    <script src="./GricQuest_home_complete_files/main-5041c202b296bd856b9f1087f4dfeb3a7843984928a42886f428d8052f499367.js.download" defer=""></script>
+    <script src="./GricQuest_home_complete_files/text-with-image-1004861eaa648765985e2ce66fa3328418f8d277f62eb1981e1275f231841754.js.download" defer=""></script>
+    <script src="./GricQuest_home_complete_files/header-d413d371075548247053aed2898ac4de5d9c5ef559b75ace2157a64f04cdd84b.js.download" defer=""></script>
+    <script src="./GricQuest_home_complete_files/carousel-55ff88af962188131fe4739a83debcc1a4e4525512fe0946b9a598febc19ce5e.js.download" defer=""></script>
+    <script src="./GricQuest_home_complete_files/sidebar-22784c71d5d16f7f28139959c079a5c28382b70e82cd17f62951b74e4bfdf508.js.download" defer=""></script><style>
+  
+  [data-tid="Mini cart"] {
+    --minicart-warning-color: var(--color-red);
+    --minicart-warning-background-color: var(--color-red-light);
+    --minicart-border-radius: var(--border-radius-rounded);
+    --minicart-padding: 16px;
+    --minicart-image-width: 56px;
+    --minicart-z-index: 9999;
+    --minicart-font: var(--font-body, Source Sans Pro, sans-serif);
+    --minicart-font-size: 14px;
+    --minicart-font-weight-normal: var(--font-weight-regular);
+    --minicart-font-weight-bold: var(--font-weight-semibold);
+
+    
+      
+        --minicart-accent-color: var(--background-accent);
+      
+
+      
+        --minicart-header-color: var(--color-accent);
+        --minicart-accent-text-color: var(--color-accent);
+      
+
+      
+        --minicart-accent-outline: var(--color-outline);
+      
+
+      
+        --minicart-background-color: var(--background-primary);
+      
+
+      
+        --minicart-typo-color: var(--color-primary);
+        --minicart-border-color: var(--color-border);
+      
+
+    }
+
+</style>
+
+
+<script>
+  const handleSubmit = ({ e, form }) => {
+    e.preventDefault();
+
+    grecaptcha.ready(() => {
+      grecaptcha.execute('6Lc87AQkAAAAAKWv3Q0L4qbR88-Lc0NCIef1ba-I', { action: 'submit' }).then((token) => {
+        const input = document.createElement('input');
+
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'form[g-recaptcha-response]');
+        input.setAttribute('value', token);
+
+        form.appendChild(input);
+        form.submit()
+      });
+    });
+  };
+
+  // FIX: Make sure forms that need this have .recaptcha-form class
+  const forms = document.querySelectorAll('.recaptcha-form');
+
+  forms.forEach((form) => {
+    form.addEventListener('submit', (e) => handleSubmit({ e, form }));
+  });
+</script>
+
+<script>
+  window.addEventListener('load', () => {
+    // Persist origin (when present)
+    const urlParams = new URLSearchParams(window.location.search)
+
+    if (urlParams.get('origin')) {
+      if (window.Booqable === undefined) {
+        console.error('persisting origin: Booqable is not defined')
+      } else {
+        window.Booqable.origin = urlParams.get('origin')
+      }
+    }
+  })
+</script>
+
+
+<script>
+  window.addEventListener("load", () => {
+    Booqable._initApps()
+  })
+</script><script>
+  window.addEventListener("load", () => {
+    Booqable._consentToAllApps()
+  })
+</script>
+
+
+
+
+
+
+<bq-date-picker-modal initialized="true"><template shadowrootmode="open"><div class="bq-date-picker-modal"></div></template></bq-date-picker-modal>
+
+
+  <script defer="" src="./GricQuest_home_complete_files/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;rayId&quot;:&quot;90b48ad56fee571c&quot;,&quot;version&quot;:&quot;2025.1.0&quot;,&quot;serverTiming&quot;:{&quot;name&quot;:{&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfSpeedBrain&quot;:true,&quot;cfCacheStatus&quot;:true}},&quot;token&quot;:&quot;b04fddb3caee48d49800aba0cdef26a5&quot;,&quot;b&quot;:1}" crossorigin="anonymous"></script>
+
+
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; position: fixed; visibility: hidden; display: block; transition: right 0.3s; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-of917fpv4szp" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="./GricQuest_home_complete_files/anchor.html"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="./GricQuest_home_complete_files/saved_resource(1).html"></iframe></div><div id="booqable-quickview"><div class="Themed-dAWJsR crwwDv"><div class="booqable-component" style="display: none;"><div id="booqable-quickview-wrapper" class="closed"><div id="booqable-quickview-inner"><button class="bq-close"><i class="bq-icon-cross fas fa-times" aria-hidden="true"></i></button></div></div></div></div></div><object id="__symantecPKIClientMessenger" data-supports-flavor-configuration="true" data-extension-version="0.5.0.109" style="display: none;"></object><span id="__symantecPKIClientDetector" style="display: none;">__PRESENT</span><div></div></body></html>

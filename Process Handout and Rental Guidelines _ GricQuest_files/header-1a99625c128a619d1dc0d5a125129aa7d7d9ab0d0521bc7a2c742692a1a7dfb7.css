@@ -4,7 +4,24 @@
   margin-top: var(--preview-height, 0px) !important;
   margin-bottom: -1px;
 }
+.nav-tabs .nav-link {
+  color: #007bff;
+}
 
+.nav-tabs .nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.navbar-nav .nav-link {
+  color: black !important; /* Change text color to black */
+  font-size: 1rem; /* Increase font size */
+  display: block;
+  padding: .5rem 1rem
+12px
+;
+}
 .header--menu-opened,
 .header--sticky {
   top: var(--header-transform, 0px);

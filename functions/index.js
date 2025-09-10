@@ -1,139 +1,107 @@
-const functions = require("firebase-functions/v1"); // Import v1 to access database functions
+require("dotenv").config({ path: "./.env.prod" });
+const functions = require("firebase-functions/v1");
 const admin = require("firebase-admin");
-const sgMail = require("@sendgrid/mail");
+const axios = require("axios");
 
 admin.initializeApp();
 
+const MAILERSEND_API_TOKEN = process.env.MAILERSEND_API_TOKEN;
+const MAILERSEND_API_URL = "https://api.mailersend.com/v1/email";
+const VERIFIED_SENDER = "no-reply@gricquest.com"; // Must be verified in MailerSend
 
-// Retrieve SendGrid API Key from environment variables
-const SENDGRID_API_KEY = functions.config().sendgrid.key;
+// Helper to send email via MailerSend
+async function sendEmail(toEmail, subject, htmlContent, toName = "Customer") {
+  const payload = {
+    from: { email: VERIFIED_SENDER, name: "GricQuest" },
+    to: [{ email: toEmail, name: toName }],
+    subject,
+    html: htmlContent,
+  };
 
-sgMail.setApiKey(SENDGRID_API_KEY);
+  try {
+    const response = await axios.post(MAILERSEND_API_URL, payload, {
+      headers: {
+        Authorization: `Bearer ${MAILERSEND_API_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("MailerSend response:", response.data);
+  } catch (error) {
+    console.error("MailerSend error:", error.response?.data || error.message);
+  }
+}
 
+// 📦 Rental Confirmation Email
 exports.sendOrderConfirmationEmail = functions.database.ref("/rentals/{rentalId}")
-  .onCreate((snapshot, context) => {
+  .onCreate(async (snapshot, context) => {
     const rental = snapshot.val();
+    const { userEmail, userName = "Customer", gameId, rentDate, returnDate } = rental;
 
-    // Extract rental information
-    const userEmail = rental.userEmail;
-    const userName = rental.userName || "Customer";
-    const gameId = rental.gameId;
-    const rentDate = rental.rentDate;
-    const returnDate = rental.returnDate;
+    const gameSnapshot = await admin.database().ref(`/games/${gameId}`).once("value");
+    const gameName = gameSnapshot.val().name;
 
-    // Fetch game details
-    return admin
-      .database()
-      .ref(`/games/${gameId}`)
-      .once("value")
-      .then((gameSnapshot) => {
-        const game = gameSnapshot.val();
-        const gameName = game.name;
+    const html = `
+      <p>Dear ${userName},</p>
+      <p>Thank you for renting this game from GricQuest!</p>
+      <ul>
+        <li><strong>Game:</strong> ${gameName}</li>
+        <li><strong>Rent Date:</strong> ${rentDate}</li>
+        <li><strong>Return Date:</strong> ${returnDate}</li>
+      </ul>
+      <p>We hope you enjoy your gaming experience!</p>
+      <p>Best regards,<br>GricQuest</p>
+    `;
 
-        // Compose email content
-        const msg = {
-          to: userEmail,
-          from: "no-reply@gricquest.com", // Replace with your verified sender
-          subject: "Your Game Rental Confirmation",
-          html: `
-            <p>Dear ${userName},</p>
-            <p>Thank you for renting this game from GricQuest!</p>
-            <p><strong>Rental Details:</strong></p>
-            <ul>
-              <li><strong>Game:</strong> ${gameName}</li>
-              <li><strong>Rent Date:</strong> ${rentDate}</li>
-              <li><strong>Return Date:</strong> ${returnDate}</li>
-            </ul>
-            <p>We hope you enjoy your gaming experience!</p>
-            <p>Best regards,<br>Gric Quest</p>
-          `,
-        };
-
-        // Send the email
-        return sgMail.send(msg);
-      })
-      .then(() => {
-        console.log("Order confirmation email sent to:", userEmail);
-        return null;
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error);
-        return null;
-      });
+    await sendEmail(userEmail, "Your Game Rental Confirmation", html, userName);
+    return null;
   });
 
-
-  // New function to send email on rental return
+// 🔄 Rental Return Confirmation Email
 exports.sendReturnConfirmationEmail = functions.database.ref("/rentals/{rentalId}")
-.onUpdate((change, context) => {
-  const beforeData = change.before.val();
-  const afterData = change.after.val();
+  .onUpdate(async (change, context) => {
+    const beforeData = change.before.val();
+    const afterData = change.after.val();
 
-  // Check if status changed from 'active' to 'returned'
-  if (beforeData.status !== 'returned' && afterData.status === 'returned') {
-    const rental = afterData;
+    if (beforeData.status !== "returned" && afterData.status === "returned") {
+      const { userEmail, userName = "Customer", gameId, returnDate } = afterData;
 
-    // Extract rental information
-    const userEmail = rental.userEmail;
-    const userName = rental.userName || "Customer";
-    const gameId = rental.gameId;
-    const returnDate = rental.returnDate;
+      const gameSnapshot = await admin.database().ref(`/games/${gameId}`).once("value");
+      const gameName = gameSnapshot.val().name;
 
-    // Fetch game details
-    return admin
-      .database()
-      .ref(`/games/${gameId}`)
-      .once("value")
-      .then((gameSnapshot) => {
-        const game = gameSnapshot.val();
-        const gameName = game.name;
+      const html = `
+        <p>Dear ${userName},</p>
+        <p>Thank you for returning your rented game!</p>
+        <ul>
+          <li><strong>Game:</strong> ${gameName}</li>
+          <li><strong>Return Date:</strong> ${returnDate}</li>
+        </ul>
+        <p>We hope you enjoyed your gaming experience. We look forward to serving you again!</p>
+        <p>Best regards,<br>GricQuest</p>
+      `;
 
-        // Compose email content
-        const msg = {
-          to: userEmail,
-          from: "no-reply@gricquest.com", // Replace with your verified sender
-          subject: "Your Game Rental Return Confirmation",
-          html: `
-            <p>Dear ${userName},</p>
-            <p>Thank you for returning your rented game!</p>
-            <p><strong>Return Details:</strong></p>
-            <ul>
-              <li><strong>Game:</strong> ${gameName}</li>
-              <li><strong>Return Date:</strong> ${returnDate}</li>
-            </ul>
-            <p>We hope you enjoyed your gaming experience. We look forward to serving you again!</p>
-            <p>Best regards,<br>GricQuest</p>
-          `,
-        };
+      await sendEmail(userEmail, "Your Game Rental Return Confirmation", html, userName);
+    }
 
-        // Send the email
-        return sgMail.send(msg);
-      })
-      .then(() => {
-        console.log("Return confirmation email sent to:", userEmail);
-        return null;
-      })
-      .catch((error) => {
-        console.error("Error sending return email:", error);
-        return null;
-      });
-  } else {
-    // Status did not change to 'returned'; do nothing.
     return null;
-  }
-});
+  });
 
-
+// 🧾 Order Invoice Email
 exports.sendOrderInvoiceEmail = functions.database.ref("/orders/{orderId}")
-  .onCreate((snapshot, context) => {
+  .onCreate(async (snapshot, context) => {
     const order = snapshot.val();
     const { userEmail, userName, rentDate, returnDate, rentalDays, totalCost, items } = order;
 
-    // Compose email content
-    let emailContent = `
+    let itemRows = items.map(item => `
+      <tr>
+        <td>${item.gameName}</td>
+        <td>$${item.pricePerDay.toFixed(2)}</td>
+        <td>$${item.totalCost.toFixed(2)}</td>
+      </tr>
+    `).join("");
+
+    const html = `
       <p>Dear ${userName},</p>
       <p>Thank you for your rental order!</p>
-      <p><strong>Order Details:</strong></p>
       <ul>
         <li><strong>Rent Date:</strong> ${rentDate}</li>
         <li><strong>Return Date:</strong> ${returnDate}</li>
@@ -148,42 +116,30 @@ exports.sendOrderInvoiceEmail = functions.database.ref("/orders/{orderId}")
             <th>Total Cost</th>
           </tr>
         </thead>
-        <tbody>
-    `;
-
-    items.forEach(item => {
-      emailContent += `
-        <tr>
-          <td>${item.gameName}</td>
-          <td>$${item.pricePerDay.toFixed(2)}</td>
-          <td>$${item.totalCost.toFixed(2)}</td>
-        </tr>
-      `;
-    });
-
-    emailContent += `
-        </tbody>
+        <tbody>${itemRows}</tbody>
       </table>
       <p><strong>Overall Total Cost:</strong> $${totalCost.toFixed(2)}</p>
       <p>We hope you enjoy your gaming experience!</p>
-      <p>Best regards,<br>Your Company Name</p>
+      <p>Best regards,<br>GricQuest</p>
     `;
 
-    const msg = {
-      to: userEmail,
-      from: "no-reply@gricquest.com", // Use your verified sender
-      subject: "Your Rental Order Invoice",
-      html: emailContent,
-    };
+    await sendEmail(userEmail, "Your Rental Order Invoice", html, userName);
+    return null;
+  });
 
-    // Send the email
-    return sgMail.send(msg)
-      .then(() => {
-        console.log("Order invoice email sent to:", userEmail);
-        return null;
-      })
-      .catch(error => {
-        console.error("Error sending invoice email:", error);
-        return null;
-      });
+// 📬 Contact Form Submission Email
+exports.sendContactEmail = functions.database.ref("/contactMessages/{messageId}")
+  .onCreate(async (snapshot, context) => {
+    const { name, email, message } = snapshot.val();
+
+    const html = `
+      <p>You have received a new message from the "Contact Us" form:</p>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message}</p>
+    `;
+
+    await sendEmail("gricquest@gmail.com", "New Contact Us Form Submission", html, "GricQuest Admin");
+    return null;
   });

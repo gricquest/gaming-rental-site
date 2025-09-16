@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Details | GricQuest</title>
+  <link rel="icon" href="Gricquest-icon.PNG" type="image/x-icon">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f8f9fa; }
+    .product-details-card { max-width: 600px; margin: 40px auto; }
+    .card-img-top { height: 300px; object-fit: cover; object-fit: contain; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="index.html">
+      <img src="Name.PNG" alt="Gricquest" style="height: 80px;">
+    </a>
+  </nav>
+  <div class="container">
+  <div id="product-details"></div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
+      authDomain: "gaming-rental-site.firebaseapp.com",
+      databaseURL: "https://gaming-rental-site-default-rtdb.firebaseio.com",
+      projectId: "gaming-rental-site",
+      storageBucket: "gaming-rental-site.appspot.com",
+      messagingSenderId: "573901873327",
+      appId: "1:573901873327:web:949bea4a588b6f9a37745a"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function renderProductDetails(product) {
+      const container = document.getElementById('product-details');
+      if (!product) {
+        container.innerHTML = '<div class="alert alert-danger">Product not found.</div>';
+        return;
+      }
+      container.innerHTML = `
+        <div class="card product-details-card">
+          <div class="p-3">
+            <button onclick="window.location.href='products.html'" class="btn btn-outline-secondary mb-3">&larr; Close</button>
+          </div>
+          <img src="${product.imageUrl || 'Gricquest-icon.PNG'}" class="card-img-top" alt="${product.name}">
+          <div class="card-body">
+            <h3 class="card-title">${product.name}</h3>
+            <p class="card-text"><b>Genre:</b> ${product.genre}</p>
+            <p class="card-text"><b>Price:</b> $${product.price || 'N/A'}</p>
+            <p class="card-text">${product.description || ''}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function fetchProductDetails() {
+      const id = getQueryParam('id');
+      if (!id) {
+        renderProductDetails(null);
+        return;
+      }
+      database.ref('games/' + id).once('value').then(snapshot => {
+        renderProductDetails(snapshot.val());
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchProductDetails);
+  </script>
+</body>
+</html>

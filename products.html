@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products | GricQuest</title>
+  <link rel="icon" href="Gricquest-icon.PNG" type="image/x-icon">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    body { background-color: #f8f9fa; }
+    .product-card { margin-bottom: 30px; }
+    .card-img-top {
+      height: 200px;
+      object-fit: contain;
+      background: #fff;
+      padding: 10px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      display: block;
+    }
+    .genre-section { margin-bottom: 40px; }
+    .card-description {
+      max-height: 3.6em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-size: 0.97rem;
+      color: #444;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar (copied from index2.html for consistency) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="Name.PNG" alt="Gricquest" style="height: 80px;">
+    </a>
+    <div class="d-flex align-items-center ml-auto">
+      <form class="form-inline mr-2 d-block d-lg-none" onsubmit="searchAllGames(); return false;">
+        <input class="form-control mr-sm-2 search-input" type="search" id="search-input-mobile" placeholder="Search games" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Search</button>
+      </form>
+      <button class="btn btn-outline-dark ml-2 d-block d-lg-none" onclick="showCart()">
+        Cart (<span id="cart-count-mobile">0</span>)
+      </button>
+      <span class="navbar-text ml-2 d-block d-lg-none" id="user-name-display-mobile"></span>
+      <button class="btn btn-outline-dark ml-2 d-block d-lg-none" id="auth-button-mobile" onclick="openAuthModal()">Sign In</button>
+      <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Mobile menu: show only on mobile -->
+      <ul class="navbar-nav d-lg-none">
+        <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="./index2.html">Discover Further</a></li>
+        <li class="nav-item"><a class="nav-link" href="./MembershipOptions.html">Membership</a></li>
+        <li class="nav-item"><a class="nav-link" href="./FAQ.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+      </ul>
+      <!-- Desktop menu: show only on desktop/web -->
+      <ul class="navbar-nav ml-auto d-none d-lg-flex align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="./index2.html">Discover Further</a></li>
+        <li class="nav-item"><a class="nav-link" href="./MembershipOptions.html">Membership</a></li>
+        <li class="nav-item"><a class="nav-link" href="./FAQ.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+        <li class="nav-item">
+          <form class="form-inline mr-2" onsubmit="searchAllGames(); return false;">
+            <input class="form-control mr-sm-2 search-input" type="search" id="search-input" placeholder="Search games" aria-label="Search">
+            <button class="btn btn-outline-dark" type="submit">Search</button>
+          </form>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-dark ml-2" onclick="showCart()">
+            Cart (<span id="cart-count">0</span>)
+          </button>
+        </li>
+        <li class="nav-item">
+          <span class="navbar-text ml-2" id="user-name-display"></span>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-dark ml-2" id="auth-button" onclick="openAuthModal()">Sign In</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">All Products by Genre</h2>
+    <div id="products-list"></div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.2.0/firebase-database-compat.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyB7yP6YD0oze6lo14u14aBKKVI8jBelHbc",
+      authDomain: "gaming-rental-site.firebaseapp.com",
+      databaseURL: "https://gaming-rental-site-default-rtdb.firebaseio.com",
+      projectId: "gaming-rental-site",
+      storageBucket: "gaming-rental-site.appspot.com",
+      messagingSenderId: "573901873327",
+      appId: "1:573901873327:web:949bea4a588b6f9a37745a"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Fetch products grouped by genre
+    function fetchProducts() {
+      database.ref('games').once('value').then(snapshot => {
+        const products = snapshot.val();
+        console.log('Fetched products from Firebase:', products);
+        if (!products || Object.keys(products).length === 0) {
+          document.getElementById('products-list').innerHTML = '<div class="alert alert-warning">No products found in the database.</div>';
+          return;
+        }
+        const genreMap = {};
+        for (const id in products) {
+          const product = products[id];
+          if (!genreMap[product.genre]) genreMap[product.genre] = [];
+          genreMap[product.genre].push(product);
+        }
+        renderProductsByGenre(genreMap, products);
+      }).catch(err => {
+        document.getElementById('products-list').innerHTML = '<div class="alert alert-danger">Error loading products: ' + err.message + '</div>';
+        console.error('Error fetching products:', err);
+      });
+    }
+
+    function renderProductsByGenre(genreMap, products) {
+      const container = document.getElementById('products-list');
+      container.innerHTML = '';
+      for (const genre in genreMap) {
+        const section = document.createElement('div');
+        section.className = 'genre-section';
+        section.innerHTML = `<h4>${genre}</h4><div class="row"></div>`;
+        const row = section.querySelector('.row');
+        genreMap[genre].forEach(product => {
+          const col = document.createElement('div');
+          col.className = 'col-md-4';
+          // Limit description to 80 chars with ellipsis
+          let desc = product.description || '';
+          if (desc.length > 80) desc = desc.substring(0, 77) + '...';
+          // Find the id for this product
+          let prodId = product.id;
+          if (!prodId) {
+            for (const key in products) {
+              if (products[key] === product) {
+                prodId = key;
+                break;
+              }
+            }
+          }
+          col.innerHTML = `
+            <a href="product-details.html?id=${encodeURIComponent(prodId)}" class="text-decoration-none text-dark">
+              <div class="card product-card h-100">
+                <img src="${product.imageUrl || 'Gricquest-icon.PNG'}" class="card-img-top" alt="${product.name}">
+                <div class="card-body">
+                  <h5 class="card-title">${product.name}</h5>
+                  <p class="card-description">${desc}</p>
+                  <p class="card-text"><b>Genre:</b> ${product.genre}</p>
+                  <p class="card-text"><b>Price:</b> $${product.price || 'N/A'}</p>
+                </div>
+              </div>
+            </a>
+          `;
+          row.appendChild(col);
+        });
+        container.appendChild(section);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchProducts);
+  </script>
+</body>
+</html>
